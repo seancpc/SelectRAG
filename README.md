@@ -5,7 +5,10 @@
 
 **[English](#english)** | **[繁體中文](#繁體中文)**
 
+[![CI](https://github.com/seancpc/SelectRAG/actions/workflows/ci.yml/badge.svg)](https://github.com/seancpc/SelectRAG/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
+**[Project page](https://seancpc.github.io/SelectRAG/)** · **[Decision memo](docs/DECISION_MEMO.md)** · **[Article 1: BM25 baseline](docs/articles/01_bm25_baseline_en.md)** · **[Article 2: engine & format](docs/articles/02_engine_and_format_en.md)** · **[Devlog](docs/devlog.md)**
 
 `Python` · `BM25` · `bge-m3` · `bge-reranker` · `vLLM` · `TensorRT-LLM` · `GPTQ / AWQ / FP8` · `hypothesis` · `Gradio` · `RTX 4090`
 
