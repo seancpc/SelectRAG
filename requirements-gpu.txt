@@ -1,0 +1,75 @@
+# GPU 依賴(僅 4090 桌機安裝)—— 2026-09-13 桌機實測釘選
+#
+# 結論:TensorRT-LLM 與 vLLM 的 torch 釘選錯開(2026-09-13 定案),
+# 採「雙 venv」;本檔分兩段,各自對應一個 venv,禁止混裝。
+# 兩 venv 皆 CUDA 13 家族;桌機驅動 591.86(CUDA 13.1)、WSL2 Ubuntu 24.04。
+#
+# ─── 系統層前置(apt,兩 venv 共用)───────────────────────────────────
+#   sudo rm -f /var/lib/man-db/auto-update        # WSL2 上 man-db 觸發器會卡 10 分鐘以上
+#   sudo apt install -y libopenmpi-dev openmpi-bin   # TRT-LLM 的 mpi4py 需系統 libmpi
+#   # CUDA Toolkit 13.0(TRT-LLM deep_gemm 執行期 JIT 需 nvcc + header):
+#   wget https://developer.download.nvidia.com/compute/cuda/repos/wsl-ubuntu/x86_64/cuda-keyring_1.1-1_all.deb
+#   sudo dpkg -i cuda-keyring_1.1-1_all.deb && sudo apt update
+#   sudo apt install -y cuda-toolkit-13-0            # ★ 只裝 toolkit;禁裝 `cuda` metapackage(會覆蓋 WSL 驅動)
+#
+# ─── 主 venv:.venv(Python 3.11)= 核心 + 檢測 + vLLM(B 軸控制組)+ A 軸 dense ───
+#   pip install -r requirements.txt -r requirements-dev.txt -e .
+#   pip install vllm==0.22.1 nvidia-ml-py==13.610.43
+#   驗證:python -c "import torch, vllm; print(torch.__version__, torch.cuda.is_available())"
+#         → 2.11.0+cu130 True
+#   (torch 編譯架構清單無 sm_89,Ada 以 sm_86 kernel 執行;待模型實跑確認)
+vllm==0.22.1                 # 帶進 torch==2.11.0+cu130、transformers 4.57.6、triton 3.6.0
+nvidia-ml-py==13.610.43      # §5.4 VRAM 量測(pynvml 改用此套件,與 TRT-LLM 釘選一致)
+sentence-transformers==5.7.0  # A 軸 dense(bge-m3);6.x 要求 transformers>=5 與 vLLM 解出的 4.57.6 衝突,5.7.0 允許 4.41~5.x
+# reranker(A 軸步驟 2):BAAI/bge-reranker-v2-m3 經 sentence-transformers CrossEncoder 載入,無新套件;revision 953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e(2026-09-14 釘,約 2.2 GB)
+datasets==5.0.1              # NV-Embed-v2 remote code 檔頭 import(推論不用,但 transformers check_imports 會擋);2026-09-15 釘
+# 第 6 步:NV-Embed-v2 @ 3fa59658 載入失敗(見上);datasets 保留供日後重試,tools/nvembed_smoke.py 留作證據
+accelerate==1.15.0           # TRT venv;modelopt_fp8.py 的 device_map 需要(2026-09-15 釘)
+# 待釘(E 軸):peft / bitsandbytes
+#
+# ─── TRT venv:.venv-trt(★ Python 3.12,TRT-LLM 1.2.1 無 cp311 wheel)= B 軸實驗組 + C 軸量化 ───
+#   python3.12 -m venv .venv-trt && source .venv-trt/bin/activate && pip install -U pip
+#   ① 先裝 cu130 版 torch(pypi.org 預設是 cu12 build,與 TRT-LLM 的 CUDA 13 binding 不合):
+#      pip install torch==2.9.1 torchvision==0.24.1 --index-url https://download.pytorch.org/whl/cu130
+#   ② 裝 TRT-LLM(binary wheel 在 pypi.nvidia.com,pypi.org 只有 stub):
+#      pip install tensorrt-llm==1.2.1 --extra-index-url https://pypi.nvidia.com
+#   ③ ★ 陷阱:② 會把 torch 換回 cu12 build,必須再蓋回一次(帶相依):
+#      pip install --force-reinstall torch==2.9.1 torchvision==0.24.1 --index-url https://download.pytorch.org/whl/cu130
+#   ④ 在 .venv-trt/bin/activate 末尾加入(binding 需 pip 裝的 CUDA 13 .so 在 loader path;JIT 需 CUDA_HOME):
+#      export CUDA_HOME=/usr/local/cuda-13.0
+#      export PATH=$CUDA_HOME/bin:$PATH
+#      export LD_LIBRARY_PATH=$(find "$VIRTUAL_ENV/lib/python3.12/site-packages/nvidia" -type d -name lib | tr '\n' ':')$CUDA_HOME/lib64:$LD_LIBRARY_PATH
+#   驗證:python -c "import tensorrt_llm, torch; print(tensorrt_llm.__version__, torch.__version__, torch.cuda.is_available())"
+#         → 1.2.1 2.9.1+cu130 True
+#   已知警告:nvidia-modelopt 0.37 對 transformers 4.57.3 報不相容,建議 `pip install nvidia-modelopt[hf]`;
+#   C 軸量化前處理,先不動
+# tensorrt-llm==1.2.1        # 帶進 tensorrt 10.14.1.48.post1、nvidia-modelopt 0.37.0、transformers 4.57.3、mpi4py 4.1.2
+# torch==2.9.1+cu130         # 需 PyTorch index;cu12 殘留套件(nvidia-*-cu12)存在但不被載入
+#
+# ─── 首日驗證進度(2026-09-08 定案順序)───────────────────────────────
+#   1. 驅動/CUDA 盤點 → torch 輪子           ✅ 2026-09-13
+#   2. vLLM 跑一次現成 AWQ 模型               ✅ 2026-09-13 Qwen/Qwen2.5-7B-Instruct-AWQ
+#        @ b25037543e9394b818fdfca67ab2a00ecc7dd641(awq_marlin;VRAM 基線 5208→峰值 16439 MiB;
+#        3 prompt 批次 81 tok/s;sm_89 以 sm_86 kernel 實跑正常;tools/vllm_smoke.py)
+#        C 軸 GPTQ 對照:Qwen/Qwen2.5-7B-Instruct-GPTQ-Int4 @ e9c932ac1893a49ae0fc497ad6e1e86e2e39af20
+#        (2026-09-17 閘 C-3 通過;KV cache 282,416 tokens、權重 5.27 GiB;兩者皆官方預量化,校正資料與 FP8 不同)
+#   3. TensorRT-LLM 獨立 venv + 官方範例      ✅ import 通過;官方範例待跑
+#   4. nvidia-modelopt FP8 轉換一次           ✅ 2026-09-15:Qwen/Qwen2.5-7B-Instruct @ a09a3545 → models/Qwen2.5-7B-Instruct-fp8
+#      (tools/modelopt_fp8.py,TRT venv;校正 512 筆 chunks seed 42 id 雜湊 fba1ac68;675 quantizers;
+#       載入含下載 1266s / 量化 46s / 匯出 8s;VRAM 峰值 19637 MiB;transformers 4.57.3 警告未造成問題)
+#   5. bge-m3 建索引接進 runner               ✅ 2026-09-14 @ 5617a9f6;100 題 recall@10 0.897 / 0.911(見 DECISION_MEMO §2.3)
+#   6. NV-Embed-v2 載入 + VRAM 量測           ❌ 2026-09-15 放棄:remote code 與 transformers 4.57 不相容(DECISION_MEMO §7 第 5 條)
+#   7. NIM / NeMo Retriever 時間盒            ✅ 2026-09-15:nvcr.io/nim/nvidia/llama-3.2-nv-rerankqa-1b-v2:1.8.0
+#      (digest sha256:9b7e216303b92304fca4c1a7835af5d8bbf73b88c840bb53d00e244d9b1686b4),4090 走 l40sx1-trt-fp8 profile
+#      前置:Docker Desktop 開 WSL 整合且 Engine ≥ 29.8.0(24.0.7 會 CUDA init error 500);
+#      NGC API key:echo "$NGC_API_KEY" | docker login nvcr.io --username '$oauthtoken' --password-stdin
+#      啟動:docker run -it --rm --gpus all --shm-size=16GB -e NGC_API_KEY -v ~/.cache/nim:/opt/nim/.cache -p 8000:8000 <image>
+#      數字見 DECISION_MEMO §2.6(recall@10 與 bge 打平、recall@3 −0.017、每題快 18%)
+#
+# 容器/雲端不安裝本檔任何套件;所有 TTFT/吞吐/VRAM 數字一律桌機量測。
+
+# ─── demo(2026-09-18,tools/demo_app.py;桌機主 venv)───
+# 6.27.0 要求 huggingface-hub>=1.16,會把 hf-hub 升到 1.x 並打斷 transformers 4.57.6(要求 <1.0)→ sentence_transformers ImportError;
+# 6.17.3 是最後一個接受 hf-hub>=0.33.5 的版本(6.18.0 起 >=1.2.0),與 hf-hub 0.36.2 / pydantic 2.13.5 相容
+gradio==6.17.3
+huggingface-hub==0.36.2         # 顯式釘住,防 gradio 升級把它拉過 1.0

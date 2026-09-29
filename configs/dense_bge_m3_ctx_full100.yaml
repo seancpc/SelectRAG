@@ -1,0 +1,20 @@
+# A 軸對照組:bge-m3 dense 對 100 題真 eval set(bge_m3_ctx)
+#
+# 前置(桌機,主 venv):
+#   python3 tools/build_corpus.py data/corpus results/chunks.jsonl
+#   python3 tools/build_dense_index.py --chunks results/chunks.jsonl --out results/dense_index/bge_m3_ctx.npz --embedder bge-m3 --context-fields doc_title heading_path
+# model / revision 必須與索引 metadata 相同,否則 runner 拒絕載入
+
+experiment_id: dense-bge-m3-ctx-full100
+eval_set: data/eval/eval_v1.2_full100.json
+
+retriever:
+  type: dense
+  params:
+    index: results/dense_index/bge_m3_ctx.npz
+    model: BAAI/bge-m3
+    revision: 5617a9f61b028005a4858fdac845db406aefb181   # 2026-09-14 桌機首跑解析,與 tools/build_dense_index.py DEFAULT_REVISION 同步
+
+k_values: [1, 3, 5, 10]
+
+results_dir: results

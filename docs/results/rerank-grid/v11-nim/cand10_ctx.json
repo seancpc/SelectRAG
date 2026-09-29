@@ -1,0 +1,69 @@
+{
+  "experiment_id": "rerank-hybrid-rrf-full100",
+  "run_id": "cand10_ctx",
+  "eval_set_version": "v1.1-full100",
+  "eval_set_hash": "859b0d7a0bee4cefddea50e98bc252108c5f39a31db108a049e3eb44fe8a5761",
+  "config": {
+    "experiment_id": "rerank-hybrid-rrf-full100",
+    "eval_set": "data/eval/eval_v1.1_full100.json",
+    "retriever": {
+      "type": "rerank",
+      "params": {
+        "candidates": 10,
+        "model": "nim:nvidia/llama-3.2-nv-rerankqa-1b-v2",
+        "revision": "1.8.0@sha256:9b7e216303b92304fca4c1a7835af5d8bbf73b88c840bb53d00e244d9b1686b4",
+        "chunks": "results/chunks.jsonl",
+        "context_fields": [
+          "doc_title"
+        ],
+        "retriever": {
+          "type": "hybrid",
+          "params": {
+            "pool": 12,
+            "rrf_k": 60,
+            "retrievers": [
+              {
+                "type": "bm25",
+                "params": {
+                  "chunks": "results/chunks.jsonl",
+                  "context_fields": [
+                    "doc_title",
+                    "heading_path"
+                  ],
+                  "k1": 0.7,
+                  "b": 0.5
+                }
+              },
+              {
+                "type": "dense",
+                "params": {
+                  "index": "results/dense_index/bge_m3_ctx.npz",
+                  "model": "BAAI/bge-m3",
+                  "revision": "5617a9f61b028005a4858fdac845db406aefb181"
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    "k_values": [
+      1,
+      3,
+      5,
+      10
+    ],
+    "results_dir": "results/rerank-grid"
+  },
+  "metrics": {
+    "recall@1": 0.809,
+    "recall@3": 0.9263333333333335,
+    "recall@5": 0.9540000000000001,
+    "recall@10": 0.963,
+    "hit@1": 0.9,
+    "hit@3": 0.96,
+    "hit@5": 0.97,
+    "hit@10": 0.97,
+    "mrr": 0.9308333333333333
+  }
+}

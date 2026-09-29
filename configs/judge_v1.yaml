@@ -1,0 +1,10 @@
+# §5.3 faithfulness judge(2026-09-16 定案):本機 Qwen2.5-14B-Instruct-AWQ 經 vLLM,結構化輸出 + seed
+# 伺服端:vllm serve Qwen/Qwen2.5-14B-Instruct-AWQ --revision 539535859b135b0244c91f3e59816150c8056698 \
+#          --max-model-len 4096 --gpu-memory-utilization 0.90 --seed 42 --port 8000 --generation-config vllm
+model: Qwen/Qwen2.5-14B-Instruct-AWQ
+revision: 539535859b135b0244c91f3e59816150c8056698   # 桌機首跑 2026-09-16 釘
+url: http://127.0.0.1:8000
+seed: 42
+max_tokens: 64
+timeout: 120
+verbatim_min_coverage: 0.925   # 逐字命中前置層(2026-09-17):校準集 48 筆零誤放高原 0.85–1.00 中點;缺鍵即停用

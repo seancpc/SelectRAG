@@ -1,0 +1,30 @@
+{
+  "engine": "vllm",
+  "format": "gptq",
+  "model": "Qwen/Qwen2.5-7B-Instruct-GPTQ-Int4",
+  "url": "http://127.0.0.1:8000",
+  "concurrency": 1,
+  "started_at": "2026-09-17T02:40:33.653816+00:00",
+  "params": {
+    "max_tokens": 256,
+    "seed": 42,
+    "warmup": 10
+  },
+  "summary": {
+    "n": 100,
+    "ttft_p50_s": 0.07866284099964105,
+    "ttft_p95_s": 0.1614976740002021,
+    "ttft_mean_s": 0.08360221292999995,
+    "latency_p50_s": 0.3418410300000687,
+    "latency_p95_s": 0.581355951999285,
+    "latency_mean_s": 0.3548563289099638,
+    "output_tokens_total": 4457,
+    "output_tokens_mean": 44.57,
+    "tok_per_s": 125.56382064725506,
+    "req_per_s": 2.8172272974479484,
+    "wall_s": 35.4958934590004,
+    "tokens_source": "usage"
+  },
+  "vram_baseline_mib": 23682,
+  "vram_peak_mib": 23816
+}

@@ -1,0 +1,238 @@
+{
+  "manifest": {
+    "version": "v1-batch4",
+    "frozen_at": "2026-09-01T00:00:00Z",
+    "item_count": 25,
+    "content_hash": "4dc89aafd71e09f60fd3416f569b8b7faba736465f3d23fcb5bb10605ec56331"
+  },
+  "items": [
+    {
+      "id": "b4-q01",
+      "question": "Allopurinol 適用於哪些腎臟相關病症的預防與治療?",
+      "relevant_doc_ids": [
+        "衛署藥製字第018705號#0002#5964e4bd",
+        "衛署藥製字第018705號#0024#3f82a10b"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b4-q02",
+      "question": "Allopurinol 曾發生哪些危及生命的嚴重皮膚不良反應?",
+      "relevant_doc_ids": [
+        "衛署藥製字第018705號#0006#7bd85d2e"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b4-q03",
+      "question": "Doxycycline 對血液系統的副作用有哪些?",
+      "relevant_doc_ids": [
+        "衛署藥製字第019254號#0009#990a0bd4"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b4-q04",
+      "question": "長期使用 Dexamethasone 注射劑後要如何停藥?",
+      "relevant_doc_ids": [
+        "衛署藥製字第013912號#0006#ae2980f3"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b4-q05",
+      "question": "Lorazepam 用於治療失眠時的建議劑量與服用方式為何?",
+      "relevant_doc_ids": [
+        "衛署藥製字第022211號#0004#7eb3ec40"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b4-q06",
+      "question": "外用類固醇的反彈性發作有哪些症狀?",
+      "relevant_doc_ids": [
+        "衛署藥製字第016349號#0007#2fd3195f",
+        "衛署藥製字第016349號#0009#41f9c779"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b4-q07",
+      "question": "Furosemide 會如何影響痛風病人的治療?",
+      "relevant_doc_ids": [
+        "衛署藥製字第011150號115.08.07#0008#a0756131"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b4-q08",
+      "question": "速備粉中的 Neomycin 對哪些具抗藥性的細菌仍有效?",
+      "relevant_doc_ids": [
+        "衛署藥製字第004761號#0010#d0928581"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b4-q09",
+      "question": "Cefiderocol(Fetroja)如需延長治療,程序上有什麼要求?",
+      "relevant_doc_ids": [
+        "完整給付規定1150821#0730#45590d58"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b4-q10",
+      "question": "GLP-1 類藥品(如 Ozempic)的健保給付對 HbA1c 有什麼門檻?",
+      "relevant_doc_ids": [
+        "完整給付規定1150821#0230#406c662a"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b4-q11",
+      "question": "中樞性早熟(CPP)的健保給付診斷標準為何?",
+      "relevant_doc_ids": [
+        "完整給付規定1150821#0247#da9b5c90"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b4-q12",
+      "question": "Letrozole 可以與 tamoxifen 或其他 aromatase inhibitor 併用嗎?",
+      "relevant_doc_ids": [
+        "完整給付規定1150821#0452#bb1991ee"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b4-q13",
+      "question": "健保給付的抗疱疹藥膏每次給藥量上限是多少?",
+      "relevant_doc_ids": [
+        "完整給付規定1150821#0746#de3ea4af"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b4-q14",
+      "question": "思覺失調症方案中,高風險病人出院後轉介追蹤的獎勵是每人多少點?",
+      "relevant_doc_ids": [
+        "全民健康保險思覺失調症醫療給付改善方案(1150801生效)#0016#21175079"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b4-q15",
+      "question": "思覺失調症方案的個案「發現費」支付多少點?有什麼限制?",
+      "relevant_doc_ids": [
+        "全民健康保險思覺失調症醫療給付改善方案(1150801生效)#0006#5dd13af7"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b4-q16",
+      "question": "復健病房試辦計畫收案病人的功能障礙程度條件為何?",
+      "relevant_doc_ids": [
+        "全民健康保險復健病房試辦計畫（115.04.16 新增）#0008#9a378f6f"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b4-q17",
+      "question": "呼吸器依賴照護計畫中,訪視紀錄未記載或記載不全會有什麼後果?",
+      "relevant_doc_ids": [
+        "「全民健康保險呼吸器依賴患者整合性照護前瞻性支付方式」計畫_公告陳核+畫線#0039#7ce6259c"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b4-q18",
+      "question": "肝炎方案個案登錄時,院外 CT、MRI 或腹部超音波檢查結果可參用多久以內的?",
+      "relevant_doc_ids": [
+        "全民健康保險肝炎醫療給付改善方案 (115年8月19日起實施)#0010#f9c82f6e"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b4-q19",
+      "question": "復健病房試辦計畫的溝通(語言)治療訓練包含哪些項目?",
+      "relevant_doc_ids": [
+        "全民健康保險復健病房試辦計畫（115.04.16 新增）#0017#686278ac"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b4-q20",
+      "question": "機械手臂輔助膽囊切除術(N26052)的手術費如何申報?",
+      "relevant_doc_ids": [
+        "醫療服務給付項目及支付標準_A21030000I-D20021-001#3770#315e3a45",
+        "醫療服務給付項目及支付標準_A21030000I-D20021-001#5479#f9994c78"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b4-q21",
+      "question": "職業病初診診察費(01040C)的健保支付點數是多少?",
+      "relevant_doc_ids": [
+        "醫療服務給付項目及支付標準_A21030000I-D20021-001#0153#99721866"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b4-q22",
+      "question": "子宮鏡檢查結果正常時,同一院所多久可再做一次?",
+      "relevant_doc_ids": [
+        "醫療服務給付項目及支付標準_A21030000I-D20021-001#1739#877b256a"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b4-q23",
+      "question": "乳房全切除手術(單側)的健保適應症為何?",
+      "relevant_doc_ids": [
+        "醫療服務給付項目及支付標準_A21030000I-D20021-001#2905#4371d207"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b4-q24",
+      "question": "強制處置-特殊職能治療(E45095)的申報條件是什麼?",
+      "relevant_doc_ids": [
+        "醫療服務給付項目及支付標準_A21030000I-D20021-001#5270#22cea8d6"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b4-q25",
+      "question": "山地離島醫療給付效益提昇計畫(尖石鄉、五峰鄉)徵求案的辦理單位是?",
+      "relevant_doc_ids": [
+        "全民健康保險山地離島地區醫療給付效益提昇計畫徵求－ (新竹縣尖石鄉、新竹縣五峰鄉)-衛生福利部中央健康保險署,NHI-最新消息-計畫徵求#0001#faa7c6fe"
+      ],
+      "reference_answer": null,
+      "notes": null
+    }
+  ]
+}

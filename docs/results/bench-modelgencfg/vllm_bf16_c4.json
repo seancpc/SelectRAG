@@ -1,0 +1,30 @@
+{
+  "engine": "vllm",
+  "format": "bf16",
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "url": "http://localhost:8000",
+  "concurrency": 4,
+  "started_at": "2026-09-15T14:32:45.370887+00:00",
+  "params": {
+    "max_tokens": 256,
+    "seed": 42,
+    "warmup": 5
+  },
+  "summary": {
+    "n": 100,
+    "ttft_p50_s": 0.05614354400313459,
+    "ttft_p95_s": 0.06042127600085223,
+    "ttft_mean_s": 0.056577186850408905,
+    "latency_p50_s": 0.7939100090006832,
+    "latency_p95_s": 1.4338091969984816,
+    "latency_mean_s": 0.837137243480247,
+    "output_tokens_total": 4492,
+    "output_tokens_mean": 44.92,
+    "tok_per_s": 210.15338616116168,
+    "req_per_s": 4.678392390052576,
+    "wall_s": 21.374863770004595,
+    "tokens_source": "usage"
+  },
+  "vram_baseline_mib": 23322,
+  "vram_peak_mib": 23330
+}

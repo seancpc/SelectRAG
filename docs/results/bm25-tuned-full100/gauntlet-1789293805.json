@@ -1,0 +1,36 @@
+{
+  "experiment_id": "bm25-tuned-full100",
+  "run_id": "gauntlet-1789293805",
+  "eval_set_version": "v1-full100",
+  "eval_set_hash": "bdea697a284634c0e0c598e559ebe544e60745f4bdca43e73a64232a9f1143ee",
+  "config": {
+    "experiment_id": "bm25-tuned-full100",
+    "eval_set": "data/eval/eval_v1_full100.json",
+    "retriever": {
+      "type": "bm25",
+      "params": {
+        "chunks": "results/chunks.jsonl",
+        "k1": 0.5,
+        "b": 0.1
+      }
+    },
+    "k_values": [
+      1,
+      3,
+      5,
+      10
+    ],
+    "results_dir": "results"
+  },
+  "metrics": {
+    "recall@1": 0.6323333333333333,
+    "recall@3": 0.7896666666666667,
+    "recall@5": 0.8203333333333334,
+    "recall@10": 0.8703333333333333,
+    "hit@1": 0.7,
+    "hit@3": 0.82,
+    "hit@5": 0.85,
+    "hit@10": 0.9,
+    "mrr": 0.7720515873015873
+  }
+}

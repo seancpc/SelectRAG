@@ -1,0 +1,30 @@
+{
+  "engine": "vllm",
+  "format": "fp8",
+  "model": "qwen2.5-7b-fp8",
+  "url": "http://127.0.0.1:8000",
+  "concurrency": 8,
+  "started_at": "2026-09-15T15:46:21.702029+00:00",
+  "params": {
+    "max_tokens": 256,
+    "seed": 42,
+    "warmup": 10
+  },
+  "summary": {
+    "n": 100,
+    "ttft_p50_s": 0.03771646299719578,
+    "ttft_p95_s": 0.04743062199850101,
+    "ttft_mean_s": 0.03877065061977191,
+    "latency_p50_s": 0.5277856800021254,
+    "latency_p95_s": 1.0014017319990671,
+    "latency_mean_s": 0.5667787147900526,
+    "output_tokens_total": 4505,
+    "output_tokens_mean": 45.05,
+    "tok_per_s": 609.8545655229585,
+    "req_per_s": 13.537282253561788,
+    "wall_s": 7.387007091005216,
+    "tokens_source": "usage"
+  },
+  "vram_baseline_mib": 22927,
+  "vram_peak_mib": 22935
+}

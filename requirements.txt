@@ -1,0 +1,20 @@
+# SelectRAG 核心依賴(不需 GPU,筆電與桌機皆安裝)
+#
+# ⚠️ 版本為初稿,未在 4090 桌機驗證。首次安裝若失敗:
+#    pip index versions <套件名>  查可用版本後回報,再更新本檔。
+# 安裝:pip install -r requirements.txt
+#
+# BM25 為純標準庫實作,無額外套件;GPU 軸套件另見 requirements-gpu.txt。
+
+pyyaml==6.0.2
+pydantic==2.13.5
+
+# PDF 文字抽取(語料前處理)
+# ⚠️ 雲端容器安裝前需先修復 debian 版 cryptography 的 Rust binding:
+#    pip install --ignore-installed cffi cryptography
+#    (見 .claude/CLAUDE.md 雲端容器環境坑 A2;桌機用 venv 無此問題)
+pypdf==6.16.2
+
+# dense 檢索(A 軸):cosine top-k 的矩陣運算;純 Python 對 8029×1024 每題約 8M 次乘法,不可行
+# 版本對齊桌機 vLLM venv 解出的 2.3.5(numba 0.65 上限 <2.5)
+numpy==2.3.5

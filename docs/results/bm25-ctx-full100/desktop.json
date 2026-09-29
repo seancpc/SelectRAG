@@ -1,0 +1,38 @@
+{
+  "experiment_id": "bm25-ctx-full100",
+  "run_id": "desktop",
+  "eval_set_version": "v1-full100",
+  "eval_set_hash": "bdea697a284634c0e0c598e559ebe544e60745f4bdca43e73a64232a9f1143ee",
+  "config": {
+    "experiment_id": "bm25-ctx-full100",
+    "eval_set": "data/eval/eval_v1_full100.json",
+    "retriever": {
+      "type": "bm25",
+      "params": {
+        "chunks": "results/chunks.jsonl",
+        "context_fields": [
+          "doc_title",
+          "heading_path"
+        ]
+      }
+    },
+    "k_values": [
+      1,
+      3,
+      5,
+      10
+    ],
+    "results_dir": "results"
+  },
+  "metrics": {
+    "recall@1": 0.5773333333333334,
+    "recall@3": 0.7563333333333334,
+    "recall@5": 0.8036666666666666,
+    "recall@10": 0.9046666666666667,
+    "hit@1": 0.64,
+    "hit@3": 0.79,
+    "hit@5": 0.83,
+    "hit@10": 0.92,
+    "mrr": 0.7321190476190477
+  }
+}

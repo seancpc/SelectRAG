@@ -1,0 +1,483 @@
+{
+ "manifest": {
+  "version": "offcorpus_v2",
+  "approved_at": "2026-09-19",
+  "item_count": 60,
+  "purpose": "語料外題:量檢索器面對語料外問題的 top-1 分數分佈(拒答門檻網格的負例);與醫療/藥品/健保無實質交集,無個資",
+  "design_principle": "誘撈題判準是「正確答案是否可能落在語料內」,不是「字面有沒有醫療詞」:字面/句型/語意場可以像,但答案必須絕不可能出現在語料(off-28 孕婦搭機通過、off-27 醫療費用扣除退回,即此線)",
+  "expected_semantics": "expected=abstain:文件問答系統對語料外題的理想行為是不從語料作答(檢索分數低於門檻→拒答;生成端亦不得從語料硬湊)。lure=true 為刻意與語料句型/語意場同構的誘撈題,單獨計分;premise_false 為答案本身為否定的題,生成端不得編造數字",
+  "fields": "lure_strength 強/中/弱 = 依 2026-09-19 核准意見的梯度初判(健保卡字面 > 社會保險語意場 > 句型同構 > 純頻率句型),供分析誤撈門檻落在哪一格,可調;contrast_group = 內部對照組(docs_pattern 同句型不同主題三點、battery 同語意場兩點、frequency 頻率句型三點);corpus_dependent = 語料擴充後須退役",
+  "review": "v1 20 題(2026-09-19)+ v2 40 題(2026-09-19 逐題核准:37 題原案、off-27 / off-30 / off-50 因實質沾邊醫療改寫,保留誘撈句型)。誘撈 19 / 乾淨 41"
+ },
+ "items": [
+  {
+   "id": "off-01",
+   "question": "台北捷運板南線的首班車是幾點發車?",
+   "kind": "事實型",
+   "lure": false,
+   "expected": "abstain"
+  },
+  {
+   "id": "off-02",
+   "question": "如何在 Python 裡把清單去除重複元素並保持順序?",
+   "kind": "程序型",
+   "lure": false,
+   "expected": "abstain"
+  },
+  {
+   "id": "off-03",
+   "question": "日本的消費稅目前是多少百分比?",
+   "kind": "事實型",
+   "lure": false,
+   "expected": "abstain"
+  },
+  {
+   "id": "off-04",
+   "question": "汽車輪胎胎壓建議多久檢查一次?",
+   "kind": "事實型",
+   "lure": true,
+   "expected": "abstain",
+   "lure_note": "「多久檢查一次」與仿單/給付規定「每○個月一次」「一年至多二次」頻率句型同構",
+   "lure_strength": "弱",
+   "contrast_group": "frequency"
+  },
+  {
+   "id": "off-05",
+   "question": "圍棋棋盤總共有幾個交叉點?",
+   "kind": "事實型",
+   "lure": false,
+   "expected": "abstain"
+  },
+  {
+   "id": "off-06",
+   "question": "申請護照換發需要準備哪些文件?",
+   "kind": "程序型",
+   "lure": true,
+   "expected": "abstain",
+   "lure_note": "「需要準備哪些文件」與 POL 應備文件、方案「須檢附」句型同構(b1-q16、b4-q22 同型)",
+   "lure_strength": "中",
+   "contrast_group": "docs_pattern"
+  },
+  {
+   "id": "off-07",
+   "question": "梅雨季通常在台灣的哪幾個月?",
+   "kind": "事實型",
+   "lure": false,
+   "expected": "abstain"
+  },
+  {
+   "id": "off-08",
+   "question": "咖啡豆的淺焙與深焙在風味上有什麼差別?",
+   "kind": "開放型",
+   "lure": false,
+   "expected": "abstain"
+  },
+  {
+   "id": "off-09",
+   "question": "房屋租賃契約的押金上限是幾個月租金?",
+   "kind": "事實型",
+   "lure": true,
+   "expected": "abstain",
+   "lure_note": "「上限/幾個月」對上給付規定限額句型;押金上限有法源(土地法第 99 條),非虛構",
+   "lure_strength": "中"
+  },
+  {
+   "id": "off-10",
+   "question": "太陽系中體積最大的行星是哪一顆?",
+   "kind": "事實型",
+   "lure": false,
+   "expected": "abstain"
+  },
+  {
+   "id": "off-11",
+   "question": "如何計算複利的年化報酬率?",
+   "kind": "程序型",
+   "lure": false,
+   "expected": "abstain"
+  },
+  {
+   "id": "off-12",
+   "question": "台灣高鐵從台北到左營全程大約需要多少時間?",
+   "kind": "事實型",
+   "lure": false,
+   "expected": "abstain"
+  },
+  {
+   "id": "off-13",
+   "question": "樂高積木最常見的塑膠材質是什麼?",
+   "kind": "事實型",
+   "lure": false,
+   "expected": "abstain"
+  },
+  {
+   "id": "off-14",
+   "question": "一場標準足球比賽的上下半場各幾分鐘?",
+   "kind": "事實型",
+   "lure": false,
+   "expected": "abstain"
+  },
+  {
+   "id": "off-15",
+   "question": "電動機車的電池在冬天為什麼續航會變短?",
+   "kind": "開放型",
+   "lure": true,
+   "expected": "abstain",
+   "lure_note": "「電池/續航/低溫」語意場相鄰仿單「儲存條件/25°C 以下/效期」,測 reranker 語意邊界(dense 藥名盲的反向)",
+   "lure_strength": "中",
+   "contrast_group": "battery"
+  },
+  {
+   "id": "off-16",
+   "question": "台灣的機車駕照考試路考有哪些關卡?",
+   "kind": "程序型",
+   "lure": false,
+   "expected": "abstain",
+   "note": "「有哪些關卡」近方案「須符合下列條件」句型,附帶誘撈價值(不入誘撈組)"
+  },
+  {
+   "id": "off-17",
+   "question": "麵包發酵時酵母菌產生的氣體是什麼?",
+   "kind": "事實型",
+   "lure": false,
+   "expected": "abstain"
+  },
+  {
+   "id": "off-18",
+   "question": "手機拍夜景時 ISO 值該調高還是調低?",
+   "kind": "開放型",
+   "lure": false,
+   "expected": "abstain"
+  },
+  {
+   "id": "off-19",
+   "question": "中秋節吃柚子的習俗從何而來?",
+   "kind": "開放型",
+   "lure": false,
+   "expected": "abstain"
+  },
+  {
+   "id": "off-20",
+   "question": "公司登記的資本額最低要求是多少?",
+   "kind": "事實型",
+   "lure": true,
+   "expected": "abstain",
+   "lure_note": "「最低要求」對上給付規定門檻句型;且答案本身為否定(公司法修正後無最低資本額),前提不成立",
+   "premise_false": true,
+   "lure_strength": "中"
+  },
+  {
+   "id": "off-21",
+   "question": "健保卡遺失補發要準備什麼證件?",
+   "kind": "程序型",
+   "lure": true,
+   "expected": "abstain",
+   "lure_note": "「補發/證件」同構 POL 應備文件;含「健保卡」字面,測 BM25 字面誘撈最強的一題",
+   "lure_strength": "強",
+   "contrast_group": "docs_pattern"
+  },
+  {
+   "id": "off-22",
+   "question": "汽車強制責任險一年保費大約多少?",
+   "kind": "事實型",
+   "lure": true,
+   "expected": "abstain",
+   "lure_note": "「一年/保費」對上給付規定的年度限額句型",
+   "lure_strength": "中"
+  },
+  {
+   "id": "off-23",
+   "question": "勞保老年年金要投保滿幾年才能領?",
+   "kind": "事實型",
+   "lure": true,
+   "expected": "abstain",
+   "lure_note": "「滿幾年/才能」對上給付條件句型;與健保同屬社會保險語意場",
+   "lure_strength": "中"
+  },
+  {
+   "id": "off-24",
+   "question": "寵物犬每年需要施打哪些疫苗?",
+   "kind": "程序型",
+   "lure": true,
+   "expected": "abstain",
+   "lure_note": "「每年/施打/疫苗」與仿單接種段落語意場相鄰",
+   "lure_strength": "中"
+  },
+  {
+   "id": "off-25",
+   "question": "隱形眼鏡藥水開封後可以用多久?",
+   "kind": "事實型",
+   "lure": true,
+   "expected": "abstain",
+   "lure_note": "「開封後/多久」對上仿單「開封後效期」句型;藥水但非藥品",
+   "lure_strength": "中",
+   "corpus_dependent": "若語料擴充到醫材仿單,此題須退役"
+  },
+  {
+   "id": "off-26",
+   "question": "機車引擎機油多少公里要更換一次?",
+   "kind": "事實型",
+   "lure": true,
+   "expected": "abstain",
+   "lure_note": "「多少○○/一次」頻率句型(off-04 同型)",
+   "lure_strength": "弱",
+   "contrast_group": "frequency"
+  },
+  {
+   "id": "off-27",
+   "question": "報稅時列舉扣除額和標準扣除額要怎麼選?",
+   "kind": "程序型",
+   "lure": true,
+   "expected": "abstain",
+   "lure_note": "含「醫療費用」字面但屬稅務;測語意場邊界最刁鑽的一題(2026-09-19 改寫:原題實質沾邊醫療,改寫後只留句型)",
+   "lure_strength": "弱"
+  },
+  {
+   "id": "off-28",
+   "question": "孕婦搭飛機航空公司有什麼週數限制?",
+   "kind": "事實型",
+   "lure": true,
+   "expected": "abstain",
+   "lure_note": "「孕婦/週數」與仿單「特殊族群/懷孕」段落語意場相鄰(eval 有多題問孕婦用藥)",
+   "lure_strength": "中"
+  },
+  {
+   "id": "off-29",
+   "question": "老年人申請長照 2.0 服務的資格條件是什麼?",
+   "kind": "程序型",
+   "lure": true,
+   "expected": "abstain",
+   "lure_note": "「資格條件」對上方案收案條件句型;長照與健保同屬衛福部語意場",
+   "lure_strength": "中"
+  },
+  {
+   "id": "off-30",
+   "question": "成人每日建議飲水量大約是多少?",
+   "kind": "事實型",
+   "lure": true,
+   "expected": "abstain",
+   "lure_note": "「每日/上限/攝取」對上仿單劑量上限句型(2026-09-19 改寫:原題實質沾邊醫療,改寫後只留句型)",
+   "lure_strength": "弱"
+  },
+  {
+   "id": "off-31",
+   "question": "如何在 Excel 裡把兩個欄位合併成一欄?",
+   "kind": "程序型",
+   "lure": false,
+   "expected": "abstain"
+  },
+  {
+   "id": "off-32",
+   "question": "台灣的大學指考已經改成什麼考試?",
+   "kind": "事實型",
+   "lure": false,
+   "expected": "abstain"
+  },
+  {
+   "id": "off-33",
+   "question": "一公頃等於多少平方公尺?",
+   "kind": "事實型",
+   "lure": false,
+   "expected": "abstain"
+  },
+  {
+   "id": "off-34",
+   "question": "家用 Wi-Fi 分享器擺放位置有什麼建議?",
+   "kind": "開放型",
+   "lure": false,
+   "expected": "abstain"
+  },
+  {
+   "id": "off-35",
+   "question": "為什麼冬天窗戶內側會有水氣凝結?",
+   "kind": "開放型",
+   "lure": false,
+   "expected": "abstain"
+  },
+  {
+   "id": "off-36",
+   "question": "國道 ETC 儲值有哪幾種方式?",
+   "kind": "程序型",
+   "lure": false,
+   "expected": "abstain"
+  },
+  {
+   "id": "off-37",
+   "question": "冷氣的除濕模式和冷氣模式耗電量誰比較高?",
+   "kind": "開放型",
+   "lure": false,
+   "expected": "abstain"
+  },
+  {
+   "id": "off-38",
+   "question": "台灣的垃圾分類回收物有哪幾大類?",
+   "kind": "事實型",
+   "lure": false,
+   "expected": "abstain"
+  },
+  {
+   "id": "off-39",
+   "question": "電動車充電的快充和慢充差在哪裡?",
+   "kind": "開放型",
+   "lure": false,
+   "expected": "abstain"
+  },
+  {
+   "id": "off-40",
+   "question": "申請台灣的自然人憑證要去哪裡辦?",
+   "kind": "程序型",
+   "lure": false,
+   "expected": "abstain"
+  },
+  {
+   "id": "off-41",
+   "question": "馬拉松全程的標準距離是多少公里?",
+   "kind": "事實型",
+   "lure": false,
+   "expected": "abstain"
+  },
+  {
+   "id": "off-42",
+   "question": "如何用 git 把某個檔案回復到上一個 commit 的版本?",
+   "kind": "程序型",
+   "lure": false,
+   "expected": "abstain"
+  },
+  {
+   "id": "off-43",
+   "question": "地震時在室內應該怎麼避難?",
+   "kind": "程序型",
+   "lure": false,
+   "expected": "abstain"
+  },
+  {
+   "id": "off-44",
+   "question": "水煮蛋要煮幾分鐘蛋黃才會全熟?",
+   "kind": "事實型",
+   "lure": false,
+   "expected": "abstain"
+  },
+  {
+   "id": "off-45",
+   "question": "颱風假是由誰決定要不要放?",
+   "kind": "事實型",
+   "lure": false,
+   "expected": "abstain"
+  },
+  {
+   "id": "off-46",
+   "question": "為什麼手機電池不建議每次都充到 100%?",
+   "kind": "開放型",
+   "lure": false,
+   "expected": "abstain",
+   "contrast_group": "battery"
+  },
+  {
+   "id": "off-47",
+   "question": "台北 101 的高度是多少公尺?",
+   "kind": "事實型",
+   "lure": false,
+   "expected": "abstain"
+  },
+  {
+   "id": "off-48",
+   "question": "停車時遇到路邊紅線和黃線分別代表什麼?",
+   "kind": "事實型",
+   "lure": false,
+   "expected": "abstain"
+  },
+  {
+   "id": "off-49",
+   "question": "洗衣機的洗衣槽多久清潔一次比較好?",
+   "kind": "事實型",
+   "lure": true,
+   "expected": "abstain",
+   "lure_note": "「多久/一次」頻率句型(off-04 同型),但主題離醫療更遠,當對照",
+   "lure_strength": "弱",
+   "contrast_group": "frequency"
+  },
+  {
+   "id": "off-50",
+   "question": "咖啡的美式和拿鐵在做法上差在哪裡?",
+   "kind": "開放型",
+   "lure": true,
+   "expected": "abstain",
+   "lure_note": "「攝取過量/症狀」與仿單「過量處置/不良反應」段落同構;咖啡因非本語料藥品(2026-09-19 改寫:原題實質沾邊醫療,改寫後只留句型)",
+   "lure_strength": "弱"
+  },
+  {
+   "id": "off-51",
+   "question": "為什麼麵條煮好要過冷水才不會黏?",
+   "kind": "開放型",
+   "lure": false,
+   "expected": "abstain"
+  },
+  {
+   "id": "off-52",
+   "question": "如何查詢自己的勞保投保紀錄?",
+   "kind": "程序型",
+   "lure": false,
+   "expected": "abstain"
+  },
+  {
+   "id": "off-53",
+   "question": "台灣冬季平地平均氣溫大約幾度?",
+   "kind": "事實型",
+   "lure": false,
+   "expected": "abstain"
+  },
+  {
+   "id": "off-54",
+   "question": "二手車過戶需要雙方準備哪些文件?",
+   "kind": "程序型",
+   "lure": true,
+   "expected": "abstain",
+   "lure_note": "「需要準備哪些文件」(off-06 同型)",
+   "lure_strength": "中",
+   "contrast_group": "docs_pattern"
+  },
+  {
+   "id": "off-55",
+   "question": "飛機起降時為什麼要把椅背豎直?",
+   "kind": "開放型",
+   "lure": false,
+   "expected": "abstain"
+  },
+  {
+   "id": "off-56",
+   "question": "如何判斷西瓜有沒有熟?",
+   "kind": "開放型",
+   "lure": false,
+   "expected": "abstain"
+  },
+  {
+   "id": "off-57",
+   "question": "悠遊卡餘額不足時最多可以負多少?",
+   "kind": "事實型",
+   "lure": false,
+   "expected": "abstain"
+  },
+  {
+   "id": "off-58",
+   "question": "Python 的 list 和 tuple 差在哪裡?",
+   "kind": "開放型",
+   "lure": false,
+   "expected": "abstain"
+  },
+  {
+   "id": "off-59",
+   "question": "台灣的國定假日遇到週末會補假嗎?",
+   "kind": "事實型",
+   "lure": false,
+   "expected": "abstain"
+  },
+  {
+   "id": "off-60",
+   "question": "一杯手搖飲的含糖量大約相當於幾顆方糖?",
+   "kind": "事實型",
+   "lure": true,
+   "expected": "abstain",
+   "lure_note": "「含量/相當於」對上仿單成分含量句型;糖非藥品",
+   "lure_strength": "弱"
+  }
+ ]
+}

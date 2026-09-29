@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SelectRAG — 用實驗選型的 RAG 架構決策</title>
+<style>
+  :root {
+    --bg: #1e1e1e;
+    --text: #e0e0e0;
+    --heading: #00bcd4;
+    --link: #58a6ff;
+    --code-bg: #2a2a2a;
+    --border: #333;
+    --muted: #9aa0a6;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    font-size: 16px;
+  }
+  .container { max-width: 800px; margin: 0 auto; padding: 2rem; }
+  h1 { color: var(--heading); font-weight: bold; font-size: 2rem; margin: 0 0 0.3rem; }
+  .subtitle { color: var(--text); font-size: 1.1rem; margin: 0; }
+  .badges { color: var(--muted); font-size: 0.8rem; margin: 0.6rem 0 0; font-family: Consolas, monospace; }
+  .lang { text-align: right; font-size: 0.9rem; margin: 0 0 1.2rem; }
+  .banner {
+    background: #232323; border: 1px solid var(--border); border-radius: 6px;
+    padding: 0.7rem 1rem; margin: 0.9rem 0 0; font-size: 0.9rem;
+  }
+  .banner strong { color: var(--heading); }
+  .lead {
+    background: #232323; border-left: 4px solid var(--heading);
+    border-radius: 0 6px 6px 0; padding: 1rem 1.1rem; margin: 1.6rem 0;
+  }
+  h2 { color: var(--heading); font-weight: bold; font-size: 1.5rem; margin: 2.5rem 0 0.8rem; }
+  h3 { color: #ffffff; font-weight: bold; font-size: 1.12rem; margin: 1.9rem 0 0.4rem; }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  strong { color: #ffffff; }
+  ul { padding-left: 1.4rem; margin: 0.7rem 0; }
+  li { margin: 0.4rem 0; }
+  table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: 0.95rem; }
+  th, td { border: 1px solid var(--border); padding: 0.5rem 0.8rem; text-align: left; vertical-align: top; }
+  th { background: var(--code-bg); white-space: nowrap; }
+  pre {
+    background: var(--code-bg); padding: 1rem; border-radius: 6px;
+    overflow-x: auto; font-size: 0.78rem; line-height: 1.45;
+    font-family: Consolas, monospace; color: var(--text);
+  }
+  code { background: var(--code-bg); padding: 1px 5px; border-radius: 3px; font-size: 90%; }
+  .btns { display: flex; gap: 0.8rem; flex-wrap: wrap; margin: 1.1rem 0; }
+  .btn {
+    display: inline-block; padding: 0.6rem 1.1rem;
+    border: 1px solid var(--link); border-radius: 6px;
+    color: var(--link); font-size: 0.95rem; font-weight: 500;
+  }
+  .btn:hover { background: var(--link); color: var(--bg); text-decoration: none; }
+  .btn.primary { background: var(--heading); border-color: var(--heading); color: var(--bg); }
+  .btn.primary:hover { opacity: 0.85; color: var(--bg); }
+  .note {
+    background: #2a2620; border-left: 4px solid #d4a017;
+    border-radius: 0 6px 6px 0; padding: 0.8rem 1rem; margin: 1rem 0; font-size: 0.95rem;
+  }
+  .placeholder {
+    background: var(--code-bg); border: 1px dashed #555; border-radius: 6px;
+    padding: 2.5rem 1.5rem; text-align: center; color: var(--muted); margin: 1rem 0;
+  }
+  img.shot { max-width: 760px; width: 100%; border: 1px solid var(--border); border-radius: 6px; }
+  .caption { font-size: 0.85rem; color: var(--muted); }
+  footer {
+    margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--border);
+    color: var(--muted); font-size: 0.95rem;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <p class="lang"><a href="index.en.html">English</a> ｜ 繁體中文</p>
+
+  <h1>SelectRAG — 用實驗選型,而非用信仰選型</h1>
+  <p class="subtitle">Choosing a RAG Configuration by Controlled Experiment on a Single RTX 4090</p>
+  <div class="banner">「我們該用哪種 RAG 配置?證明給我看」 · <strong>100 題人工真值 eval set(hash 凍結)</strong> · 檢索 recall@10 0.903 → 0.973 · 生成吞吐 ×2.36 · judge κ 0.488(誠實揭露) · 單卡 RTX 4090</div>
+
+  <p class="lead">
+    模擬 Solutions Architect 最常收到的客戶問題——「<strong>我們該用哪種 RAG 配置?</strong>」——
+    在單卡消費級 GPU 上用受控對照實驗回答:一次只動一軸、其餘全部釘死,
+    最終交付一份<strong>架構決策備忘錄</strong>(該文件本身就是 SA 的交付物格式)。
+  </p>
+
+  <div class="btns">
+    <a class="btn primary" href="https://github.com/seanchuang1201work-ux/SelectRAG">GitHub Repo</a>
+    <a class="btn" href="https://github.com/seanchuang1201work-ux/SelectRAG/blob/development/docs/DECISION_MEMO.md">架構決策備忘錄</a>
+    <a class="btn" href="https://github.com/seanchuang1201work-ux/SelectRAG/blob/development/docs/articles/01_bm25_baseline_en.md">技術文章 #1(EN)</a>
+    <a class="btn" href="https://github.com/seanchuang1201work-ux/SelectRAG/blob/development/docs/articles/02_engine_and_format_en.md">技術文章 #2(EN)</a>
+    <a class="btn" href="https://github.com/seanchuang1201work-ux/SelectRAG/blob/development/docs/devlog.md">開發歷程</a>
+  </div>
+
+  <h2>設計概念</h2>
+  <p>這個專案<strong>不拼檢索排行榜分數</strong>,而是拼<strong>選型方法論</strong>——每個「該不該上」的問題都用對照實驗回答,結論寫成 trade-off 而非冠軍。三個核心:</p>
+  <ul>
+    <li><strong>五軸對照實驗</strong>:檢索策略(A)、推論引擎(B)、量化格式(C)、RAG 範式(D)、fine-tune 對照(E)——一次只動一軸,其餘釘死。</li>
+    <li><strong>評測地基先行</strong>:100 題人工判定真值、content hash 凍結、一行指令可重跑;沒有基準,禁止宣稱「優化了」。</li>
+    <li><strong>誠實揭露</strong>:預期會贏但輸了的組合、被證據推翻的假設、調參的過擬合風險——全部寫進備忘錄,不只挑好消息。</li>
+  </ul>
+
+  <h2>專案簡介</h2>
+  <ul>
+    <li><strong>領域</strong>:繁體中文醫療公開文件問答(健保給付規定、藥品仿單、支付標準、公告)——延續醫療護城河,全公開、無 PHI。</li>
+    <li><strong>語料</strong>:8,029 chunks(CSV 6,350 / PDF 1,660 / HTML 19),結構優先切塊 + 長度上限。</li>
+    <li><strong>評測</strong>:recall@k 與 hit@k 並列(多等價真值下 recall 被稀釋,hit 回答「答案有沒有被拿到」),以不變量 <code>hit == (recall &gt; 0)</code> 互鎖;指標模組經變異測試(45/45 killed)。</li>
+  </ul>
+
+  <h2>系統架構</h2>
+  <pre>
+   政府公開文件(PDF / CSV / HTML)
+              │  結構優先切塊 + doc_title 回填
+              ▼
+      8,029 chunks(JSONL)
+              │
+     ┌────────┴────────┐
+     ▼                 ▼
+  BM25(控制組)   BM25 + 文件脈絡      ← A 軸:之後接 dense / hybrid / reranker
+     └────────┬────────┘
+              ▼
+     實驗 runner(YAML 設定 → JSON 結果)
+              │  eval set hash 入結果檔、覆蓋保護、竄改偵測
+              ▼
+   100 題凍結 eval set 計分(recall@k / hit@k / MRR)</pre>
+
+  <h2>使用技術</h2>
+  <table>
+    <tr><th>類別</th><th>技術堆疊</th></tr>
+    <tr><td>檢索</td><td>BM25(純標準庫自實作,CJK bigram + ASCII 詞斷詞;context_fields 選項)→ 後續 bge-m3 / hybrid / reranker</td></tr>
+    <tr><td>語料前處理</td><td>pypdf(釘選 6.16.2)、自寫 HTML 正文抽取、雙套中文標題體系解析、NFKC 正規化</td></tr>
+    <tr><td>評測框架</td><td>凍結 eval set(content hash + 壞資料一律 raise)、recall@k / hit@k / MRR、一行指令重跑</td></tr>
+    <tr><td>品質工程</td><td>pytest + hypothesis(property-based)、mypy strict、ruff、變異測試 162 錨點(含 property 子集獨立驗證)、pip-audit;單一入口 <code>tools/gauntlet.sh</code></td></tr>
+    <tr><td>硬體 / 環境</td><td>單張 RTX 4090(GPU 軸)+ 雲端 CPU(語料、baseline、調參);Python 3.11、pip 釘選</td></tr>
+  </table>
+  <img class="shot" src="screenshots/20260924_gauntlet全綠.png" alt="gauntlet 八層全綠:620 測試、覆蓋率 99%、變異 162/162、property 子集 84/162">
+
+  <h2>結論:三軸各選哪一格(2026-09-18)</h2>
+  <table>
+    <tr><th>軸</th><th>推薦</th><th>關鍵數字</th><th>最無聊但最穩</th></tr>
+    <tr><td>A 檢索</td><td>hybrid(BM25 + bge-m3,RRF)+ bge-reranker-v2-m3</td><td>recall@10 0.903 → 0.973、recall@3 0.808 → 0.941;代價:單卡與生成共用時每題檢索 13 ms → 1501 ms</td><td>BM25 + 文件脈絡調參:零 GPU、每題 13 ms、recall@10 0.903</td></tr>
+    <tr><td>B 引擎</td><td>先做 FP8,再談引擎</td><td>vLLM vs TensorRT-LLM 差 ≤ 10%;FP8 ×1.4–1.7</td><td>vLLM bf16:pip 一行、無需轉換</td></tr>
+    <tr><td>C 格式</td><td>vLLM + GPTQ-Int4(官方預量化)</td><td>吞吐 ×2.36(1000 vs 424 tok/s)、權重 5.3 GiB、faithfulness 在 judge 下與 bf16 不可分辨</td><td>vLLM bf16</td></tr>
+  </table>
+  <p>三軸疊起來:「hybrid + reranker 檢索、vLLM 跑 GPTQ-Int4」是單卡上的答案;比起最穩配置,多養一個向量索引、一個 cross-encoder、一份量化權重,換到頭部命中率 +0.13 與生成吞吐 ×2.4。</p>
+  <img class="shot" src="screenshots/20260917_C軸四格式_速度KV.png" alt="C 軸四格式速度與 KV cache">
+  <p class="caption">C 軸:同一張 4090、同一份 100 題 prompt,vLLM 內四種數值格式的吞吐、延遲、權重與 KV cache 容量。W4A16(AWQ / GPTQ)是本專案最大的單一加速來源。</p>
+
+  <h2>三個反直覺的發現</h2>
+  <ul>
+    <li><strong>輸出逐字改變 ≠ 品質下降</strong>。bf16 → FP8 的 greedy 輸出只有 51% 逐字相同,→ GPTQ 只剩 25%;但 faithfulness judge 看到的差異在噪音內。兩次實證,量化的「品質代價」要用有據與否來量,不能用一致率。</li>
+    <li><strong>引擎不是變因,數值格式才是</strong>。vLLM 與 TensorRT-LLM 同模型同卡差 ≤ 10%;FP8 給 ×1.4–1.7,W4 給 ×2.36。TensorRT-LLM 還載不了 HF 格式的 AWQ / GPTQ——「格式綁引擎」是實測到的第一個硬限制。</li>
+    <li><strong>judge 的 κ 是被校準集撐起來的</strong>。隨機抽 30 題 κ 0.845;按判定難度分四層重抽 42 列,同一個 judge 只剩 0.488。針對九筆錯型加四條明文規則,42 筆判定一筆未變;拆成三個子問各自問,8 筆翻對 3。最後承認極限:judge 只能當相對比較用,寫進備忘錄的適用邊界。</li>
+  </ul>
+  <img class="shot" src="screenshots/20260917_C軸四格式_品質一致率.png" alt="C 軸四格式品質與一致率">
+  <p class="caption">C 軸品質表:faithfulness、拒答數、對 bf16 的逐字一致率、簡體字元佔比(語言漂移,W4 放大 3–4.5 倍)。</p>
+
+  <h2>Demo:同一題,兩種配置並排</h2>
+  <p>Gradio 雙欄介面:左右各選一個檢索 preset,同一題並排顯示 top-3 chunk 與 vLLM(GPTQ-Int4)串流回答。綠框是 eval set 人工判定的真值,黃框是只有本欄撈到的 chunk——選型差異不靠數字,一眼看到。純邏輯進 gauntlet 變異層,UI 層以 <code>--check</code> 真跑驗證;三個模型同卡 VRAM 23.9 / 24.6 GiB。</p>
+  <img class="shot" src="screenshots/20260924_demo_雙欄對照.png" alt="Demo 雙欄對照:BM25 vs hybrid + reranker">
+  <p class="caption">b1-q05:兩欄 top-2 都命中真值但順序相反,第三筆各自撈到不同文件(黃框)。</p>
+  <p><strong>兩道防線</strong>。①引用:prompt 要求每句標 <code>[段落編號]</code>,確定性層核對有效 / 越界 / 是否引到真值——100 題 × 2 配置遵循率 100%、零越界,真值在 top-3 時引到它的比例兩邊都 0.90。但編號存在不等於內容有據:再算一層「句子 3-gram 被所引段落覆蓋率」並人工複核 23 條低覆蓋句後,發現<strong>覆蓋率不能當品質分數</strong>——覆蓋率 0 可能是忠實改寫,0.351 那筆卻是錯藥命中、0.484 那筆是因果倒置。它只留作「這句需查證」的旗標。真正的數字是:74 條引用句裡 11 條在所引段落找不到依據,而且這是下界(只查了低覆蓋的部分)。兩個檢索配置的編造數相當,<strong>檢索做好不會自動讓生成忠實</strong>。②拒答:reranker top-1 分數低於門檻不送 LLM。門檻用 100 題 + 60 題語料外題(含 19 題刻意誘撈)網格搜尋:reranker 側語料外在 0.103 以上全部拒答、高原 0.03–0.59,取中點 0.308。為了回答「門檻是不是只對這 100 題成立」,再做 5 折交叉驗證:五折搜出的門檻完全相同(0.3076),held-out 誤拒 0.010、正確拒 1.000,零折找不到高原。BM25 側則相反——擴到 60 題後高原完全消失,交叉驗證五折有三折搜不到門檻、平均正確拒只有 0.383。「最穩配置沒有可校準的信心」因此不是判斷,是量出來的。</p>
+  <img class="shot" src="screenshots/20260924_demo_引用尾行.png" alt="Demo 引用尾行:左欄錯藥命中被逐字覆蓋旗標標出">
+  <p class="caption">b2-q05(Metronidazole 飲酒):左欄 BM25 撈到的三段全是 Allopurinol 仿單(藥名盲),模型仍寫出一句「飲酒會引發過敏反應」並引 [1][3]——把別的藥的副作用套過來。逐字覆蓋 0.26 &lt; 0.5,句首 ⚠ 標出需查證;右欄 hybrid 撈到真值,覆蓋 0.57 無標記。尾行「診斷旗標,非品質分數」是固定聲明:覆蓋率只能當「這句要查」的旗標,無標記也不代表已驗證。</p>
+  <img class="shot" src="screenshots/20260924_demo_拒答.png" alt="Demo 拒答:語料外題,右欄確定性層拒答、左欄 prompt 層拒答">
+  <p class="caption">語料外題:右欄 reranker 0.000 &lt; 0.308,零 LLM 呼叫直接拒答;左欄 BM25 撈到三段不相干條文,模型靠 prompt 規則答「參考資料未提及」並照樣標了引用。已知限制:錯撈但語意相近的題,reranker 一樣有信心(3 題中 2 題 &gt; 0.85),門檻救不了。</p>
+
+  <h2>生成品質審計:讓看不見的錯型現形</h2>
+  <p>覆蓋率與引用核對之上,再加一層<strong>確定性審計工具</strong>(全部不進分數,只把嫌疑列排到人工視線前):①<strong>必要成分命中</strong>——多成分題(答案分散在兩個代碼、點數+是否含特材)用人工核准的成分清單(16 題 36 成分)逐一比對,禁止表述分「保護型」(「每日2粒」假性滿足「2粒」)與「懲罰型」(整題答到別的藥,整題歸零);②<strong>棄答可見化</strong>——棄答句原本被句級分析整句跳過,每輪有 20~30 個組合從表上消失;補上棄答列與「真值最佳名次」欄後量到:21 筆棄答中 <strong>11 筆是錯誤棄答</strong>,正確段落就在模型引用的 context 裡;③<strong>藥名對照</strong>——量化模型會把英文藥名寫成不存在的中文字串(字元層漂移),比對「所引段落有、句子沒照抄」的拉丁詞直接標出。</p>
+  <p>審計層反過來量測 prompt 改版的真實效果——<strong>三次改版,兩次被量測證偽</strong>:v14 同時加兩條用字規則,meta 前言歸零但引用錯置 11→29(引用規則被推離 system 句尾);v15 只留一條格式約束並把引用規則放回句尾,引用錯置回落 15,採用;v16 加「不得宣稱未提及」的自我檢查規則,44 題原本正常作答變成拒答——對 7B 量化模型,這類 meta 指令的實際作用是<strong>字串促發而非行為檢查</strong>。結論收斂成一句:規則能收斂輸出格式,不能新增檢查行為。</p>
+  <img class="shot" src="prompt-iterations.svg" alt="prompt 三次改版:引用錯置與棄答的量測結果">
+  <p class="caption">同 seed、檢索結果逐一比對相同,差異全在生成端;左右面板量測口徑不同,不可跨面板比較。</p>
+  <p>審計的對象也包括 judge 本身。C 軸「量化不降品質」的結論靠 14B judge 的 faithfulness 分數,而用它做格式間比較有一個前提:<strong>judge 的誤差對每個格式一樣大</strong>。這個前提一開始只是假設,後來改用人工逐句審計兩個方向來量。一個方向是 judge 判「矛盾」的句子裡,有多少其實沒錯;另一個方向是它判「有據」的劑量/數值句裡,放過了多少錯誤。bf16、AWQ、GPTQ 三格式的結果很接近。放過的 9 筆錯誤是同一型:字面都在段落裡,關係錯了,例如每日與每次互換、公告日當成實施日;其中一筆是日劑量少了 4 倍。另外把簡體句轉成繁體重判,16 條只有 1 條改判,而且方向相反,排除了「量化格式因簡體漂移被低估」這個反向機制。</p>
+  <img class="shot" src="judge-audit-symmetry.svg" alt="judge 雙向審計:判矛盾的錯判率 4/5、5/8、4/5;有據劑量句的漏放 3/39、3/35、3/36(bf16、AWQ、GPTQ)">
+  <p class="caption">每句都由人工對照段落判定,三格式審計程序相同;FP8 未審。右圖為正則篩出的子集,只能當下界。</p>
+
+  <h2>方法定位與已知限制</h2>
+  <p><strong>誠實揭露</strong>:①所有檢索數字為同一 100 題上的上界估計,無 held-out;②faithfulness judge κ 0.488,錯型明列(改寫句判反、單位錯置放行、相鄰條文誤歸),只作四格式相對比較;③AWQ / GPTQ 校正資料為官方所用,與自行校正的 FP8 不同源;④NV-Embed-v2 與釘選的 transformers 不相容、TensorRT-LLM × W4 不可載入,列誠實區;⑤錯誤棄答 11/21(正確段落在 context 內仍答「未提及」),prompt 治療經實驗證偽,守門走確定性審計層。備忘錄 §7 共 9 條「預期會贏但輸了的組合」。</p>
+
+  <h2>範圍與後續</h2>
+  <ul>
+    <li><strong>D 軸(RAG 範式)、E 軸(fine-tune)範圍外</strong>:預算用罄時依立案約定先砍 D;E 軸需要可信的絕對品質量尺,現有 judge 給不了。兩者的前置都是 judge 第二階段(長回答原子主張 + citation 正確率)。</li>
+    <li><strong>後續</strong>:KV cache 量化、TensorRT-LLM 的 ModelOpt-AWQ 路線、棄答型主張走「對象歸屬」拆問(前置實驗 2/2)。</li>
+  </ul>
+
+  <h2>開發歷程</h2>
+  <p>開發過程不是「一路成功」,而是一連串「假設 → 驗證 → 誠實修正」。幾個關鍵節點:</p>
+
+  <h3>① 直覺方案被證據推翻:heading_path 救不了漏檢</h3>
+  <p>漏檢歸因顯示「答案關鍵詞不在正文」,直覺是把標題路徑加進索引。<strong>動工前查證推翻了命題</strong>——缺的藥名不在標題路徑,只在文件首行。方向改為 doc_title 回填,對照實驗 3 個目標漏檢題翻正 2 個 + 1 個意外收穫;若未查證,會做出一個對照不出差異的無效實驗組。</p>
+
+  <h3>② 變異測試抓出「單邊不變量」盲點</h3>
+  <p>hit@k 的三條 property 不變量(≥recall、單調、值域)全數通過,但對 property 子集單獨重跑變異測試時,「永遠回報命中」的錯誤實作居然存活——單邊界限擋不住失效方向。補上雙邊鎖定 <code>hit == (recall &gt; 0)</code> 才殺死。</p>
+
+  <h3>③ 真值標註的工具鏈陷阱</h3>
+  <p>對照表摘錄截斷讓「出題來源」被誤判為不含答案;肉眼看似全形的測試字元實際是 ASCII(輸入鏈偷偷正規化),讓一個測試空轉、靠變異存活才揭露。兩者都以「全文查證 + 逃逸字元寫死」修復,流程逐批演進。</p>
+
+  <h3>④ 同一條規定出現在 5~7 個 chunk——單一正解撐不住</h3>
+  <p>第四批兩道題因語料重複條文而喪失鑑別度(13 個標註差異中占 10 個)。沉澱為固定規則:出題前先掃「答案句出現次數」,&gt;2 次即改問唯一值並驗證唯一性。</p>
+
+  <h3>⑤ NIM 時間盒:第一次判錯根因,第二次推翻</h3>
+  <p>NIM reranker 容器一啟動就 CUDA error 500,第一個兩小時時間盒判定「WSL2 環境層不可行」停損;第二個時間盒發現根因是 Docker Desktop 太舊,更新即通過。時間盒有用,但停損判定要留可被推翻的空間。</p>
+  <h3>⑥ 逐字命中前置層:先量再做,量完發現收益比想像小</h3>
+  <p>以為「主張是語料原句就直接判 supported」能吃掉一半 judge 誤判;動手前對校準表量 3-gram 覆蓋率分布,發現只改一個數字的負例覆蓋率仍 0.7 以上、零誤放門檻下只接走 1/34。仍做成零誤放的安全層,但定位從「主力」降為「短路」。</p>
+  <h3>⑦ 承認 judge 的極限</h3>
+  <p>分層校準把 κ 從 0.845 打回 0.488 後,prompt 改版零槓桿、拆問只翻對 3/8。規則能補「沒查」,補不了「查了判反」;最後把 judge 定位改為相對比較,錯型寫成適用邊界,而不是找一個更好看的數字。</p>
+
+  <h3>⑧ 在別處驗證過的規則,搬過來就反效果</h3>
+  <p>「禁宣稱缺席」成對規則在更大的模型上是驗證過的成功模式,直接移植到 7B 量化模型上卻讓 44 題原本正常作答的題變成拒答——成功經驗攜帶著它的適用範圍(模型規模),搬家時範圍不會自動跟過來。判定不需要任何人工複核:拒答原本能答的題,無論新回答內容如何都是退步,機械比對定案,一小時內回退。</p>
+
+  <h2>資料與合規</h2>
+  <ul>
+    <li>語料全部為<strong>政府機關公文書</strong>(著作權法第 9 條不受著作權保護);非政府文件已從語料與 git 歷史徹底移除。</li>
+    <li><strong>無任何真實病歷 / 個資 / PHI</strong>;本專案為技術展示用途,非醫療建議工具。</li>
+    <li>語料檔不隨 repo 散布(gitignore),eval set 僅含題目與 chunk id 參照。</li>
+  </ul>
+
+  <footer>
+    <a href="https://meadow-sky-dfe.notion.site/Sean-Chuang-AI-1ec37081de33803ea095efee6f45a142">← 返回作品集主頁</a>
+  </footer>
+
+</div>
+</body>
+</html>

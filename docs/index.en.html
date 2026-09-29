@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SelectRAG — Choosing a RAG Configuration by Experiment</title>
+<style>
+  :root {
+    --bg: #1e1e1e;
+    --text: #e0e0e0;
+    --heading: #00bcd4;
+    --link: #58a6ff;
+    --code-bg: #2a2a2a;
+    --border: #333;
+    --muted: #9aa0a6;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    font-size: 16px;
+  }
+  .container { max-width: 800px; margin: 0 auto; padding: 2rem; }
+  h1 { color: var(--heading); font-weight: bold; font-size: 2rem; margin: 0 0 0.3rem; }
+  .subtitle { color: var(--text); font-size: 1.1rem; margin: 0; }
+  .badges { color: var(--muted); font-size: 0.8rem; margin: 0.6rem 0 0; font-family: Consolas, monospace; }
+  .lang { text-align: right; font-size: 0.9rem; margin: 0 0 1.2rem; }
+  .banner {
+    background: #232323; border: 1px solid var(--border); border-radius: 6px;
+    padding: 0.7rem 1rem; margin: 0.9rem 0 0; font-size: 0.9rem;
+  }
+  .banner strong { color: var(--heading); }
+  .lead {
+    background: #232323; border-left: 4px solid var(--heading);
+    border-radius: 0 6px 6px 0; padding: 1rem 1.1rem; margin: 1.6rem 0;
+  }
+  h2 { color: var(--heading); font-weight: bold; font-size: 1.5rem; margin: 2.5rem 0 0.8rem; }
+  h3 { color: #ffffff; font-weight: bold; font-size: 1.12rem; margin: 1.9rem 0 0.4rem; }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  strong { color: #ffffff; }
+  ul { padding-left: 1.4rem; margin: 0.7rem 0; }
+  li { margin: 0.4rem 0; }
+  table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: 0.95rem; }
+  th, td { border: 1px solid var(--border); padding: 0.5rem 0.8rem; text-align: left; vertical-align: top; }
+  th { background: var(--code-bg); white-space: nowrap; }
+  pre {
+    background: var(--code-bg); padding: 1rem; border-radius: 6px;
+    overflow-x: auto; font-size: 0.78rem; line-height: 1.45;
+    font-family: Consolas, monospace; color: var(--text);
+  }
+  code { background: var(--code-bg); padding: 1px 5px; border-radius: 3px; font-size: 90%; }
+  .btns { display: flex; gap: 0.8rem; flex-wrap: wrap; margin: 1.1rem 0; }
+  .btn {
+    display: inline-block; padding: 0.6rem 1.1rem;
+    border: 1px solid var(--link); border-radius: 6px;
+    color: var(--link); font-size: 0.95rem; font-weight: 500;
+  }
+  .btn:hover { background: var(--link); color: var(--bg); text-decoration: none; }
+  .btn.primary { background: var(--heading); border-color: var(--heading); color: var(--bg); }
+  .btn.primary:hover { opacity: 0.85; color: var(--bg); }
+  .note {
+    background: #2a2620; border-left: 4px solid #d4a017;
+    border-radius: 0 6px 6px 0; padding: 0.8rem 1rem; margin: 1rem 0; font-size: 0.95rem;
+  }
+  .placeholder {
+    background: var(--code-bg); border: 1px dashed #555; border-radius: 6px;
+    padding: 2.5rem 1.5rem; text-align: center; color: var(--muted); margin: 1rem 0;
+  }
+  img.shot { max-width: 760px; width: 100%; border: 1px solid var(--border); border-radius: 6px; }
+  .caption { font-size: 0.85rem; color: var(--muted); }
+  footer {
+    margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--border);
+    color: var(--muted); font-size: 0.95rem;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <p class="lang">English ｜ <a href="index.html">繁體中文</a></p>
+
+  <h1>SelectRAG — Choosing by Experiment, Not by Faith</h1>
+  <p class="subtitle">A Controlled-Experiment Answer to "Which RAG Configuration Should We Use?" on a Single RTX 4090</p>
+  <div class="banner">"Which RAG config? Prove it." · <strong>100-question human-adjudicated eval set (hash-frozen)</strong> · retrieval recall@10 0.903 → 0.973 · generation throughput ×2.36 · judge κ 0.488 (disclosed) · single RTX 4090</div>
+
+  <p class="lead">
+    Simulating the question Solutions Architects hear most often — "<strong>which RAG configuration
+    should we use?</strong>" — answered with controlled experiments on a single consumer GPU:
+    one axis moves at a time, everything else pinned. The final deliverable is an
+    <strong>architecture decision memo</strong>, itself in the format an SA would ship.
+  </p>
+
+  <div class="btns">
+    <a class="btn primary" href="https://github.com/seanchuang1201work-ux/SelectRAG">GitHub Repo</a>
+    <a class="btn" href="https://github.com/seanchuang1201work-ux/SelectRAG/blob/development/docs/DECISION_MEMO.md">Decision Memo</a>
+    <a class="btn" href="https://github.com/seanchuang1201work-ux/SelectRAG/blob/development/docs/articles/01_bm25_baseline_en.md">Article #1</a>
+    <a class="btn" href="https://github.com/seanchuang1201work-ux/SelectRAG/blob/development/docs/articles/02_engine_and_format_en.md">Article #2</a>
+    <a class="btn" href="https://github.com/seanchuang1201work-ux/SelectRAG/blob/development/docs/devlog.md">Dev Log</a>
+  </div>
+
+  <h2>Design Philosophy</h2>
+  <p>This project does <strong>not chase leaderboard scores</strong>; it builds a <strong>selection methodology</strong> — every "should we adopt X?" question gets a controlled experiment, and every conclusion is written as a trade-off, not a champion. Three pillars:</p>
+  <ul>
+    <li><strong>Five experiment axes</strong>: retrieval strategy (A), inference engine (B), quantization format (C), RAG paradigm (D), fine-tuning contrast (E) — one axis at a time.</li>
+    <li><strong>Evaluation foundation first</strong>: 100 questions with human-adjudicated ground truth, content-hash frozen, one-command reruns; no baseline, no "improvement" claims.</li>
+    <li><strong>Honest disclosure</strong>: combinations expected to win that lost, assumptions overturned by evidence, tuning overfitting risks — all in the memo.</li>
+  </ul>
+
+  <h2>Overview</h2>
+  <ul>
+    <li><strong>Domain</strong>: Traditional-Chinese medical public-document QA (NHI reimbursement rules, drug package inserts, fee schedules, announcements) — fully public, zero PHI.</li>
+    <li><strong>Corpus</strong>: 8,029 chunks (CSV 6,350 / PDF 1,660 / HTML 19), structure-first chunking with length caps.</li>
+    <li><strong>Metrics</strong>: recall@k and hit@k side by side (multi-chunk ground truth dilutes recall; hit answers "did the answer arrive?"), locked by the invariant <code>hit == (recall &gt; 0)</code>; the metrics module is mutation-tested (45/45 killed).</li>
+  </ul>
+
+  <h2>Architecture</h2>
+  <pre>
+   Government documents (PDF / CSV / HTML)
+              │  structure-first chunking + doc_title backfill
+              ▼
+      8,029 chunks (JSONL)
+              │
+     ┌────────┴────────┐
+     ▼                 ▼
+  BM25 (control)  BM25 + doc context     ← Axis A: dense / hybrid / reranker next
+     └────────┬────────┘
+              ▼
+     Experiment runner (YAML config → JSON results)
+              │  eval-set hash embedded, overwrite guard, tamper detection
+              ▼
+   Scoring against the frozen 100-question eval set</pre>
+
+  <h2>Tech Stack</h2>
+  <table>
+    <tr><th>Category</th><th>Stack</th></tr>
+    <tr><td>Retrieval</td><td>BM25 (stdlib-only implementation, CJK-bigram + ASCII tokenization; optional context fields) → bge-m3 / hybrid / reranker next</td></tr>
+    <tr><td>Corpus pipeline</td><td>pypdf (pinned 6.16.2), custom HTML main-content extraction, dual Chinese heading-scheme parser, NFKC normalization</td></tr>
+    <tr><td>Evaluation</td><td>Frozen eval set (content hash + fail-loud bad-data policy), recall@k / hit@k / MRR, one-command reruns</td></tr>
+    <tr><td>Quality engineering</td><td>pytest + hypothesis (property-based), mypy strict, ruff, 162-anchor mutation testing (with property-only subset runs), pip-audit; single entry <code>tools/gauntlet.sh</code></td></tr>
+    <tr><td>Hardware</td><td>Single RTX 4090 (GPU axes) + cloud CPU (corpus, baselines, tuning); Python 3.11, pinned pip deps</td></tr>
+  </table>
+  <img class="shot" src="screenshots/20260924_gauntlet全綠.png" alt="gauntlet all eight layers green: 620 tests, 99% coverage, mutation 162/162, property subset 84/162">
+
+  <h2>Conclusions: one pick per axis (2026-09-18)</h2>
+  <table>
+    <tr><th>Axis</th><th>Recommended</th><th>Key numbers</th><th>Boring but safe</th></tr>
+    <tr><td>A Retrieval</td><td>hybrid (BM25 + bge-m3, RRF) + bge-reranker-v2-m3</td><td>recall@10 0.903 → 0.973, recall@3 0.808 → 0.941; cost: 13 ms → 1501 ms per query when retrieval shares the GPU with generation</td><td>tuned BM25 with document context: no GPU, 13 ms per query, recall@10 0.903</td></tr>
+    <tr><td>B Engine</td><td>do FP8 first, argue about engines later</td><td>vLLM vs TensorRT-LLM within 10%; FP8 ×1.4–1.7</td><td>vLLM bf16: one pip install, no conversion</td></tr>
+    <tr><td>C Format</td><td>vLLM + GPTQ-Int4 (official pre-quantized)</td><td>throughput ×2.36 (1000 vs 424 tok/s), 5.3 GiB weights, faithfulness indistinguishable from bf16 under the judge</td><td>vLLM bf16</td></tr>
+  </table>
+  <p>Stacked: "hybrid + reranker retrieval, vLLM serving GPTQ-Int4" is the single-card answer. Versus the safe configuration it costs one vector index, one cross-encoder and one quantized checkpoint, and buys +0.13 top-3 recall and ×2.4 generation throughput.</p>
+  <img class="shot" src="screenshots/20260917_C軸四格式_速度KV.png" alt="Axis C: four formats, speed and KV cache">
+  <p class="caption">Axis C: same 4090, same 100 prompts, four numeric formats under vLLM — throughput, latency, weights and KV-cache capacity. W4A16 (AWQ / GPTQ) is the largest single speed-up in the project.</p>
+
+  <h2>Three counter-intuitive findings</h2>
+  <ul>
+    <li><strong>Changed output ≠ lower quality.</strong> Only 51% of greedy outputs survive bf16 → FP8 verbatim, 25% survive → GPTQ; yet the faithfulness judge sees differences within noise. Measured twice: the "quality cost" of quantization has to be measured as groundedness, not as string agreement.</li>
+    <li><strong>The engine is not the variable; the numeric format is.</strong> vLLM and TensorRT-LLM are within 10% on the same model and card; FP8 gives ×1.4–1.7, W4 gives ×2.36. TensorRT-LLM also cannot load HF-format AWQ / GPTQ — the first hard "format is bound to engine" limit met in practice.</li>
+    <li><strong>The judge's κ was propped up by the calibration set.</strong> 30 random questions: κ 0.845. 42 rows re-sampled across four difficulty strata: the same judge drops to 0.488. Four explicit rules aimed at the nine errors changed zero verdicts; decomposing into three sub-questions flipped 3 of 8. The honest ending: the judge is fit for relative comparison only, and that limit is written into the memo.</li>
+  </ul>
+  <img class="shot" src="screenshots/20260917_C軸四格式_品質一致率.png" alt="Axis C: quality and agreement">
+  <p class="caption">Axis C quality table: faithfulness, abstentions, verbatim agreement with bf16, and simplified-character ratio (language drift, amplified 3–4.5× by W4).</p>
+
+  <h2>Demo: one question, two configurations side by side</h2>
+  <p>A Gradio two-column UI: pick a retrieval preset per column, ask one question, and see each column's top-3 chunks next to a streamed vLLM (GPTQ-Int4) answer. Green frames are human-labelled ground truth from the eval set; yellow frames are chunks only that column retrieved. The pure logic sits under the gauntlet (6 mutation anchors); the UI layer is verified by a real <code>--check</code> run. All three models share one card at 23.9 / 24.6 GiB VRAM.</p>
+  <img class="shot" src="screenshots/20260924_demo_雙欄對照.png" alt="Demo: BM25 vs hybrid + reranker side by side">
+  <p class="caption">b1-q05: both columns hit the ground truth in their top-2 in opposite order; the third slot pulls a different document in each (yellow).</p>
+  <p><strong>Two guardrails.</strong> (1) Citations: the prompt requires a <code>[passage number]</code> per sentence and a deterministic layer checks valid / out-of-range / hits-ground-truth — 100 questions × 2 presets: 100% compliance, zero out-of-range, and when the truth is in the top-3 both presets cite it 0.90 of the time. But a valid number is not evidence: a second layer scores each sentence's character 3-gram coverage against the passage it cites, and hand-reviewing all 23 low-coverage sentences showed <strong>coverage cannot serve as a quality score</strong> — a 0.00 sentence was a faithful paraphrase, while 0.351 was the wrong drug entirely and 0.484 inverted a causal claim. It stays as a "check this sentence" flag only. The real number: 11 of 74 cited sentences have no support in the passage they cite, and that is a lower bound (only the low-coverage subset was reviewed). Both retrieval presets fabricate at the same rate — <strong>better retrieval does not make generation faithful</strong>. (2) Abstention: if the reranker's top-1 score is below a threshold the LLM is never called. The threshold came from a grid over 100 eval + 60 off-corpus questions (19 of them deliberate lures): on the reranker side everything off-corpus abstains at 0.103 and above, with a plateau 0.03–0.59, midpoint 0.308. To answer "does this threshold only hold for these 100 questions?", a 5-fold cross-validation: all five folds pick the same threshold (0.3076), held-out false-abstain 0.010, true-abstain 1.000, no fold without a plateau. BM25 goes the other way — with 60 off-corpus questions its plateau disappears entirely, and three of five folds find no threshold at all (mean true-abstain 0.383). "The boring, safe config has no calibratable confidence" is therefore measured, not asserted.</p>
+  <img class="shot" src="screenshots/20260924_demo_引用尾行.png" alt="Demo answer footer: a wrong-drug answer flagged by the verbatim-coverage marker">
+  <p class="caption">b2-q05 (Metronidazole and alcohol): all three BM25 passages on the left are Allopurinol leaflets (drug-name blindness), yet the model still writes a sentence about an alcohol reaction and cites [1][3] — another drug's side effects transplanted. Verbatim coverage 0.26 &lt; 0.5, so the sentence gets a ⚠ prefix; the hybrid column retrieves the ground truth, covers 0.57 and is unmarked. The footer's "diagnostic flag, not a quality score" is a fixed disclaimer: coverage only says "check this sentence", and no mark does not mean verified.</p>
+  <img class="shot" src="screenshots/20260924_demo_拒答.png" alt="Demo abstention on an off-corpus question">
+  <p class="caption">Off-corpus question: the right column (reranker 0.000 &lt; 0.308) abstains with zero LLM calls; the left column (BM25) retrieves three unrelated clauses and the model falls back on the prompt rule, answering "not in the reference" while still citing. Known limit: for wrong-but-semantically-close retrievals the reranker is just as confident (2 of 3 such questions score &gt; 0.85) — a threshold cannot catch those.</p>
+
+  <h2>Generation-quality audit: making an invisible error class visible</h2>
+  <p>On top of coverage and citation checks sits a layer of <strong>deterministic audit tools</strong> (none of them feed any score — they only surface suspect rows for human review): (1) <strong>required-component hits</strong> — multi-part questions (an answer split across two codes, a point value plus a materials clause) are checked against a human-approved component list (16 questions, 36 components), with forbidden phrasings split into a <em>protective</em> kind (a wrong dosage phrasing that spuriously satisfies a component) and a <em>punitive</em> kind (the whole answer is about the wrong drug — the entire question scores zero); (2) <strong>abstention visibility</strong> — abstention sentences used to be silently skipped by sentence-level analysis, erasing 20–30 (question × retrieval) pairs per run from the sheet; adding an abstention row type plus a "best truth rank" column measured that <strong>11 of 21 abstentions were wrong</strong> — the correct passage was inside the context the model itself cited; (3) <strong>drug-name verbatim check</strong> — the quantized model occasionally rewrites a Latin drug name into a non-existent Chinese string (character-level drift), caught deterministically by flagging Latin terms present in the cited passage but absent from the sentence.</p>
+  <p>The audit layer then measured the prompt itself — <strong>three revisions, two falsified</strong>: v14 added two wording rules at once; meta-preambles went to zero but citation misattribution jumped 11→29 (the citation rule got pushed off the end of the system prompt). v15 kept a single formatting constraint and put the citation rule back last; misattribution fell to 15 — adopted. v16 added a self-check rule ("never claim the passage doesn't mention it"); 44 previously well-answered questions flipped to abstention — for a 7B quantized model this kind of meta-instruction acts as <strong>string priming, not behavioural checking</strong>. The distilled conclusion: prompt rules can constrain output <em>format</em>; they cannot add <em>checking behaviour</em>.</p>
+  <img class="shot" src="prompt-iterations.svg" alt="Three prompt revisions: citation misattribution and abstentions">
+  <p class="caption">Same seed, retrieval results verified identical pair by pair — every delta is generation-side. The two panels use different denominators and must not be compared across.</p>
+  <p>The judge itself was audited too. The C-axis claim that quantization does not cost quality rests on a 14B judge's faithfulness scores. Using that judge to compare formats assumes <strong>its errors are the same size for every format</strong>. That started as an assumption. We then measured it by hand-auditing both directions. The first direction is how many sentences the judge called <em>contradicted</em> were actually fine. The second is how many wrong dose and number sentences it let through as <em>supported</em>. The results were close for bf16, AWQ and GPTQ. All nine errors it let through have the same shape: every word is in the passage, but the relation is wrong. Examples are per-day swapped with per-dose, and an announcement date given as the start date. One of the nine cuts the daily dose by four. We also re-judged the Simplified-Chinese sentences after converting them to Traditional characters. Only 1 of 16 verdicts changed, and in the opposite direction. That rules out the concern that character drift makes the quantized formats look worse.</p>
+  <img class="shot" src="judge-audit-symmetry.svg" alt="Judge audit in both directions: wrong contradicted calls 4/5, 5/8, 4/5; missed errors among supported dose sentences 3/39, 3/35, 3/36 for bf16, AWQ, GPTQ">
+  <p class="caption">Every sentence hand-checked against the passages, same procedure for all three formats; FP8 not audited. The right panel is a regex-filtered subset, so it is a lower bound.</p>
+
+  <h2>Method Positioning &amp; Known Limitations</h2>
+  <p><strong>Honest disclosure</strong>: (1) all retrieval numbers are upper-bound estimates on the same 100 questions, no held-out split; (2) faithfulness judge κ 0.488 with error types listed (paraphrases marked contradicted, unit swaps let through, neighbouring clauses mis-attributed) — used for relative comparison across formats only; (3) AWQ / GPTQ calibration data is the vendor's, not the corpus used for FP8; (4) NV-Embed-v2 is incompatible with the pinned transformers and TensorRT-LLM cannot load W4 checkpoints — both in the honesty section. (5) 11 of 21 abstentions are wrong (correct passage inside the cited context) — the prompt-level cure was falsified by measurement, so the guard lives in the deterministic audit layer. Memo §7 lists nine "expected to win, lost" combinations.</p>
+
+  <h2>Scope &amp; Next</h2>
+  <ul>
+    <li><strong>Axes D (RAG paradigm) and E (fine-tuning) are out of scope</strong>: budget exhausted, D was the cut agreed at project start; E needs a trustworthy absolute quality measure the current judge cannot provide. Both depend on judge phase 2 (atomic claims for long answers + citation accuracy).</li>
+    <li><strong>Next</strong>: KV-cache quantization, the ModelOpt-AWQ path for TensorRT-LLM, and "target attribution" sub-question decomposition for abstention claims (probe: 2/2).</li>
+  </ul>
+
+  <h2>Development Journey</h2>
+  <p>Not a straight line of successes — a chain of "hypothesis → verify → honest correction". Key nodes:</p>
+
+  <h3>① An intuitive fix overturned by evidence: heading paths could not save the misses</h3>
+  <p>Error analysis said "the answer's keywords aren't in the chunk body"; the intuitive fix was indexing heading paths. <strong>Pre-implementation verification overturned it</strong> — the missing drug names weren't in the headings either, only in each document's first line. The redirect to doc_title backfill flipped 2 of 3 targeted misses (plus one bonus); without that check, the experiment arm would have shown no difference at all.</p>
+
+  <h3>② Mutation testing exposed a one-sided-invariant blind spot</h3>
+  <p>hit@k's three property invariants (≥ recall, monotonicity, binary range) all passed — yet an "always report a hit" mutant survived the property-only mutation run. One-sided bounds can't catch that failure direction; the two-sided lock <code>hit == (recall &gt; 0)</code> killed it.</p>
+
+  <h3>③ Toolchain traps in ground-truth annotation</h3>
+  <p>Truncated previews caused a source chunk to be mis-judged as answer-free; test characters that looked full-width were silently normalized to ASCII somewhere in the input chain, leaving a test vacuous — revealed only by a surviving mutant. Both fixed with full-text verification and escape-sequence literals; the process improved batch over batch.</p>
+
+  <h3>④ The same clause appears in 5–7 chunks — single-answer questions collapse</h3>
+  <p>Two batch-4 questions lost all discriminative power because the corpus repeats clauses verbatim (10 of that batch's 13 annotation diffs). Distilled into a standing rule: before finalizing a question, count the answer sentence's corpus occurrences; &gt;2 → ask for a unique value instead, and verify uniqueness.</p>
+
+  <h3>⑤ The NIM time-box: wrong root cause the first time, overturned the second</h3>
+  <p>The NIM reranker container died with CUDA error 500 on start; the first two-hour time-box concluded "WSL2 environment, not feasible" and stopped. The second time-box found the real cause — an outdated Docker Desktop — and the update fixed it. Time-boxes work, but a stop-loss verdict must stay falsifiable.</p>
+  <h3>⑥ The verbatim-hit pre-layer: measure first, then find the payoff smaller than hoped</h3>
+  <p>The hunch: "if a claim is a verbatim sentence from the passage, mark it supported" would absorb half of the judge's errors. Measuring 3-gram coverage on the calibration sheet first showed number-perturbed negatives still score above 0.7, and a zero-false-positive threshold only catches 1 of 34. Shipped anyway as a zero-false-positive shortcut, demoted from "main fix" to "safety layer".</p>
+  <h3>⑦ Admitting the judge's limit</h3>
+  <p>After stratified calibration cut κ from 0.845 to 0.488, a prompt revision had zero leverage and decomposition flipped only 3 of 8. Rules can fix "didn't check"; they cannot fix "checked and judged wrong". The judge was re-scoped to relative comparison and the error types written as its boundary — instead of hunting for a prettier number.</p>
+
+  <h3>⑧ A rule proven elsewhere backfired when transplanted</h3>
+  <p>The "never claim absence" pairing rule was a validated success on a much larger model. Ported verbatim to a 7B quantized model, it flipped 44 previously well-answered questions into abstentions. Proven patterns carry their scope (model scale) with them — and the scope does not move house automatically. The verdict needed no human review: refusing questions it used to answer is a regression whatever the new text says; mechanical comparison settled it and the revert shipped within the hour.</p>
+
+  <h2>Data &amp; Compliance</h2>
+  <ul>
+    <li>All corpus documents are <strong>government works</strong> (exempt from copyright under Taiwan Copyright Act §9); non-government documents were removed from both the corpus and git history.</li>
+    <li><strong>No real medical records / personal data / PHI anywhere.</strong> Technical showcase only — not medical advice.</li>
+    <li>Corpus files are not distributed with the repo (gitignored); the eval set contains only questions and chunk-id references.</li>
+  </ul>
+
+  <footer>
+    <a href="https://meadow-sky-dfe.notion.site/Sean-Chuang-AI-1ec37081de33803ea095efee6f45a142">← Back to portfolio</a>
+  </footer>
+
+</div>
+</body>
+</html>

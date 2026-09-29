@@ -1,0 +1,937 @@
+{
+  "manifest": {
+    "version": "v1.1-full100",
+    "frozen_at": "2026-09-14T00:00:00Z",
+    "item_count": 100,
+    "content_hash": "859b0d7a0bee4cefddea50e98bc252108c5f39a31db108a049e3eb44fe8a5761"
+  },
+  "items": [
+    {
+      "id": "b1-q01",
+      "question": "肝硬化及腹水病人使用利尿劑治療,起始時為什麼建議住院?",
+      "relevant_doc_ids": [
+        "衛署藥製字第011150號115.08.07#0006#399027c1"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b1-q02",
+      "question": "Benzodiazepine 類藥物最常引起的不良反應有哪些?",
+      "relevant_doc_ids": [
+        "衛署藥製字第022211號#0012#0367f98e"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b1-q03",
+      "question": "Tetracycline 抑制細菌蛋白質合成的作用機轉是什麼?",
+      "relevant_doc_ids": [
+        "衛署藥製字第015791號115.08.10#0011#8bcb12f7"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b1-q04",
+      "question": "Loperamide 每顆膠囊的主成分含量是多少?",
+      "relevant_doc_ids": [
+        "衛署藥製字第021029號#0001#7efc738f",
+        "衛署藥製字第021063號#0001#fe59a62b"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b1-q05",
+      "question": "孕婦在妊娠後半期使用四環素類藥物,對胎兒可能造成什麼影響?",
+      "relevant_doc_ids": [
+        "衛署藥製字第015791號115.08.10#0006#0d3b1779",
+        "衛署藥製字第019254號#0007#84b12a28"
+      ],
+      "reference_answer": null,
+      "notes": "反向抽驗 r45 跨題補入:同類(四環素)另一仿單的懷孕後半期禁忌"
+    },
+    {
+      "id": "b1-q06",
+      "question": "服用 Allopurinol 期間為什麼建議每天攝取大量水分?",
+      "relevant_doc_ids": [
+        "衛署藥製字第018705號#0009#34f0f529",
+        "衛署藥製字第018705號#0010#ac38da63"
+      ],
+      "reference_answer": null,
+      "notes": "反向抽驗 r109:病人諮詢段,第一批 r53 因摘錄截斷誤判否"
+    },
+    {
+      "id": "b1-q07",
+      "question": "Metronidazole 的警語提到哪些神經系統方面的異常?",
+      "relevant_doc_ids": [
+        "衛署藥製字第009408號115.08.28#0002#2be6e615"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b1-q08",
+      "question": "Spironolactone 與鉀補充劑或含鉀藥物併用會有什麼風險?",
+      "relevant_doc_ids": [
+        "衛署藥製字第022908號#0004#d6b166bc"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b1-q09",
+      "question": "健保給付 Botulinum toxin type A 的個案多久需要重新評估一次?",
+      "relevant_doc_ids": [
+        "完整給付規定1150821#0051#1fd6c27e"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b1-q10",
+      "question": "健保給付 dapagliflozin / empagliflozin 治療慢性收縮性心衰竭時,對左心室射出分率(LVEF)的條件是什麼?",
+      "relevant_doc_ids": [
+        "完整給付規定1150821#0135#fd078e14"
+      ],
+      "reference_answer": null,
+      "notes": "v1.1 補藥名:原題未指藥品,Entresto(#0133,LVEF≦35%)亦有據但數值不同;依真值等價原則改問唯一值,#0133 轉 hard negative"
+    },
+    {
+      "id": "b1-q11",
+      "question": "Climara 雌激素經皮貼片的健保給付限制是什麼?",
+      "relevant_doc_ids": [
+        "完整給付規定1150821#0235#7306550b"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b1-q12",
+      "question": "Stiripentol(Diacomit)健保給付限用於哪類癲癇病人?",
+      "relevant_doc_ids": [
+        "完整給付規定1150821#0027#96f27ea9"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b1-q13",
+      "question": "第二型類血友病(Type 2A 及 2M)輕度出血使用濃縮製劑的治療目標為何?",
+      "relevant_doc_ids": [
+        "完整給付規定1150821#0207#b803054d"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b1-q14",
+      "question": "急診嚴重敗血症照護品質指標要求進入急診後多久內給予第一劑抗生素?",
+      "relevant_doc_ids": [
+        "全民健康保險急診品質提升方案_第十版(114.11.18修訂)#0004#155d50dd"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b1-q15",
+      "question": "慢性呼吸照護病房論日計酬第 1 至 90 天每日支付多少點?",
+      "relevant_doc_ids": [
+        "「全民健康保險呼吸器依賴患者整合性照護前瞻性支付方式」計畫_公告陳核+畫線#0036#2c1f8a7f",
+        "醫療服務給付項目及支付標準_A21030000I-D20021-001#5542#03790227"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b1-q16",
+      "question": "肝炎醫療給付改善方案收案時,病人同意書應如何處理?",
+      "relevant_doc_ids": [
+        "全民健康保險肝炎醫療給付改善方案 (115年8月19日起實施)#0004#3d886db4"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b1-q17",
+      "question": "重症加護臨床藥事照護費(P6301B)每人每日支付多少點?",
+      "relevant_doc_ids": [
+        "提升醫院用藥安全與品質方案(114.08.28更新)#0009#a875321c",
+        "提升醫院用藥安全與品質方案(114.08.28更新)#0015#cd7876c6",
+        "醫療服務給付項目及支付標準_A21030000I-D20021-001#6024#9bdde3a8"
+      ],
+      "reference_answer": null,
+      "notes": "反向抽驗 r316:附件 3 給付項目表,同一事實第三處"
+    },
+    {
+      "id": "b1-q18",
+      "question": "肛門鏡檢查(Anoscopy)的健保支付點數是多少?",
+      "relevant_doc_ids": [
+        "醫療服務給付項目及支付標準_A21030000I-D20021-001#1740#39bc455d"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b1-q19",
+      "question": "定量免疫法糞便潛血檢查的補助對象與頻率為何?",
+      "relevant_doc_ids": [
+        "醫療服務給付項目及支付標準_A21030000I-D20021-001#4410#46fb3510",
+        "醫療服務給付項目及支付標準_A21030000I-D20021-001#4943#dc11da39"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b1-q20",
+      "question": "皮膚電燒灼治療(單純)的給付限制條件是什麼?",
+      "relevant_doc_ids": [
+        "醫療服務給付項目及支付標準_A21030000I-D20021-001#2468#9e561227"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b1-q21",
+      "question": "自2026年9月1日起,腹腔惡性腫瘤切除術(75810B)的健保支付點數是多少?",
+      "relevant_doc_ids": [
+        "醫療服務給付項目及支付標準_A21030000I-D20021-001#3852#c2d3dbad"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b1-q22",
+      "question": "頭頸部血管支撐架置放術(一條血管)支付點數多少?是否含特材?",
+      "relevant_doc_ids": [
+        "醫療服務給付項目及支付標準_A21030000I-D20021-001#2014#dbbe9be0"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b1-q23",
+      "question": "兒童預防保健服務第二次檢查的建議年齡是幾個月?",
+      "relevant_doc_ids": [
+        "醫療服務給付項目及支付標準_A21030000I-D20021-001#3539#7d73b17e"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b1-q24",
+      "question": "山地離島地區醫療給付效益提昇計畫(尖石鄉、五峰鄉)的計畫書收件截止日期是哪一天?",
+      "relevant_doc_ids": [
+        "全民健康保險山地離島地區醫療給付效益提昇計畫徵求－ (新竹縣尖石鄉、新竹縣五峰鄉)-衛生福利部中央健康保險署,NHI-最新消息-計畫徵求#0000#9f8aa494"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b1-q25",
+      "question": "全民健康保險肝炎醫療給付改善方案最近一次修訂自何時生效?",
+      "relevant_doc_ids": [
+        "衛生福利部中央健康保險署,NHI#0001#69d4c31b",
+        "衛生福利部中央健康保險署,NHI#0002#1a7479f9"
+      ],
+      "reference_answer": null,
+      "notes": "反向抽驗 r470:完整句在本塊,既有真值 #0002 開頭被切掉"
+    },
+    {
+      "id": "b2-q01",
+      "question": "大量輸液使用前發現藥液不澄清、變色或有異物時應如何處理?",
+      "relevant_doc_ids": [
+        "衛署藥製字第001085號#0005#7e297e29"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b2-q02",
+      "question": "Triamcinolone Acetonide 40mg 注射劑每 ml 的有效成分含量是多少?",
+      "relevant_doc_ids": [
+        "衛署藥製字第004073號#0001#85e08907",
+        "衛署藥製字第009645號#0001#ab0c6c89",
+        "衛署藥製字第014914號#0001#fe76c633"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b2-q03",
+      "question": "四環素對哪些類型的微生物感染有效?",
+      "relevant_doc_ids": [
+        "衛署藥製字第015791號115.08.10#0003#418ff123",
+        "衛署藥製字第015791號115.08.10#0011#8bcb12f7",
+        "衛署藥製字第019254號#0003#a7c324fc",
+        "衛署藥製字第022572號#0003#e04decab",
+        "衛署藥製字第022572號#0011#079728b9"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b2-q04",
+      "question": "Tetracycline(四環素)治療淋病的口服用法與療程是什麼?",
+      "relevant_doc_ids": [
+        "衛署藥製字第015791號115.08.10#0004#52ac5dad"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b2-q05",
+      "question": "服用 Metronidazole 期間飲酒會發生什麼反應?",
+      "relevant_doc_ids": [
+        "衛署藥製字第009408號115.08.28#0003#bf4333a7"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b2-q06",
+      "question": "Metronidazole 殺死厭氧菌的作用機轉是什麼?",
+      "relevant_doc_ids": [
+        "衛署藥製字第009408號115.08.28#0004#590467c0"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b2-q07",
+      "question": "Sulfamethoxazole 的抗菌作用機轉是什麼?",
+      "relevant_doc_ids": [
+        "衛署藥製字第009256號115.08.25#0011#4b8b71d3",
+        "衛署藥製字第011207號115.08.25#0011#834db140"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b2-q08",
+      "question": "降血糖藥為什麼必須於用餐時或緊接餐後立即服用?",
+      "relevant_doc_ids": [
+        "衛署藥製字第002863號#0005#73aa0203"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b2-q09",
+      "question": "octreotide(如 Sandostatin)要讓病人攜回自行注射,健保有什麼規定?",
+      "relevant_doc_ids": [
+        "完整給付規定1150821#0002#e30a9e17"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b2-q10",
+      "question": "非消化系專科醫師要開立 B、C 型肝炎治療藥品有什麼條件?",
+      "relevant_doc_ids": [
+        "完整給付規定1150821#0409#7bccca73",
+        "完整給付規定1150821#0412#ac2cc372",
+        "完整給付規定1150821#0748#cbe67754",
+        "完整給付規定1150821#0758#c5c71b78",
+        "完整給付規定1150821#0763#ee5adc0f"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b2-q11",
+      "question": "健保給付異位性皮膚炎生物製劑前,全身性治療必須包含哪些藥物至少一種?",
+      "relevant_doc_ids": [
+        "完整給付規定1150821#0807#a7aac725"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b2-q12",
+      "question": "Tisagenlecleucel(Kymriah)健保給付用於哪類病人?",
+      "relevant_doc_ids": [
+        "完整給付規定1150821#0662#4d0d5148"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b2-q13",
+      "question": "全身性抗疱疹病毒劑健保給付限用於哪些情況?",
+      "relevant_doc_ids": [
+        "完整給付規定1150821#0744#cbf62dde"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b2-q14",
+      "question": "呼吸器依賴整合照護計畫的論日點數中,哪些項目可以另行申報?",
+      "relevant_doc_ids": [
+        "「全民健康保險呼吸器依賴患者整合性照護前瞻性支付方式」計畫_公告陳核+畫線#0024#e52a952a"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b2-q15",
+      "question": "亞急性呼吸照護病房照護日數累計超過幾天改依慢性呼吸照護病房支付?",
+      "relevant_doc_ids": [
+        "「全民健康保險呼吸器依賴患者整合性照護前瞻性支付方式」計畫_公告陳核+畫線#0026#150e9ba1"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b2-q16",
+      "question": "warfarin 進階抗凝血藥事照護的收案對象包含哪些病人?",
+      "relevant_doc_ids": [
+        "提升醫院用藥安全與品質方案(114.08.28更新)#0020#01704a65"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b2-q17",
+      "question": "肝炎方案的追蹤管理照護費(P4202C)申報有什麼間隔限制?",
+      "relevant_doc_ids": [
+        "全民健康保險肝炎醫療給付改善方案 (115年8月19日起實施)#0009#81f32752",
+        "醫療服務給付項目及支付標準_A21030000I-D20021-001#5901#9f0716ca"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b2-q18",
+      "question": "急診品質提升方案中,急性心肌梗塞的向上轉診診斷碼是哪些?",
+      "relevant_doc_ids": [
+        "全民健康保險急診品質提升方案_第十版(114.11.18修訂)#0020#b89a0174"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b2-q19",
+      "question": "護理訪視費 05342C(資源耗用群第一類,機構)的健保支付點數是多少?",
+      "relevant_doc_ids": [
+        "醫療服務給付項目及支付標準_A21030000I-D20021-001#0472#89f547e4"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b2-q20",
+      "question": "鎖骨骨折固定術的健保支付點數是多少?",
+      "relevant_doc_ids": [
+        "醫療服務給付項目及支付標準_A21030000I-D20021-001#2920#f8ac686b"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b2-q21",
+      "question": "靜脈曲張注射療法(單腳)一年內申報次數上限是多少?",
+      "relevant_doc_ids": [
+        "醫療服務給付項目及支付標準_A21030000I-D20021-001#2112#f1351d46"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b2-q22",
+      "question": "申報牙周病統合治療第一階段須檢附哪些資料?",
+      "relevant_doc_ids": [
+        "醫療服務給付項目及支付標準_A21030000I-D20021-001#4766#f865799d"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b2-q23",
+      "question": "糖尿病第二階段年度評估管理照護費每年度最多申報幾次?",
+      "relevant_doc_ids": [
+        "醫療服務給付項目及支付標準_A21030000I-D20021-001#5550#5ab5709e"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b2-q24",
+      "question": "115年基層醫療院所資訊服務系統雲端轉型補助計畫的核定名單何時公告?",
+      "relevant_doc_ids": [
+        "115年基層醫療院所資訊服務系統雲端轉型補助計畫-衛生福利部中央健康保險署,NHI-重要政策-基層院所HIS雲端轉型-補助計畫申請事項-115年補助計畫#0000#4b7d8784"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b2-q25",
+      "question": "健保署是否會限制民眾的就醫次數?",
+      "relevant_doc_ids": [
+        "衛生福利部中央健康保險署,NHI#0001#69d4c31b"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b3-q01",
+      "question": "對 penicillin 過敏的病人使用 Cephalexin 為什麼要謹慎?",
+      "relevant_doc_ids": [
+        "衛署藥製字第005446號#0005#54bb4201"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b3-q02",
+      "question": "Bacitracin/Neomycin 複方軟膏每公克的有效成分含量是多少?",
+      "relevant_doc_ids": [
+        "衛署藥製字第001401號#0001#e2203132"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b3-q03",
+      "question": "汎敏松的抗炎效果與 Prednisolone 相比強多少?",
+      "relevant_doc_ids": [
+        "衛署藥製字第001781號#0011#72d584f5"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b3-q04",
+      "question": "Dextromethorphan 注射劑每 ml 的含量是多少?",
+      "relevant_doc_ids": [
+        "衛署藥製字第016887號#0001#6495f9d1"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b3-q05",
+      "question": "暈車藥應在搭乘交通工具前多久服用?24 小時內最多服用幾次?",
+      "relevant_doc_ids": [
+        "衛署藥製字第002658號115.08.20#0004#f9f02f18"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b3-q06",
+      "question": "Lidocaine 中樞神經毒性的早期徵兆有哪些?",
+      "relevant_doc_ids": [
+        "衛署藥製字第003954號#0002#60e07d14"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b3-q07",
+      "question": "Cephalexin 的排除半衰期是多久?腎功能不全者會如何?",
+      "relevant_doc_ids": [
+        "衛署藥製字第005446號#0013#2b581496"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b3-q08",
+      "question": "Dexamethasone 注射液應如何儲存?",
+      "relevant_doc_ids": [
+        "衛署藥製字第013912號#0013#d088ee58"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b3-q09",
+      "question": "C 肝口服新藥用於先前 interferon/ribavirin/蛋白酶抑制劑合併治療失敗者時,需合併什麼藥物?給付幾週?",
+      "relevant_doc_ids": [
+        "完整給付規定1150821#0765#f7df2273"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b3-q10",
+      "question": "ALK 陽性晚期非小細胞肺癌的第一線標靶藥物可以互換使用嗎?",
+      "relevant_doc_ids": [
+        "完整給付規定1150821#0537#a27132ee",
+        "完整給付規定1150821#0558#54f905b9",
+        "完整給付規定1150821#0626#067fada7"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b3-q11",
+      "question": "基因檢測未檢出變異的同合子家族性高膽固醇血症,臨床診斷須符合哪些徵狀?",
+      "relevant_doc_ids": [
+        "完整給付規定1150821#0115#83b9a309"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b3-q12",
+      "question": "第十三凝血因子預防性注射的建議劑量與注射間隔為何?",
+      "relevant_doc_ids": [
+        "完整給付規定1150821#0211#d2e5264a"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b3-q13",
+      "question": "非小細胞肺癌根治性手術後與鉑金類藥品併用的輔助治療,最長給付幾個療程?",
+      "relevant_doc_ids": [
+        "完整給付規定1150821#0461#abd51e90",
+        "完整給付規定1150821#0891#bfffef6c"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b3-q14",
+      "question": "急診病人 6 小時內進入加護病房,每人次獎勵多少點?",
+      "relevant_doc_ids": [
+        "全民健康保險急診品質提升方案_第十版(114.11.18修訂)#0009#9d3bac43"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b3-q15",
+      "question": "急診品質提升方案第十版自何時起實施?",
+      "relevant_doc_ids": [
+        "全民健康保險急診品質提升方案_第十版(114.11.18修訂)#0000#469e4631"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b3-q16",
+      "question": "思覺失調症方案收案對象在就醫集中度上的條件是什麼?",
+      "relevant_doc_ids": [
+        "全民健康保險思覺失調症醫療給付改善方案(1150801生效)#0004#9c89e829"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b3-q17",
+      "question": "肝炎醫療給付改善方案收案的疾病診斷碼有哪些?",
+      "relevant_doc_ids": [
+        "全民健康保險肝炎醫療給付改善方案 (115年8月19日起實施)#0003#7f772507"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b3-q18",
+      "question": "復健病房試辦計畫的住院經驗調查目的是什麼?",
+      "relevant_doc_ids": [
+        "全民健康保險復健病房試辦計畫（115.04.16 新增）#0032#09dc9a68"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b3-q19",
+      "question": "第一階段疾病管理照護費(A1003C)的支付點數與申報時機為何?",
+      "relevant_doc_ids": [
+        "醫療服務給付項目及支付標準_A21030000I-D20021-001#5063#79589030"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b3-q20",
+      "question": "連續血糖監測(CGM)的健保適應症條件是什麼?",
+      "relevant_doc_ids": [
+        "醫療服務給付項目及支付標準_A21030000I-D20021-001#0690#e8e1b22e"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b3-q21",
+      "question": "ICG 眼底血管攝影的健保申報限制是什麼?",
+      "relevant_doc_ids": [
+        "醫療服務給付項目及支付標準_A21030000I-D20021-001#1519#3f595d1e"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b3-q22",
+      "question": "診斷性子宮擴張刮除術(非產科)申報時須檢附什麼?",
+      "relevant_doc_ids": [
+        "醫療服務給付項目及支付標準_A21030000I-D20021-001#4151#9c70140b"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b3-q23",
+      "question": "心內超音波(18047B)的健保適應症為何?",
+      "relevant_doc_ids": [
+        "醫療服務給付項目及支付標準_A21030000I-D20021-001#1335#1cf0b486"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b3-q24",
+      "question": "健保署各分區業務組的服務時間為何?",
+      "relevant_doc_ids": [
+        "衛生福利部中央健康保險署,NHI#0003#93e517bb",
+        "衛生福利部中央健康保險署,NHI#0004#57ddd288"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b3-q25",
+      "question": "因應樺加沙颱風,健保署提供了什麼措施專區?",
+      "relevant_doc_ids": [
+        "衛生福利部中央健康保險署,NHI#0000#efaeac6f"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b4-q01",
+      "question": "Allopurinol 適用於哪些腎臟相關病症的預防與治療?",
+      "relevant_doc_ids": [
+        "衛署藥製字第018705號#0002#5964e4bd",
+        "衛署藥製字第018705號#0024#3f82a10b"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b4-q02",
+      "question": "Allopurinol 曾發生哪些危及生命的嚴重皮膚不良反應?",
+      "relevant_doc_ids": [
+        "衛署藥製字第018705號#0006#7bd85d2e"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b4-q03",
+      "question": "Doxycycline 對血液系統的副作用有哪些?",
+      "relevant_doc_ids": [
+        "衛署藥製字第019254號#0009#990a0bd4"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b4-q04",
+      "question": "長期使用 Dexamethasone 注射劑後要如何停藥?",
+      "relevant_doc_ids": [
+        "衛署藥製字第013912號#0006#ae2980f3"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b4-q05",
+      "question": "Lorazepam 用於治療失眠時的建議劑量與服用方式為何?",
+      "relevant_doc_ids": [
+        "衛署藥製字第022211號#0004#7eb3ec40"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b4-q06",
+      "question": "外用類固醇的反彈性發作有哪些症狀?",
+      "relevant_doc_ids": [
+        "衛署藥製字第016349號#0007#2fd3195f",
+        "衛署藥製字第016349號#0009#41f9c779"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b4-q07",
+      "question": "Furosemide 會如何影響痛風病人的治療?",
+      "relevant_doc_ids": [
+        "衛署藥製字第011150號115.08.07#0008#a0756131"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b4-q08",
+      "question": "速備粉中的 Neomycin 對哪些具抗藥性的細菌仍有效?",
+      "relevant_doc_ids": [
+        "衛署藥製字第004761號#0010#d0928581"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b4-q09",
+      "question": "Cefiderocol(Fetroja)如需延長治療,程序上有什麼要求?",
+      "relevant_doc_ids": [
+        "完整給付規定1150821#0730#45590d58"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b4-q10",
+      "question": "GLP-1 類藥品(如 Ozempic)的健保給付對 HbA1c 有什麼門檻?",
+      "relevant_doc_ids": [
+        "完整給付規定1150821#0230#406c662a"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b4-q11",
+      "question": "中樞性早熟(CPP)的健保給付診斷標準為何?",
+      "relevant_doc_ids": [
+        "完整給付規定1150821#0247#da9b5c90"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b4-q12",
+      "question": "Letrozole 可以與 tamoxifen 或其他 aromatase inhibitor 併用嗎?",
+      "relevant_doc_ids": [
+        "完整給付規定1150821#0452#bb1991ee"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b4-q13",
+      "question": "健保給付的抗疱疹藥膏每次給藥量上限是多少?",
+      "relevant_doc_ids": [
+        "完整給付規定1150821#0746#de3ea4af"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b4-q14",
+      "question": "思覺失調症方案中,高風險病人出院後轉介追蹤的獎勵是每人多少點?",
+      "relevant_doc_ids": [
+        "全民健康保險思覺失調症醫療給付改善方案(1150801生效)#0016#21175079"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b4-q15",
+      "question": "思覺失調症方案的個案「發現費」支付多少點?有什麼限制?",
+      "relevant_doc_ids": [
+        "全民健康保險思覺失調症醫療給付改善方案(1150801生效)#0006#5dd13af7"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b4-q16",
+      "question": "復健病房試辦計畫收案病人的功能障礙程度條件為何?",
+      "relevant_doc_ids": [
+        "全民健康保險復健病房試辦計畫（115.04.16 新增）#0008#9a378f6f"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b4-q17",
+      "question": "呼吸器依賴照護計畫中,訪視紀錄未記載或記載不全會有什麼後果?",
+      "relevant_doc_ids": [
+        "「全民健康保險呼吸器依賴患者整合性照護前瞻性支付方式」計畫_公告陳核+畫線#0039#7ce6259c"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b4-q18",
+      "question": "肝炎方案個案登錄時,院外 CT、MRI 或腹部超音波檢查結果可參用多久以內的?",
+      "relevant_doc_ids": [
+        "全民健康保險肝炎醫療給付改善方案 (115年8月19日起實施)#0010#f9c82f6e"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b4-q19",
+      "question": "復健病房試辦計畫的溝通(語言)治療訓練包含哪些項目?",
+      "relevant_doc_ids": [
+        "全民健康保險復健病房試辦計畫（115.04.16 新增）#0017#686278ac"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b4-q20",
+      "question": "機械手臂輔助膽囊切除術(N26052)的手術費如何申報?",
+      "relevant_doc_ids": [
+        "醫療服務給付項目及支付標準_A21030000I-D20021-001#3770#315e3a45",
+        "醫療服務給付項目及支付標準_A21030000I-D20021-001#5479#f9994c78"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b4-q21",
+      "question": "職業病初診診察費(01040C)的健保支付點數是多少?",
+      "relevant_doc_ids": [
+        "醫療服務給付項目及支付標準_A21030000I-D20021-001#0153#99721866"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b4-q22",
+      "question": "子宮鏡檢查結果正常時,同一院所多久可再做一次?",
+      "relevant_doc_ids": [
+        "醫療服務給付項目及支付標準_A21030000I-D20021-001#1739#877b256a"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b4-q23",
+      "question": "乳房全切除手術(單側)的健保適應症為何?",
+      "relevant_doc_ids": [
+        "醫療服務給付項目及支付標準_A21030000I-D20021-001#2905#4371d207"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b4-q24",
+      "question": "強制處置-特殊職能治療(E45095)的申報條件是什麼?",
+      "relevant_doc_ids": [
+        "醫療服務給付項目及支付標準_A21030000I-D20021-001#5270#22cea8d6"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b4-q25",
+      "question": "山地離島醫療給付效益提昇計畫(尖石鄉、五峰鄉)徵求案的辦理單位是?",
+      "relevant_doc_ids": [
+        "全民健康保險山地離島地區醫療給付效益提昇計畫徵求－ (新竹縣尖石鄉、新竹縣五峰鄉)-衛生福利部中央健康保險署,NHI-最新消息-計畫徵求#0001#faa7c6fe"
+      ],
+      "reference_answer": null,
+      "notes": null
+    }
+  ]
+}

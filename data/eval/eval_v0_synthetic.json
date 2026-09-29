@@ -1,0 +1,110 @@
+{
+  "manifest": {
+    "version": "v0-synthetic",
+    "frozen_at": "2026-08-27",
+    "item_count": 10,
+    "content_hash": "0cd09aafa9cb0ebc902f0fbf419979467ed7520f0960185469b812df258db8c0"
+  },
+  "items": [
+    {
+      "id": "q001",
+      "question": "<問題文字 01>",
+      "relevant_doc_ids": [
+        "doc_001_0",
+        "doc_001_1"
+      ],
+      "reference_answer": "<參考答案 01>",
+      "notes": "合成資料,非真實內容"
+    },
+    {
+      "id": "q002",
+      "question": "<問題文字 02>",
+      "relevant_doc_ids": [
+        "doc_002_0",
+        "doc_002_1",
+        "doc_002_2"
+      ],
+      "reference_answer": "<參考答案 02>",
+      "notes": "合成資料,非真實內容"
+    },
+    {
+      "id": "q003",
+      "question": "<問題文字 03>",
+      "relevant_doc_ids": [
+        "doc_003_0"
+      ],
+      "reference_answer": "<參考答案 03>",
+      "notes": "合成資料,非真實內容"
+    },
+    {
+      "id": "q004",
+      "question": "<問題文字 04>",
+      "relevant_doc_ids": [
+        "doc_004_0",
+        "doc_004_1"
+      ],
+      "reference_answer": "<參考答案 04>",
+      "notes": "合成資料,非真實內容"
+    },
+    {
+      "id": "q005",
+      "question": "<問題文字 05>",
+      "relevant_doc_ids": [
+        "doc_005_0",
+        "doc_005_1",
+        "doc_005_2"
+      ],
+      "reference_answer": "<參考答案 05>",
+      "notes": "合成資料,非真實內容"
+    },
+    {
+      "id": "q006",
+      "question": "<問題文字 06>",
+      "relevant_doc_ids": [
+        "doc_006_0"
+      ],
+      "reference_answer": "<參考答案 06>",
+      "notes": "合成資料,非真實內容"
+    },
+    {
+      "id": "q007",
+      "question": "<問題文字 07>",
+      "relevant_doc_ids": [
+        "doc_007_0",
+        "doc_007_1"
+      ],
+      "reference_answer": "<參考答案 07>",
+      "notes": "合成資料,非真實內容"
+    },
+    {
+      "id": "q008",
+      "question": "<問題文字 08>",
+      "relevant_doc_ids": [
+        "doc_008_0",
+        "doc_008_1",
+        "doc_008_2"
+      ],
+      "reference_answer": "<參考答案 08>",
+      "notes": "合成資料,非真實內容"
+    },
+    {
+      "id": "q009",
+      "question": "<問題文字 09>",
+      "relevant_doc_ids": [
+        "doc_009_0"
+      ],
+      "reference_answer": "<參考答案 09>",
+      "notes": "合成資料,非真實內容"
+    },
+    {
+      "id": "q010",
+      "question": "<問題文字 10>",
+      "relevant_doc_ids": [
+        "doc_010_0",
+        "doc_010_1"
+      ],
+      "reference_answer": "<參考答案 10>",
+      "notes": "合成資料,非真實內容"
+    }
+  ]
+}

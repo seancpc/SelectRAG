@@ -1,0 +1,26 @@
+{
+  "summary": {
+    "n_claims": 42,
+    "n_abstained_answers": 0,
+    "faithfulness": 0.7142857142857143,
+    "unsupported_rate": 0.0,
+    "contradiction_rate": 0.2857142857142857,
+    "counts": {
+      "supported": 30,
+      "unsupported": 0,
+      "contradicted": 12
+    },
+    "verbatim_hits": 4
+  },
+  "meta": {
+    "started_at": "2026-09-18T02:10:39.393221+00:00",
+    "judge_model": "Qwen/Qwen2.5-14B-Instruct-AWQ",
+    "judge_revision": "539535859b135b0244c91f3e59816150c8056698",
+    "prompt_version": "v2",
+    "verbatim_min_coverage": 0.925,
+    "seed": 42,
+    "source": "results/judge/calib_v3/calib_claims.jsonl"
+  },
+  "parse_failure_rate": 0.0,
+  "parse_failures": []
+}

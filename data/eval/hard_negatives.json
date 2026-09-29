@@ -1,0 +1,539 @@
+{
+  "description": "人工判定的高價值干擾項:檢索得到但不應被當成答案的 chunk。類型:contradictory(方向相反)、same-text-wrong-drug(文字全對藥品錯)、verbatim-clause-other-code(同條文他代碼,改問唯一值後)、right-number-wrong-scenario、near-threshold-value、same-*-other-*(同句型/同數字/同規則但實體不同)、partial-rule-other-item、adjacent-chunk-partial。所有 chunk_id 皆已驗證不在 v1-full100 真值集內。 2026-09-14 增補:adjacent-chunk(dense 落點正確但切塊差一格,chunking ablation 用)、near-code-other-procedure / same-procedure-other-variant / same-name-other-code(dense 抓到、BM25 未抓到的鄰近代碼干擾項,reranker 評測用)。;2026-09-15 truth_dupes 掃描擴充三型:near-code-same-remark(鄰近代碼同備註)、same-code-old-rate(同代碼舊費率)、adjacent-chunk(相鄰切塊),各型分開統計",
+  "items": [
+    {
+      "question_id": "b3-q01",
+      "chunk_id": "衛署藥製字第005446號#0010#1fb81479",
+      "type": "contradictory",
+      "note": "建議?、我裁✗:此塊寫「Paraflex 和 Penicillin 間沒有交叉過敏的感應關係」,與正解(β-lactam 可能交叉過敏)方向相反,單看它會答錯。語料本身互相矛盾,建議另立為「矛盾型干擾項」。"
+    },
+    {
+      "question_id": "b3-q02",
+      "chunk_id": "衛署藥製字第004761號#0001#867bc356",
+      "type": "same-entity-format",
+      "note": "優質干擾項:同含 Neomycin 且以「每1公克」表述,但為 Neomycin+Trypsin 撒布劑,非 Bacitracin 複方軟膏。"
+    },
+    {
+      "question_id": "b3-q04",
+      "chunk_id": "衛署藥製字第000604號115.08.27#0001#fe766800",
+      "type": "same-ingredient-other-form",
+      "note": "優質干擾項:同成分但為糖漿(2.5mg/ml),題目問注射劑(10mg/ml)。"
+    },
+    {
+      "question_id": "b3-q07",
+      "chunk_id": "衛署藥製字第018705號#0026#a3208993",
+      "type": "same-pattern-other-drug",
+      "note": "優質干擾項:同樣是「半衰期+腎功能不全會延長」的句型,但主角是 Allopurinol。"
+    },
+    {
+      "question_id": "b3-q09",
+      "chunk_id": "完整給付規定1150821#0766#1d6a7434",
+      "type": "right-number-wrong-scenario",
+      "note": "題目歧義,非標註問題:此塊給的是「interferon/ribavirin 合併治療中發生病毒學失敗者…給付16週」,與正解 12 週衝突。題目未指明是哪一支 C 肝口服新藥,建議補上藥名,否則此列其實也算命中。"
+    },
+    {
+      "question_id": "b3-q12",
+      "chunk_id": "完整給付規定1150821#0210#d537175e",
+      "type": "same-rule-other-clause",
+      "note": "優質干擾項:同一條文的「出血時治療」劑量,題目問預防性注射。"
+    },
+    {
+      "question_id": "b3-q12",
+      "chunk_id": "完整給付規定1150821#0212#0737f0a1",
+      "type": "same-rule-other-clause",
+      "note": "優質干擾項:「預防性使用…每隔1-2年」是監測血中濃度的間隔,不是注射間隔。"
+    },
+    {
+      "question_id": "b3-q14",
+      "chunk_id": "全民健康保險急診品質提升方案_第十版(114.11.18修訂)#0014#ee356ff6",
+      "type": "same-number-other-item",
+      "note": "優質干擾項:同樣是 5,000 點,但屬轉診加護病房獎勵,非「6小時內進加護病房」指標。"
+    },
+    {
+      "question_id": "b3-q19",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#5065#72e2d0e4",
+      "type": "same-number-other-stage",
+      "note": "優質干擾項:同為 1500 點,但是第二階段(A1005C)/連續六個月。"
+    },
+    {
+      "question_id": "b3-q22",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#4236#29a1b866",
+      "type": "same-phrase-other-procedure",
+      "note": "優質干擾項:同樣「須檢附術後病理細胞學報告」,但屬子宮內管刮除術(81031C)。"
+    },
+    {
+      "question_id": "b4-q02",
+      "chunk_id": "衛署藥製字第009256號115.08.25#0006#6ada48a8",
+      "type": "same-text-wrong-drug",
+      "note": "優質干擾項:SCARs 段落逐字相同(SJS/TEN/AGEP/DRESS),但來源是 009256(SMZ/TMP)非 allopurinol。純語意比對必中陷阱。"
+    },
+    {
+      "question_id": "b4-q02",
+      "chunk_id": "衛署藥製字第011207號115.08.25#0006#bcc02e6a",
+      "type": "same-text-wrong-drug",
+      "note": "優質干擾項:同上,011207(同廠軟膏劑型)。"
+    },
+    {
+      "question_id": "b4-q02",
+      "chunk_id": "衛署藥製字第009256號115.08.25#0009#22a2225a",
+      "type": "same-text-wrong-drug",
+      "note": "優質干擾項:同上,009256 的 SCARs 縮寫版。"
+    },
+    {
+      "question_id": "b4-q04",
+      "chunk_id": "衛署藥製字第022211號#0007#d5ae2e09",
+      "type": "same-pattern-other-drug",
+      "note": "優質干擾項:同樣講「突然停藥→戒斷,應逐漸減量」,但主角是 Lorazepam 不是 Dexamethasone。"
+    },
+    {
+      "question_id": "b4-q09",
+      "chunk_id": "完整給付規定1150821#0733#04ae1f26",
+      "type": "same-rule-other-drug",
+      "note": "優質干擾項:同樣是「延長治療需感染症專科醫師會診」,但屬另一藥品條文,非 Cefiderocol。"
+    },
+    {
+      "question_id": "b4-q10",
+      "chunk_id": "完整給付規定1150821#0232#a648f5b7",
+      "type": "near-threshold-value",
+      "note": "優質干擾項:同句型但門檻是 8.0%,正解 GLP-1 為 8.5%。"
+    },
+    {
+      "question_id": "b4-q12",
+      "chunk_id": "完整給付規定1150821#0451#448ca6c6",
+      "type": "same-clause-other-drug",
+      "note": "優質干擾項:「不得與 tamoxifen 或其他 aromatase inhibitor 併用」同句,但依上下文屬 9.1.1 之藥品,非 Letrozole(9.1.3)。"
+    },
+    {
+      "question_id": "b4-q14",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#6069#b06557db",
+      "type": "same-context-other-number",
+      "note": "優質干擾項:同為高風險病人出院後項目但為訪視費 6,000 點,非轉介追蹤獎勵 1,000 點/人。"
+    },
+    {
+      "question_id": "b4-q17",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#5544#530281da",
+      "type": "partial-rule-other-item",
+      "note": "近似干擾項但需留意:P1015C/P1016C 備註五寫「未記載訪視紀錄者,予以核扣訪視醫療費用」——只涵蓋「未記載」、且核扣範圍是訪視費而非當日論日計酬。題目問「未記載或記載不全」,故判✗,但模型若引用此列不算離譜,評分時宜當半對。"
+    },
+    {
+      "question_id": "b4-q17",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#5545#e134a31a",
+      "type": "partial-rule-other-item",
+      "note": "同 r202。"
+    },
+    {
+      "question_id": "b4-q18",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#5904#4f032b70",
+      "type": "verbatim-clause-other-code",
+      "note": "建議✗、我判✓:P4205C 備註載「須將肝癌期別登錄於健保資訊網服務系統(VPN系統),並記載於病歷備查」,原句可答。"
+    },
+    {
+      "question_id": "b4-q18",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#5902#037a0c17",
+      "type": "verbatim-clause-other-code",
+      "note": "建議✗、我判✓:P4203C 備註同載登錄於 VPN 系統並記載於病歷。"
+    },
+    {
+      "question_id": "b4-q18",
+      "chunk_id": "全民健康保險肝炎醫療給付改善方案 (115年8月19日起實施)#0005#5f1423e6",
+      "type": "verbatim-clause-other-code",
+      "note": "建議✗、我判✓:方案本文同載「須將肝癌期別登錄於健保資訊網服務系統(VPN 系統)並記載於病歷備查」。"
+    },
+    {
+      "question_id": "b4-q21",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#0157#e5b4a90e",
+      "type": "verbatim-clause-other-code",
+      "note": "建議✗、我判✓:備註一「限由職業醫學科專科醫師執行」、備註四「調整為…合理量內診察費之二倍」,兩問皆可答。"
+    },
+    {
+      "question_id": "b4-q21",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#0155#40f4302a",
+      "type": "verbatim-clause-other-code",
+      "note": "建議✗、我判✓:備註三項與正解 01040C 逐字相同。"
+    },
+    {
+      "question_id": "b4-q21",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#0156#dc53d8da",
+      "type": "verbatim-clause-other-code",
+      "note": "建議✗、我判✓:同上,逐字相同。"
+    },
+    {
+      "question_id": "b4-q21",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#0154#705a3674",
+      "type": "verbatim-clause-other-code",
+      "note": "建議✗、我判✓:同上,逐字相同。"
+    },
+    {
+      "question_id": "b4-q21",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#0161#24cbba1f",
+      "type": "verbatim-clause-other-code",
+      "note": "建議✗、我判✓:同上,逐字相同。"
+    },
+    {
+      "question_id": "b4-q21",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#0162#149f907a",
+      "type": "verbatim-clause-other-code",
+      "note": "建議✗、我判✓:同上,逐字相同。"
+    },
+    {
+      "question_id": "b4-q23",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#2903#f148ad8f",
+      "type": "same-text-other-procedure",
+      "note": "優質干擾項:適應症文字與正解 63016B 逐字相同,但術式是 63014B(併前哨淋巴結摘除)。"
+    },
+    {
+      "question_id": "b4-q24",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#2241#de6d2c7c",
+      "type": "same-text-other-variant",
+      "note": "優質干擾項:45095C 備註與 E45095 內容幾乎逐字相同,差別只在是否為「強制處置」版本。"
+    },
+    {
+      "question_id": "b1-q18",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#2415#ea54f38a",
+      "type": "near-code-other-procedure",
+      "note": "2026-09-14 dense 採樣偏差抽驗(來源:dense 獨有);人工判否。直肛壓力測定術 748 點,鄰近代碼誤命中,優質干擾項。"
+    },
+    {
+      "question_id": "b1-q21",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#3848#151e5b8f",
+      "type": "same-procedure-other-variant",
+      "note": "2026-09-14 dense 採樣偏差抽驗(來源:dense 獨有);人工判否。75806B 良性 13,263,同術式良性版,優質干擾項。"
+    },
+    {
+      "question_id": "b4-q23",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#2892#233f4d47",
+      "type": "same-name-other-code",
+      "note": "2026-09-14 dense 採樣偏差抽驗(來源:dense 獨有);人工判否。63003B 英文名與 GT 63016B 同為 Simple mastectomy-unilateral,但備註無適應症。語料裡兩個代碼同英文名,值得記一筆。"
+    },
+    {
+      "question_id": "b3-q24",
+      "chunk_id": "衛生福利部中央健康保險署,NHI#0002#1a7479f9",
+      "type": "adjacent-chunk",
+      "note": "2026-09-14 dense 採樣偏差抽驗(來源:dense 獨有);人工判否。GT 的前一塊(#0002 vs #0003),切在「服務電話」之前,服務時間在下一塊。相鄰切塊。"
+    },
+    {
+      "question_id": "b4-q13",
+      "chunk_id": "完整給付規定1150821#0744#cbf62dde",
+      "type": "adjacent-chunk",
+      "note": "2026-09-14 dense 採樣偏差抽驗(來源:dense 獨有);人工判否。GT 的前一塊(#0744 vs #0746):全身性抗疱疹劑條件,5 公克限制在下一塊。相鄰切塊。"
+    },
+    {
+      "question_id": "b1-q02",
+      "chunk_id": "衛署藥製字第022211號#0013#c0b64fb2",
+      "type": "adjacent-chunk",
+      "note": "2026-09-14 dense 採樣偏差抽驗(來源:dense 獨有);人工判否。GT 的下一塊(#0013 vs #0012):過量表徵(思睡、嗜眠、精神混亂、虛弱)與不良反應清單重疊,但段落是「過量」不是「不良反應」。相鄰切塊。"
+    },
+    {
+      "question_id": "b1-q08",
+      "chunk_id": "衛署藥製字第022908號#0005#826b0963",
+      "type": "adjacent-chunk",
+      "note": "2026-09-14 dense 採樣偏差抽驗(來源:dense 獨有);人工判否。GT 的下一塊(#0005 vs #0004):含「高血鉀症徵象」作為副作用,但與鉀補充劑併用的因果句在上一塊;與第一批 r84 判法一致。相鄰切塊。"
+    },
+    {
+      "question_id": "b1-q12",
+      "chunk_id": "完整給付規定1150821#0026#eb42fe5c",
+      "type": "adjacent-chunk",
+      "note": "2026-09-14 dense 採樣偏差抽驗(來源:dense 獨有);人工判否。GT 的前一塊(#0026 vs #0027):癲癇藥通則,Stiripentol 條文在下一塊。相鄰切塊。"
+    },
+    {
+      "question_id": "b4-q02",
+      "chunk_id": "衛署藥製字第018705號#0007#9367727c",
+      "type": "adjacent-chunk",
+      "note": "2026-09-14 dense 採樣偏差抽驗(來源:dense 獨有);人工判否。GT 的下一塊(#0007 vs #0006):順帶提到 SJS/TEN,但段落主旨是「其他(輕微)皮膚反應」;與第四批 r24 判法一致。相鄰切塊。"
+    },
+    {
+      "question_id": "b3-q06",
+      "chunk_id": "衛署藥製字第003954號#0003#9e642f15",
+      "type": "adjacent-chunk",
+      "note": "2026-09-14 dense 採樣偏差抽驗(來源:dense 獨有);人工判否。GT 的下一塊(#0003 vs #0002),相鄰切塊。"
+    },
+    {
+      "question_id": "b1-q10",
+      "chunk_id": "完整給付規定1150821#0133#288789b2",
+      "type": "same-condition-other-drug",
+      "note": "2026-09-14 反向抽驗 r163:標題路徑「慢性收縮性心衰竭患者」、本文 Entresto LVEF≦35%,與真值(dapagliflozin/empagliflozin ≦40%)數值不同;v1.1 題目補藥名後轉為干擾項"
+    },
+    {
+      "question_id": "b1-q04",
+      "chunk_id": "衛署藥製字第005446號#0001#9b7f650e",
+      "type": "same-pattern-other-drug",
+      "note": "truth_dupes 掃描 #1(Jaccard 0.50,2026-09-15 人工判定):005446 是 Cephalexin,只是「每一膠囊含有」模板相同。藥名盲型 hard negative,dense 會咬。"
+    },
+    {
+      "question_id": "b1-q14",
+      "chunk_id": "全民健康保險急診品質提升方案_第十版(114.11.18修訂)#0027#3ab34408",
+      "type": "adjacent-chunk",
+      "note": "truth_dupes 掃描 #3(Jaccard 0.56,2026-09-15 人工判定):附表四 P4602B 註,「3小時內給予第一劑抗生素及6」被切在塊首;反向抽驗 r252 同判。相鄰切塊型 hard negative。"
+    },
+    {
+      "question_id": "b1-q15",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#5543#c5c2adbe",
+      "type": "near-code-same-remark",
+      "note": "truth_dupes 掃描 #4(Jaccard 0.93,2026-09-15 人工判定):P1012C 第91天以後 3,674,同備註最強的鄰近項(0.929)。"
+    },
+    {
+      "question_id": "b1-q15",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#5540#8335029a",
+      "type": "near-code-same-remark",
+      "note": "truth_dupes 掃描 #5(Jaccard 0.56,2026-09-15 人工判定)"
+    },
+    {
+      "question_id": "b1-q15",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#5538#7fdc568c",
+      "type": "near-code-same-remark",
+      "note": "truth_dupes 掃描 #6(Jaccard 0.56,2026-09-15 人工判定)"
+    },
+    {
+      "question_id": "b1-q15",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#5539#7c768ee8",
+      "type": "near-code-same-remark",
+      "note": "truth_dupes 掃描 #7(Jaccard 0.55,2026-09-15 人工判定)"
+    },
+    {
+      "question_id": "b1-q15",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#5541#83b6457e",
+      "type": "near-code-same-remark",
+      "note": "truth_dupes 掃描 #8(Jaccard 0.55,2026-09-15 人工判定)"
+    },
+    {
+      "question_id": "b1-q17",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#6026#64a583cf",
+      "type": "near-code-same-remark",
+      "note": "truth_dupes 掃描 #9(Jaccard 0.61,2026-09-15 人工判定)"
+    },
+    {
+      "question_id": "b1-q17",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#6028#3a8aa490",
+      "type": "near-code-same-remark",
+      "note": "truth_dupes 掃描 #10(Jaccard 0.51,2026-09-15 人工判定)"
+    },
+    {
+      "question_id": "b1-q18",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#1738#5c84a415",
+      "type": "near-code-same-remark",
+      "note": "truth_dupes 掃描 #11(Jaccard 0.57,2026-09-15 人工判定)"
+    },
+    {
+      "question_id": "b1-q20",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#2469#45672704",
+      "type": "near-code-same-remark",
+      "note": "truth_dupes 掃描 #12(Jaccard 0.67,2026-09-15 人工判定)"
+    },
+    {
+      "question_id": "b1-q21",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#3853#b8731928",
+      "type": "same-code-old-rate",
+      "note": "truth_dupes 掃描 #13(Jaccard 0.74,2026-09-15 人工判定):同代碼 75810B 舊費率 17,703(迄 2026-08-31)。題目已限定 2026-09-01 起,是正確的 hard negative;標籤建議「同代碼舊費率」,這一型跟「鄰近代碼」不同,值得分開統計。"
+    },
+    {
+      "question_id": "b1-q21",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#3869#cb637c97",
+      "type": "near-code-same-remark",
+      "note": "truth_dupes 掃描 #14(Jaccard 0.60,2026-09-15 人工判定)"
+    },
+    {
+      "question_id": "b1-q21",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#3820#11a56e09",
+      "type": "near-code-same-remark",
+      "note": "truth_dupes 掃描 #15(Jaccard 0.53,2026-09-15 人工判定)"
+    },
+    {
+      "question_id": "b1-q23",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#3600#dd54f210",
+      "type": "near-code-same-remark",
+      "note": "truth_dupes 掃描 #16(Jaccard 0.68,2026-09-15 人工判定)"
+    },
+    {
+      "question_id": "b1-q23",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#3486#a22fb4e3",
+      "type": "near-code-same-remark",
+      "note": "truth_dupes 掃描 #17(Jaccard 0.68,2026-09-15 人工判定)"
+    },
+    {
+      "question_id": "b1-q23",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#3714#2c531414",
+      "type": "near-code-same-remark",
+      "note": "truth_dupes 掃描 #18(Jaccard 0.54,2026-09-15 人工判定)"
+    },
+    {
+      "question_id": "b1-q23",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#3910#153118a6",
+      "type": "near-code-same-remark",
+      "note": "truth_dupes 掃描 #19(Jaccard 0.51,2026-09-15 人工判定)"
+    },
+    {
+      "question_id": "b2-q02",
+      "chunk_id": "衛署藥製字第013578號#0001#51d8d0dd",
+      "type": "same-ingredient-other-strength",
+      "note": "truth_dupes 掃描 #20(Jaccard 0.55,2026-09-15 人工判定):013578 是台裕 10mg 單一規格,題目問 40mg,不等價。順帶:既有三筆真值的性狀都寫「每1ml 含 10mg、40mg」(同仿單雙規格),題目用「40mg 注射劑」鎖住規格是對的,不必改題;但若日後要做「有哪些規格」的題,013578 就會變真值。"
+    },
+    {
+      "question_id": "b2-q10",
+      "chunk_id": "完整給付規定1150821#0759#0681dd39",
+      "type": "same-rule-other-clause",
+      "note": "truth_dupes 掃描 #23(Jaccard 0.53,2026-09-15 人工判定):#0759 基層院所版,無「非消化系專科醫師須先照會」核心條款;第二批 r116、反向抽驗 r23 同判。"
+    },
+    {
+      "question_id": "b2-q19",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#0476#75a49db7",
+      "type": "near-code-same-remark",
+      "note": "truth_dupes 掃描 #24(Jaccard 0.94,2026-09-15 人工判定):05344C~05349C 護理訪視費家族,五筆 Jaccard 0.91~0.94,是全表相似度最高的一組鄰近代碼。這一族最能測 reranker 對「代碼+資源耗用群+合理量」三個變數的辨識。"
+    },
+    {
+      "question_id": "b2-q19",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#0484#50e2b43f",
+      "type": "near-code-same-remark",
+      "note": "truth_dupes 掃描 #25(Jaccard 0.93,2026-09-15 人工判定)"
+    },
+    {
+      "question_id": "b2-q19",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#0480#042ecacb",
+      "type": "near-code-same-remark",
+      "note": "truth_dupes 掃描 #26(Jaccard 0.92,2026-09-15 人工判定)"
+    },
+    {
+      "question_id": "b2-q19",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#0474#e8693a42",
+      "type": "near-code-same-remark",
+      "note": "truth_dupes 掃描 #27(Jaccard 0.92,2026-09-15 人工判定)"
+    },
+    {
+      "question_id": "b2-q19",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#0477#ff332a1f",
+      "type": "near-code-same-remark",
+      "note": "truth_dupes 掃描 #28(Jaccard 0.91,2026-09-15 人工判定)"
+    },
+    {
+      "question_id": "b2-q20",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#2919#a15c40df",
+      "type": "near-code-same-remark",
+      "note": "truth_dupes 掃描 #29(Jaccard 0.53,2026-09-15 人工判定)"
+    },
+    {
+      "question_id": "b2-q20",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#2921#f295975a",
+      "type": "near-code-same-remark",
+      "note": "truth_dupes 掃描 #30(Jaccard 0.52,2026-09-15 人工判定)"
+    },
+    {
+      "question_id": "b2-q21",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#2113#c4ba898d",
+      "type": "near-code-same-remark",
+      "note": "truth_dupes 掃描 #31(Jaccard 0.85,2026-09-15 人工判定)"
+    },
+    {
+      "question_id": "b2-q23",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#5549#c04958cf",
+      "type": "near-code-same-remark",
+      "note": "truth_dupes 掃描 #32(Jaccard 0.58,2026-09-15 人工判定)"
+    },
+    {
+      "question_id": "b2-q23",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#5548#5bb0a8b6",
+      "type": "near-code-same-remark",
+      "note": "truth_dupes 掃描 #33(Jaccard 0.58,2026-09-15 人工判定)"
+    },
+    {
+      "question_id": "b2-q23",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#6061#1f5cbf2f",
+      "type": "near-code-same-remark",
+      "note": "truth_dupes 掃描 #34(Jaccard 0.54,2026-09-15 人工判定)"
+    },
+    {
+      "question_id": "b3-q10",
+      "chunk_id": "完整給付規定1150821#0625#cd802e86",
+      "type": "partial-rule-same-drug",
+      "note": "truth_dupes 掃描 #36(Jaccard 0.57,2026-09-15 人工判定):#0625 只有申請流程,無「不得互換」句,照建議。"
+    },
+    {
+      "question_id": "b3-q19",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#5064#ab5e5803",
+      "type": "near-code-same-remark",
+      "note": "truth_dupes 掃描 #39(Jaccard 0.51,2026-09-15 人工判定)"
+    },
+    {
+      "question_id": "b4-q20",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#3773#4182b866",
+      "type": "near-code-same-remark",
+      "note": "truth_dupes 掃描 #40(Jaccard 0.82,2026-09-15 人工判定):#3773/#3587/#3807/#3746/#3806 是其他術式的「機械手臂輔助…須符合下列規範」備註,逐字相同、術式不同;Jaccard 0.80~0.82。與第四批 r233(75215B)不同——那一塊明文寫「執行機械手臂輔助膽囊切除術」所以是真值,這五塊寫的是別的術式。"
+    },
+    {
+      "question_id": "b4-q20",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#3587#204a1572",
+      "type": "near-code-same-remark",
+      "note": "truth_dupes 掃描 #41(Jaccard 0.81,2026-09-15 人工判定)"
+    },
+    {
+      "question_id": "b4-q20",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#3807#14357b13",
+      "type": "near-code-same-remark",
+      "note": "truth_dupes 掃描 #42(Jaccard 0.81,2026-09-15 人工判定)"
+    },
+    {
+      "question_id": "b4-q20",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#3746#95021537",
+      "type": "near-code-same-remark",
+      "note": "truth_dupes 掃描 #43(Jaccard 0.80,2026-09-15 人工判定)"
+    },
+    {
+      "question_id": "b4-q20",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#3806#9f14b8e8",
+      "type": "near-code-same-remark",
+      "note": "truth_dupes 掃描 #44(Jaccard 0.80,2026-09-15 人工判定)"
+    },
+    {
+      "question_id": "b4-q20",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#5478#f9786223",
+      "type": "near-code-same-remark",
+      "note": "truth_dupes 掃描 #45(Jaccard 0.75,2026-09-15 人工判定)"
+    },
+    {
+      "question_id": "b4-q20",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#5480#d7897358",
+      "type": "near-code-same-remark",
+      "note": "truth_dupes 掃描 #46(Jaccard 0.72,2026-09-15 人工判定)"
+    },
+    {
+      "question_id": "b4-q20",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#5504#86ee1940",
+      "type": "near-code-same-remark",
+      "note": "truth_dupes 掃描 #47(Jaccard 0.69,2026-09-15 人工判定)"
+    },
+    {
+      "question_id": "b4-q20",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#5503#064904dc",
+      "type": "near-code-same-remark",
+      "note": "truth_dupes 掃描 #48(Jaccard 0.68,2026-09-15 人工判定)"
+    },
+    {
+      "question_id": "b4-q20",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#5483#507a82fa",
+      "type": "near-code-same-remark",
+      "note": "truth_dupes 掃描 #49(Jaccard 0.68,2026-09-15 人工判定)"
+    },
+    {
+      "question_id": "b4-q23",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#2904#66a9dab7",
+      "type": "near-code-same-remark",
+      "note": "truth_dupes 掃描 #56(Jaccard 0.76,2026-09-15 人工判定)"
+    },
+    {
+      "question_id": "b4-q23",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#2901#67a2dd22",
+      "type": "near-code-same-remark",
+      "note": "truth_dupes 掃描 #57(Jaccard 0.66,2026-09-15 人工判定)"
+    },
+    {
+      "question_id": "b4-q23",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#2896#8e0b057b",
+      "type": "near-code-same-remark",
+      "note": "truth_dupes 掃描 #58(Jaccard 0.66,2026-09-15 人工判定)"
+    },
+    {
+      "question_id": "b4-q23",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#2902#0cc2592b",
+      "type": "near-code-same-remark",
+      "note": "truth_dupes 掃描 #59(Jaccard 0.64,2026-09-15 人工判定)"
+    }
+  ]
+}

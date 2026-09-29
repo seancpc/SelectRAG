@@ -1,0 +1,27 @@
+{
+  "run_id": "day1-chat",
+  "started_at": "2026-09-13T16:30:12.935936+00:00",
+  "model": "Qwen/Qwen2.5-7B-Instruct-AWQ",
+  "revision_requested": "b25037543e9394b818fdfca67ab2a00ecc7dd641",
+  "versions": {
+    "python": "3.11.15",
+    "torch": "2.11.0+cu130",
+    "torch_cuda": "13.0",
+    "vllm": "0.22.1"
+  },
+  "cuda_available": true,
+  "gpu_name": "NVIDIA GeForce RTX 4090",
+  "params": {
+    "max_model_len": 4096,
+    "gpu_memory_utilization": 0.6,
+    "seed": 42,
+    "max_tokens": 64
+  },
+  "revision_resolved": "b25037543e9394b818fdfca67ab2a00ecc7dd641",
+  "load_seconds": 44.26,
+  "generate_seconds": 3.853,
+  "output_tokens_total": 31,
+  "throughput_tok_per_s": 8.0,
+  "vram_baseline_mib": 1571,
+  "vram_peak_mib": 16457
+}

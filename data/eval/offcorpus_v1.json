@@ -1,0 +1,159 @@
+{
+ "manifest": {
+  "version": "offcorpus_v1",
+  "approved_at": "2026-09-19",
+  "item_count": 20,
+  "purpose": "語料外題:量檢索器面對語料外問題的 top-1 分數分佈(拒答門檻網格的負例);與醫療/藥品/健保零交集,無個資",
+  "expected_semantics": "expected=abstain:文件問答系統對語料外題的理想行為是不從語料作答(檢索分數低於門檻→拒答;生成端亦不得從語料硬湊)。lure=true 為刻意與語料句型/語意場同構的誘撈題,單獨計分;premise_false 為答案本身為否定的題,生成端不得編造數字",
+  "review": "2026-09-19 人工逐題核准:18 題原案、off-04 改標誘撈組、off-12 改問穩定事實(原題為易變事實)"
+ },
+ "items": [
+  {
+   "id": "off-01",
+   "question": "台北捷運板南線的首班車是幾點發車?",
+   "kind": "事實型",
+   "lure": false,
+   "expected": "abstain"
+  },
+  {
+   "id": "off-02",
+   "question": "如何在 Python 裡把清單去除重複元素並保持順序?",
+   "kind": "程序型",
+   "lure": false,
+   "expected": "abstain"
+  },
+  {
+   "id": "off-03",
+   "question": "日本的消費稅目前是多少百分比?",
+   "kind": "事實型",
+   "lure": false,
+   "expected": "abstain"
+  },
+  {
+   "id": "off-04",
+   "question": "汽車輪胎胎壓建議多久檢查一次?",
+   "kind": "事實型",
+   "lure": true,
+   "expected": "abstain",
+   "lure_note": "「多久檢查一次」與仿單/給付規定「每○個月一次」「一年至多二次」頻率句型同構"
+  },
+  {
+   "id": "off-05",
+   "question": "圍棋棋盤總共有幾個交叉點?",
+   "kind": "事實型",
+   "lure": false,
+   "expected": "abstain"
+  },
+  {
+   "id": "off-06",
+   "question": "申請護照換發需要準備哪些文件?",
+   "kind": "程序型",
+   "lure": true,
+   "expected": "abstain",
+   "lure_note": "「需要準備哪些文件」與 POL 應備文件、方案「須檢附」句型同構(b1-q16、b4-q22 同型)"
+  },
+  {
+   "id": "off-07",
+   "question": "梅雨季通常在台灣的哪幾個月?",
+   "kind": "事實型",
+   "lure": false,
+   "expected": "abstain"
+  },
+  {
+   "id": "off-08",
+   "question": "咖啡豆的淺焙與深焙在風味上有什麼差別?",
+   "kind": "開放型",
+   "lure": false,
+   "expected": "abstain"
+  },
+  {
+   "id": "off-09",
+   "question": "房屋租賃契約的押金上限是幾個月租金?",
+   "kind": "事實型",
+   "lure": true,
+   "expected": "abstain",
+   "lure_note": "「上限/幾個月」對上給付規定限額句型;押金上限有法源(土地法第 99 條),非虛構"
+  },
+  {
+   "id": "off-10",
+   "question": "太陽系中體積最大的行星是哪一顆?",
+   "kind": "事實型",
+   "lure": false,
+   "expected": "abstain"
+  },
+  {
+   "id": "off-11",
+   "question": "如何計算複利的年化報酬率?",
+   "kind": "程序型",
+   "lure": false,
+   "expected": "abstain"
+  },
+  {
+   "id": "off-12",
+   "question": "台灣高鐵從台北到左營全程大約需要多少時間?",
+   "kind": "事實型",
+   "lure": false,
+   "expected": "abstain"
+  },
+  {
+   "id": "off-13",
+   "question": "樂高積木最常見的塑膠材質是什麼?",
+   "kind": "事實型",
+   "lure": false,
+   "expected": "abstain"
+  },
+  {
+   "id": "off-14",
+   "question": "一場標準足球比賽的上下半場各幾分鐘?",
+   "kind": "事實型",
+   "lure": false,
+   "expected": "abstain"
+  },
+  {
+   "id": "off-15",
+   "question": "電動機車的電池在冬天為什麼續航會變短?",
+   "kind": "開放型",
+   "lure": true,
+   "expected": "abstain",
+   "lure_note": "「電池/續航/低溫」語意場相鄰仿單「儲存條件/25°C 以下/效期」,測 reranker 語意邊界(dense 藥名盲的反向)"
+  },
+  {
+   "id": "off-16",
+   "question": "台灣的機車駕照考試路考有哪些關卡?",
+   "kind": "程序型",
+   "lure": false,
+   "expected": "abstain",
+   "note": "「有哪些關卡」近方案「須符合下列條件」句型,附帶誘撈價值(不入誘撈組)"
+  },
+  {
+   "id": "off-17",
+   "question": "麵包發酵時酵母菌產生的氣體是什麼?",
+   "kind": "事實型",
+   "lure": false,
+   "expected": "abstain"
+  },
+  {
+   "id": "off-18",
+   "question": "手機拍夜景時 ISO 值該調高還是調低?",
+   "kind": "開放型",
+   "lure": false,
+   "expected": "abstain"
+  },
+  {
+   "id": "off-19",
+   "question": "中秋節吃柚子的習俗從何而來?",
+   "kind": "開放型",
+   "lure": false,
+   "expected": "abstain"
+  },
+  {
+   "id": "off-20",
+   "question": "公司登記的資本額最低要求是多少?",
+   "kind": "事實型",
+   "lure": true,
+   "expected": "abstain",
+   "lure_note": "「最低要求」對上給付規定門檻句型;且答案本身為否定(公司法修正後無最低資本額),前提不成立",
+   "premise_false": true
+  }
+ ]
+}

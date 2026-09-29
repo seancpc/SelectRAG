@@ -1,0 +1,24 @@
+{
+  "summary": {
+    "n_claims": 121,
+    "n_abstained_answers": 3,
+    "faithfulness": 0.9586776859504132,
+    "unsupported_rate": 0.0,
+    "contradiction_rate": 0.04132231404958678,
+    "counts": {
+      "supported": 116,
+      "unsupported": 0,
+      "contradicted": 5
+    }
+  },
+  "meta": {
+    "started_at": "2026-09-17T01:44:14.614971+00:00",
+    "judge_model": "Qwen/Qwen2.5-14B-Instruct-AWQ",
+    "judge_revision": "539535859b135b0244c91f3e59816150c8056698",
+    "prompt_version": "v2",
+    "seed": 42,
+    "source": "results/bench/vllm_bf16_c1.json"
+  },
+  "parse_failure_rate": 0.0,
+  "parse_failures": []
+}

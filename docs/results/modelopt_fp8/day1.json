@@ -1,0 +1,43 @@
+{
+  "run_id": "day1",
+  "started_at": "2026-09-15T09:44:49.663001+00:00",
+  "model": "Qwen/Qwen2.5-7B-Instruct",
+  "revision_requested": null,
+  "versions": {
+    "python": "3.12.3",
+    "torch": "2.9.1+cu130",
+    "transformers": "4.57.3",
+    "modelopt": "0.37.0"
+  },
+  "calibration": {
+    "source": "results/chunks.jsonl",
+    "n": 512,
+    "seed": 42,
+    "max_length": 512,
+    "batch": 4,
+    "chunk_ids_sha256": "fba1ac6849084b4d15a5b73e44ce6985a1a71121f6e058bac75a47bb01844670"
+  },
+  "quant_config": "FP8_DEFAULT_CFG",
+  "revision_resolved": "a09a35458c702b33eeacc393d103063234e8bc28",
+  "load_seconds": 1265.6,
+  "quantize_seconds": 46.3,
+  "export_seconds": 7.6,
+  "export_dir": "models/Qwen2.5-7B-Instruct-fp8",
+  "export_files": [
+    "added_tokens.json",
+    "chat_template.jinja",
+    "config.json",
+    "generation_config.json",
+    "hf_quant_config.json",
+    "merges.txt",
+    "model-00001-of-00002.safetensors",
+    "model-00002-of-00002.safetensors",
+    "model.safetensors.index.json",
+    "special_tokens_map.json",
+    "tokenizer.json",
+    "tokenizer_config.json",
+    "vocab.json"
+  ],
+  "vram_baseline_mib": 2236,
+  "vram_peak_mib": 19637
+}

@@ -1,0 +1,34 @@
+{
+  "8": {
+    "a_recall": 0.8723,
+    "b_recall": 0.881,
+    "union_recall": 0.965,
+    "a_hit": 0.9,
+    "b_hit": 0.9,
+    "union_hit": 0.97
+  },
+  "10": {
+    "a_recall": 0.9047,
+    "b_recall": 0.906,
+    "union_recall": 0.975,
+    "a_hit": 0.92,
+    "b_hit": 0.92,
+    "union_hit": 0.98
+  },
+  "12": {
+    "a_recall": 0.9047,
+    "b_recall": 0.928,
+    "union_recall": 0.975,
+    "a_hit": 0.92,
+    "b_hit": 0.94,
+    "union_hit": 0.98
+  },
+  "15": {
+    "a_recall": 0.928,
+    "b_recall": 0.958,
+    "union_recall": 0.975,
+    "a_hit": 0.94,
+    "b_hit": 0.97,
+    "union_hit": 0.98
+  }
+}

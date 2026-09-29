@@ -1,0 +1,45 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.venv-trt/
+venv/
+
+# 檢測工具產物
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.hypothesis/
+.coverage
+coverage.xml
+htmlcov/
+
+# 資料與實驗產物(體積大 / 可重生,不入 repo)
+data/corpus/*
+!data/corpus/SOURCES.md
+data/eval/*
+!data/eval/*_synthetic.json
+!data/eval/eval_v*_batch*.json
+!data/eval/eval_v*_full*.json
+!data/eval/hard_negatives.json
+!data/eval/offcorpus_v*.json
+!data/eval/required_components_v*.json
+!data/eval/*_synthetic_retrievals.json
+results/*
+!**/.gitkeep
+
+# 使用者提供的調查檔案(可能含未公開資料,一律不上傳)
+check/*
+!check/.gitkeep
+
+# 敏感設定
+.env
+.env.*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# 量化/匯出的模型 checkpoint(數 GB,不進 repo)
+models/*

@@ -1,0 +1,239 @@
+{
+  "manifest": {
+    "version": "v1-batch3",
+    "frozen_at": "2026-09-02T00:00:00Z",
+    "item_count": 25,
+    "content_hash": "478dc01c9461c1503558a32b59a9a680815150722555942e679e60e80126f9f4"
+  },
+  "items": [
+    {
+      "id": "b3-q01",
+      "question": "對 penicillin 過敏的病人使用 Cephalexin 為什麼要謹慎?",
+      "relevant_doc_ids": [
+        "衛署藥製字第005446號#0005#54bb4201"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b3-q02",
+      "question": "Bacitracin/Neomycin 複方軟膏每公克的有效成分含量是多少?",
+      "relevant_doc_ids": [
+        "衛署藥製字第001401號#0001#e2203132"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b3-q03",
+      "question": "汎敏松的抗炎效果與 Prednisolone 相比強多少?",
+      "relevant_doc_ids": [
+        "衛署藥製字第001781號#0011#72d584f5"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b3-q04",
+      "question": "Dextromethorphan 注射劑每 ml 的含量是多少?",
+      "relevant_doc_ids": [
+        "衛署藥製字第016887號#0001#6495f9d1"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b3-q05",
+      "question": "暈車藥應在搭乘交通工具前多久服用?24 小時內最多服用幾次?",
+      "relevant_doc_ids": [
+        "衛署藥製字第002658號115.08.20#0004#f9f02f18"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b3-q06",
+      "question": "Lidocaine 中樞神經毒性的早期徵兆有哪些?",
+      "relevant_doc_ids": [
+        "衛署藥製字第003954號#0002#60e07d14"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b3-q07",
+      "question": "Cephalexin 的排除半衰期是多久?腎功能不全者會如何?",
+      "relevant_doc_ids": [
+        "衛署藥製字第005446號#0013#2b581496"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b3-q08",
+      "question": "Dexamethasone 注射液應如何儲存?",
+      "relevant_doc_ids": [
+        "衛署藥製字第013912號#0013#d088ee58"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b3-q09",
+      "question": "C 肝口服新藥用於先前 interferon/ribavirin/蛋白酶抑制劑合併治療失敗者時,需合併什麼藥物?給付幾週?",
+      "relevant_doc_ids": [
+        "完整給付規定1150821#0765#f7df2273"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b3-q10",
+      "question": "ALK 陽性晚期非小細胞肺癌的第一線標靶藥物可以互換使用嗎?",
+      "relevant_doc_ids": [
+        "完整給付規定1150821#0537#a27132ee",
+        "完整給付規定1150821#0558#54f905b9",
+        "完整給付規定1150821#0626#067fada7"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b3-q11",
+      "question": "基因檢測未檢出變異的同合子家族性高膽固醇血症,臨床診斷須符合哪些徵狀?",
+      "relevant_doc_ids": [
+        "完整給付規定1150821#0115#83b9a309"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b3-q12",
+      "question": "第十三凝血因子預防性注射的建議劑量與注射間隔為何?",
+      "relevant_doc_ids": [
+        "完整給付規定1150821#0211#d2e5264a"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b3-q13",
+      "question": "非小細胞肺癌根治性手術後與鉑金類藥品併用的輔助治療,最長給付幾個療程?",
+      "relevant_doc_ids": [
+        "完整給付規定1150821#0461#abd51e90",
+        "完整給付規定1150821#0891#bfffef6c"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b3-q14",
+      "question": "急診病人 6 小時內進入加護病房,每人次獎勵多少點?",
+      "relevant_doc_ids": [
+        "全民健康保險急診品質提升方案_第十版(114.11.18修訂)#0009#9d3bac43"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b3-q15",
+      "question": "急診品質提升方案第十版自何時起實施?",
+      "relevant_doc_ids": [
+        "全民健康保險急診品質提升方案_第十版(114.11.18修訂)#0000#469e4631"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b3-q16",
+      "question": "思覺失調症方案收案對象在就醫集中度上的條件是什麼?",
+      "relevant_doc_ids": [
+        "全民健康保險思覺失調症醫療給付改善方案(1150801生效)#0004#9c89e829"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b3-q17",
+      "question": "肝炎醫療給付改善方案收案的疾病診斷碼有哪些?",
+      "relevant_doc_ids": [
+        "全民健康保險肝炎醫療給付改善方案 (115年8月19日起實施)#0003#7f772507"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b3-q18",
+      "question": "復健病房試辦計畫的住院經驗調查目的是什麼?",
+      "relevant_doc_ids": [
+        "全民健康保險復健病房試辦計畫（115.04.16 新增）#0032#09dc9a68"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b3-q19",
+      "question": "第一階段疾病管理照護費(A1003C)的支付點數與申報時機為何?",
+      "relevant_doc_ids": [
+        "醫療服務給付項目及支付標準_A21030000I-D20021-001#5063#79589030"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b3-q20",
+      "question": "連續血糖監測(CGM)的健保適應症條件是什麼?",
+      "relevant_doc_ids": [
+        "醫療服務給付項目及支付標準_A21030000I-D20021-001#0690#e8e1b22e"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b3-q21",
+      "question": "ICG 眼底血管攝影的健保申報限制是什麼?",
+      "relevant_doc_ids": [
+        "醫療服務給付項目及支付標準_A21030000I-D20021-001#1519#3f595d1e"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b3-q22",
+      "question": "診斷性子宮擴張刮除術(非產科)申報時須檢附什麼?",
+      "relevant_doc_ids": [
+        "醫療服務給付項目及支付標準_A21030000I-D20021-001#4151#9c70140b"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b3-q23",
+      "question": "心內超音波(18047B)的健保適應症為何?",
+      "relevant_doc_ids": [
+        "醫療服務給付項目及支付標準_A21030000I-D20021-001#1335#1cf0b486"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b3-q24",
+      "question": "健保署各分區業務組的服務時間為何?",
+      "relevant_doc_ids": [
+        "衛生福利部中央健康保險署,NHI#0003#93e517bb",
+        "衛生福利部中央健康保險署,NHI#0004#57ddd288"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b3-q25",
+      "question": "因應樺加沙颱風,健保署提供了什麼措施專區?",
+      "relevant_doc_ids": [
+        "衛生福利部中央健康保險署,NHI#0000#efaeac6f"
+      ],
+      "reference_answer": null,
+      "notes": null
+    }
+  ]
+}

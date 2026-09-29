@@ -1,0 +1,343 @@
+{
+  "total": 42,
+  "truth_wins": 38,
+  "ratio": 0.9047619047619048,
+  "details": [
+    {
+      "question_id": "b3-q01",
+      "chunk_id": "衛署藥製字第005446號#0010#1fb81479",
+      "type": "contradictory",
+      "best_truth_score": 0.9249961376190186,
+      "negative_score": 0.06492284685373306,
+      "truth_wins": true
+    },
+    {
+      "question_id": "b3-q02",
+      "chunk_id": "衛署藥製字第004761號#0001#867bc356",
+      "type": "same-entity-format",
+      "best_truth_score": 0.9342602491378784,
+      "negative_score": 0.9219132661819458,
+      "truth_wins": true
+    },
+    {
+      "question_id": "b3-q04",
+      "chunk_id": "衛署藥製字第000604號115.08.27#0001#fe766800",
+      "type": "same-ingredient-other-form",
+      "best_truth_score": 0.9895819425582886,
+      "negative_score": 0.979123592376709,
+      "truth_wins": true
+    },
+    {
+      "question_id": "b3-q07",
+      "chunk_id": "衛署藥製字第018705號#0026#a3208993",
+      "type": "same-pattern-other-drug",
+      "best_truth_score": 0.931797444820404,
+      "negative_score": 0.2546102702617645,
+      "truth_wins": true
+    },
+    {
+      "question_id": "b3-q09",
+      "chunk_id": "完整給付規定1150821#0766#1d6a7434",
+      "type": "right-number-wrong-scenario",
+      "best_truth_score": 0.9971400499343872,
+      "negative_score": 0.9977750182151794,
+      "truth_wins": false
+    },
+    {
+      "question_id": "b3-q12",
+      "chunk_id": "完整給付規定1150821#0210#d537175e",
+      "type": "same-rule-other-clause",
+      "best_truth_score": 0.9972499012947083,
+      "negative_score": 0.9795754551887512,
+      "truth_wins": true
+    },
+    {
+      "question_id": "b3-q12",
+      "chunk_id": "完整給付規定1150821#0212#0737f0a1",
+      "type": "same-rule-other-clause",
+      "best_truth_score": 0.9972499012947083,
+      "negative_score": 0.935517430305481,
+      "truth_wins": true
+    },
+    {
+      "question_id": "b3-q14",
+      "chunk_id": "全民健康保險急診品質提升方案_第十版(114.11.18修訂)#0014#ee356ff6",
+      "type": "same-number-other-item",
+      "best_truth_score": 0.9995954632759094,
+      "negative_score": 0.969417929649353,
+      "truth_wins": true
+    },
+    {
+      "question_id": "b3-q19",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#5065#72e2d0e4",
+      "type": "same-number-other-stage",
+      "best_truth_score": 0.9958391189575195,
+      "negative_score": 0.31561553478240967,
+      "truth_wins": true
+    },
+    {
+      "question_id": "b3-q22",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#4236#29a1b866",
+      "type": "same-phrase-other-procedure",
+      "best_truth_score": 0.9958189129829407,
+      "negative_score": 0.7596172094345093,
+      "truth_wins": true
+    },
+    {
+      "question_id": "b4-q02",
+      "chunk_id": "衛署藥製字第009256號115.08.25#0006#6ada48a8",
+      "type": "same-text-wrong-drug",
+      "best_truth_score": 0.9992780089378357,
+      "negative_score": 0.8679860830307007,
+      "truth_wins": true
+    },
+    {
+      "question_id": "b4-q02",
+      "chunk_id": "衛署藥製字第011207號115.08.25#0006#bcc02e6a",
+      "type": "same-text-wrong-drug",
+      "best_truth_score": 0.9992780089378357,
+      "negative_score": 0.8398007750511169,
+      "truth_wins": true
+    },
+    {
+      "question_id": "b4-q02",
+      "chunk_id": "衛署藥製字第009256號115.08.25#0009#22a2225a",
+      "type": "same-text-wrong-drug",
+      "best_truth_score": 0.9992780089378357,
+      "negative_score": 0.04663791134953499,
+      "truth_wins": true
+    },
+    {
+      "question_id": "b4-q04",
+      "chunk_id": "衛署藥製字第022211號#0007#d5ae2e09",
+      "type": "same-pattern-other-drug",
+      "best_truth_score": 0.4026269316673279,
+      "negative_score": 0.033799946308135986,
+      "truth_wins": true
+    },
+    {
+      "question_id": "b4-q09",
+      "chunk_id": "完整給付規定1150821#0733#04ae1f26",
+      "type": "same-rule-other-drug",
+      "best_truth_score": 0.9434581398963928,
+      "negative_score": 0.14446774125099182,
+      "truth_wins": true
+    },
+    {
+      "question_id": "b4-q10",
+      "chunk_id": "完整給付規定1150821#0232#a648f5b7",
+      "type": "near-threshold-value",
+      "best_truth_score": 0.21474121510982513,
+      "negative_score": 0.04261874780058861,
+      "truth_wins": true
+    },
+    {
+      "question_id": "b4-q12",
+      "chunk_id": "完整給付規定1150821#0451#448ca6c6",
+      "type": "same-clause-other-drug",
+      "best_truth_score": 0.9972411394119263,
+      "negative_score": 0.8832430839538574,
+      "truth_wins": true
+    },
+    {
+      "question_id": "b4-q14",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#6069#b06557db",
+      "type": "same-context-other-number",
+      "best_truth_score": 0.8912621140480042,
+      "negative_score": 0.9645940065383911,
+      "truth_wins": false
+    },
+    {
+      "question_id": "b4-q17",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#5544#530281da",
+      "type": "partial-rule-other-item",
+      "best_truth_score": 0.8170450329780579,
+      "negative_score": 0.5817412734031677,
+      "truth_wins": true
+    },
+    {
+      "question_id": "b4-q17",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#5545#e134a31a",
+      "type": "partial-rule-other-item",
+      "best_truth_score": 0.8170450329780579,
+      "negative_score": 0.5775223970413208,
+      "truth_wins": true
+    },
+    {
+      "question_id": "b4-q18",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#5904#4f032b70",
+      "type": "verbatim-clause-other-code",
+      "best_truth_score": 0.9967980980873108,
+      "negative_score": 0.018879059702157974,
+      "truth_wins": true
+    },
+    {
+      "question_id": "b4-q18",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#5902#037a0c17",
+      "type": "verbatim-clause-other-code",
+      "best_truth_score": 0.9967980980873108,
+      "negative_score": 0.09642721712589264,
+      "truth_wins": true
+    },
+    {
+      "question_id": "b4-q18",
+      "chunk_id": "全民健康保險肝炎醫療給付改善方案 (115年8月19日起實施)#0005#5f1423e6",
+      "type": "verbatim-clause-other-code",
+      "best_truth_score": 0.9967980980873108,
+      "negative_score": 0.012623065151274204,
+      "truth_wins": true
+    },
+    {
+      "question_id": "b4-q21",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#0157#e5b4a90e",
+      "type": "verbatim-clause-other-code",
+      "best_truth_score": 0.9992140531539917,
+      "negative_score": 0.6808491945266724,
+      "truth_wins": true
+    },
+    {
+      "question_id": "b4-q21",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#0155#40f4302a",
+      "type": "verbatim-clause-other-code",
+      "best_truth_score": 0.9992140531539917,
+      "negative_score": 0.9267798662185669,
+      "truth_wins": true
+    },
+    {
+      "question_id": "b4-q21",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#0156#dc53d8da",
+      "type": "verbatim-clause-other-code",
+      "best_truth_score": 0.9992140531539917,
+      "negative_score": 0.9208890795707703,
+      "truth_wins": true
+    },
+    {
+      "question_id": "b4-q21",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#0154#705a3674",
+      "type": "verbatim-clause-other-code",
+      "best_truth_score": 0.9992140531539917,
+      "negative_score": 0.924989640712738,
+      "truth_wins": true
+    },
+    {
+      "question_id": "b4-q21",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#0161#24cbba1f",
+      "type": "verbatim-clause-other-code",
+      "best_truth_score": 0.9992140531539917,
+      "negative_score": 0.9555604457855225,
+      "truth_wins": true
+    },
+    {
+      "question_id": "b4-q21",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#0162#149f907a",
+      "type": "verbatim-clause-other-code",
+      "best_truth_score": 0.9992140531539917,
+      "negative_score": 0.9296748638153076,
+      "truth_wins": true
+    },
+    {
+      "question_id": "b4-q23",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#2903#f148ad8f",
+      "type": "same-text-other-procedure",
+      "best_truth_score": 0.9998341798782349,
+      "negative_score": 0.9995611310005188,
+      "truth_wins": true
+    },
+    {
+      "question_id": "b4-q24",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#2241#de6d2c7c",
+      "type": "same-text-other-variant",
+      "best_truth_score": 0.9532141089439392,
+      "negative_score": 0.5591626763343811,
+      "truth_wins": true
+    },
+    {
+      "question_id": "b1-q18",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#2415#ea54f38a",
+      "type": "near-code-other-procedure",
+      "best_truth_score": 0.9985734224319458,
+      "negative_score": 0.9127811789512634,
+      "truth_wins": true
+    },
+    {
+      "question_id": "b1-q21",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#3848#151e5b8f",
+      "type": "same-procedure-other-variant",
+      "best_truth_score": 0.9991196990013123,
+      "negative_score": 0.7668301463127136,
+      "truth_wins": true
+    },
+    {
+      "question_id": "b4-q23",
+      "chunk_id": "醫療服務給付項目及支付標準_A21030000I-D20021-001#2892#233f4d47",
+      "type": "same-name-other-code",
+      "best_truth_score": 0.9998341798782349,
+      "negative_score": 0.5542594194412231,
+      "truth_wins": true
+    },
+    {
+      "question_id": "b3-q24",
+      "chunk_id": "衛生福利部中央健康保險署,NHI#0002#1a7479f9",
+      "type": "adjacent-chunk",
+      "best_truth_score": 0.01036236621439457,
+      "negative_score": 0.09129798412322998,
+      "truth_wins": false
+    },
+    {
+      "question_id": "b4-q13",
+      "chunk_id": "完整給付規定1150821#0744#cbf62dde",
+      "type": "adjacent-chunk",
+      "best_truth_score": 0.3130760192871094,
+      "negative_score": 0.040205538272857666,
+      "truth_wins": true
+    },
+    {
+      "question_id": "b1-q02",
+      "chunk_id": "衛署藥製字第022211號#0013#c0b64fb2",
+      "type": "adjacent-chunk",
+      "best_truth_score": 0.9998716115951538,
+      "negative_score": 0.9217728972434998,
+      "truth_wins": true
+    },
+    {
+      "question_id": "b1-q08",
+      "chunk_id": "衛署藥製字第022908號#0005#826b0963",
+      "type": "adjacent-chunk",
+      "best_truth_score": 0.982658863067627,
+      "negative_score": 0.8352673053741455,
+      "truth_wins": true
+    },
+    {
+      "question_id": "b1-q12",
+      "chunk_id": "完整給付規定1150821#0026#eb42fe5c",
+      "type": "adjacent-chunk",
+      "best_truth_score": 0.9665212631225586,
+      "negative_score": 0.43351611495018005,
+      "truth_wins": true
+    },
+    {
+      "question_id": "b4-q02",
+      "chunk_id": "衛署藥製字第018705號#0007#9367727c",
+      "type": "adjacent-chunk",
+      "best_truth_score": 0.9992780089378357,
+      "negative_score": 0.9204382300376892,
+      "truth_wins": true
+    },
+    {
+      "question_id": "b3-q06",
+      "chunk_id": "衛署藥製字第003954號#0003#9e642f15",
+      "type": "adjacent-chunk",
+      "best_truth_score": 0.9608672261238098,
+      "negative_score": 0.2879146337509155,
+      "truth_wins": true
+    },
+    {
+      "question_id": "b1-q10",
+      "chunk_id": "完整給付規定1150821#0133#288789b2",
+      "type": "same-condition-other-drug",
+      "best_truth_score": 0.9440912008285522,
+      "negative_score": 0.9760866761207581,
+      "truth_wins": false
+    }
+  ]
+}

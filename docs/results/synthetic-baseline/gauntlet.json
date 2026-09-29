@@ -1,0 +1,34 @@
+{
+  "experiment_id": "synthetic-baseline",
+  "run_id": "gauntlet",
+  "eval_set_version": "v0-synthetic",
+  "eval_set_hash": "0cd09aafa9cb0ebc902f0fbf419979467ed7520f0960185469b812df258db8c0",
+  "config": {
+    "experiment_id": "synthetic-baseline",
+    "eval_set": "data/eval/eval_v0_synthetic.json",
+    "retriever": {
+      "type": "scripted",
+      "params": {
+        "script": "data/eval/eval_v0_synthetic_retrievals.json"
+      }
+    },
+    "k_values": [
+      1,
+      3,
+      5,
+      10
+    ],
+    "results_dir": "results"
+  },
+  "metrics": {
+    "recall@1": 0.08333333333333333,
+    "recall@3": 0.5,
+    "recall@5": 0.6666666666666667,
+    "recall@10": 0.6666666666666667,
+    "hit@1": 0.2,
+    "hit@3": 0.7,
+    "hit@5": 0.8,
+    "hit@10": 0.8,
+    "mrr": 0.425
+  }
+}

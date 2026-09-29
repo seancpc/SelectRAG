@@ -1,0 +1,247 @@
+{
+  "manifest": {
+    "version": "v1-batch2",
+    "frozen_at": "2026-09-01T00:00:00Z",
+    "item_count": 25,
+    "content_hash": "0789bd92a7b8a5416bf094e2593a784b27dd265f98d03e32bf83b7a085db112a"
+  },
+  "items": [
+    {
+      "id": "b2-q01",
+      "question": "大量輸液使用前發現藥液不澄清、變色或有異物時應如何處理?",
+      "relevant_doc_ids": [
+        "衛署藥製字第001085號#0005#7e297e29"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b2-q02",
+      "question": "Triamcinolone Acetonide 40mg 注射劑每 ml 的有效成分含量是多少?",
+      "relevant_doc_ids": [
+        "衛署藥製字第004073號#0001#85e08907",
+        "衛署藥製字第009645號#0001#ab0c6c89",
+        "衛署藥製字第014914號#0001#fe76c633"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b2-q03",
+      "question": "四環素對哪些類型的微生物感染有效?",
+      "relevant_doc_ids": [
+        "衛署藥製字第015791號115.08.10#0003#418ff123",
+        "衛署藥製字第015791號115.08.10#0011#8bcb12f7",
+        "衛署藥製字第019254號#0003#a7c324fc",
+        "衛署藥製字第022572號#0003#e04decab",
+        "衛署藥製字第022572號#0011#079728b9"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b2-q04",
+      "question": "Tetracycline(四環素)治療淋病的口服用法與療程是什麼?",
+      "relevant_doc_ids": [
+        "衛署藥製字第015791號115.08.10#0004#52ac5dad"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b2-q05",
+      "question": "服用 Metronidazole 期間飲酒會發生什麼反應?",
+      "relevant_doc_ids": [
+        "衛署藥製字第009408號115.08.28#0003#bf4333a7"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b2-q06",
+      "question": "Metronidazole 殺死厭氧菌的作用機轉是什麼?",
+      "relevant_doc_ids": [
+        "衛署藥製字第009408號115.08.28#0004#590467c0"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b2-q07",
+      "question": "Sulfamethoxazole 的抗菌作用機轉是什麼?",
+      "relevant_doc_ids": [
+        "衛署藥製字第009256號115.08.25#0011#4b8b71d3",
+        "衛署藥製字第011207號115.08.25#0011#834db140"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b2-q08",
+      "question": "降血糖藥為什麼必須於用餐時或緊接餐後立即服用?",
+      "relevant_doc_ids": [
+        "衛署藥製字第002863號#0005#73aa0203"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b2-q09",
+      "question": "octreotide(如 Sandostatin)要讓病人攜回自行注射,健保有什麼規定?",
+      "relevant_doc_ids": [
+        "完整給付規定1150821#0002#e30a9e17"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b2-q10",
+      "question": "非消化系專科醫師要開立 B、C 型肝炎治療藥品有什麼條件?",
+      "relevant_doc_ids": [
+        "完整給付規定1150821#0409#7bccca73",
+        "完整給付規定1150821#0412#ac2cc372",
+        "完整給付規定1150821#0748#cbe67754",
+        "完整給付規定1150821#0758#c5c71b78",
+        "完整給付規定1150821#0763#ee5adc0f"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b2-q11",
+      "question": "健保給付異位性皮膚炎生物製劑前,全身性治療必須包含哪些藥物至少一種?",
+      "relevant_doc_ids": [
+        "完整給付規定1150821#0807#a7aac725"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b2-q12",
+      "question": "Tisagenlecleucel(Kymriah)健保給付用於哪類病人?",
+      "relevant_doc_ids": [
+        "完整給付規定1150821#0662#4d0d5148"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b2-q13",
+      "question": "全身性抗疱疹病毒劑健保給付限用於哪些情況?",
+      "relevant_doc_ids": [
+        "完整給付規定1150821#0744#cbf62dde"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b2-q14",
+      "question": "呼吸器依賴整合照護計畫的論日點數中,哪些項目可以另行申報?",
+      "relevant_doc_ids": [
+        "「全民健康保險呼吸器依賴患者整合性照護前瞻性支付方式」計畫_公告陳核+畫線#0024#e52a952a"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b2-q15",
+      "question": "亞急性呼吸照護病房照護日數累計超過幾天改依慢性呼吸照護病房支付?",
+      "relevant_doc_ids": [
+        "「全民健康保險呼吸器依賴患者整合性照護前瞻性支付方式」計畫_公告陳核+畫線#0026#150e9ba1"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b2-q16",
+      "question": "warfarin 進階抗凝血藥事照護的收案對象包含哪些病人?",
+      "relevant_doc_ids": [
+        "提升醫院用藥安全與品質方案(114.08.28更新)#0020#01704a65"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b2-q17",
+      "question": "肝炎方案的追蹤管理照護費(P4202C)申報有什麼間隔限制?",
+      "relevant_doc_ids": [
+        "全民健康保險肝炎醫療給付改善方案 (115年8月19日起實施)#0009#81f32752",
+        "醫療服務給付項目及支付標準_A21030000I-D20021-001#5901#9f0716ca"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b2-q18",
+      "question": "急診品質提升方案中,急性心肌梗塞的向上轉診診斷碼是哪些?",
+      "relevant_doc_ids": [
+        "全民健康保險急診品質提升方案_第十版(114.11.18修訂)#0020#b89a0174"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b2-q19",
+      "question": "護理訪視費 05342C(資源耗用群第一類,機構)的健保支付點數是多少?",
+      "relevant_doc_ids": [
+        "醫療服務給付項目及支付標準_A21030000I-D20021-001#0472#89f547e4"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b2-q20",
+      "question": "鎖骨骨折固定術的健保支付點數是多少?",
+      "relevant_doc_ids": [
+        "醫療服務給付項目及支付標準_A21030000I-D20021-001#2920#f8ac686b"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b2-q21",
+      "question": "靜脈曲張注射療法(單腳)一年內申報次數上限是多少?",
+      "relevant_doc_ids": [
+        "醫療服務給付項目及支付標準_A21030000I-D20021-001#2112#f1351d46"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b2-q22",
+      "question": "申報牙周病統合治療第一階段須檢附哪些資料?",
+      "relevant_doc_ids": [
+        "醫療服務給付項目及支付標準_A21030000I-D20021-001#4766#f865799d"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b2-q23",
+      "question": "糖尿病第二階段年度評估管理照護費每年度最多申報幾次?",
+      "relevant_doc_ids": [
+        "醫療服務給付項目及支付標準_A21030000I-D20021-001#5550#5ab5709e"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b2-q24",
+      "question": "115年基層醫療院所資訊服務系統雲端轉型補助計畫的核定名單何時公告?",
+      "relevant_doc_ids": [
+        "115年基層醫療院所資訊服務系統雲端轉型補助計畫-衛生福利部中央健康保險署,NHI-重要政策-基層院所HIS雲端轉型-補助計畫申請事項-115年補助計畫#0000#4b7d8784"
+      ],
+      "reference_answer": null,
+      "notes": null
+    },
+    {
+      "id": "b2-q25",
+      "question": "健保署是否會限制民眾的就醫次數?",
+      "relevant_doc_ids": [
+        "衛生福利部中央健康保險署,NHI#0001#69d4c31b"
+      ],
+      "reference_answer": null,
+      "notes": null
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "experiment_id": "base-bm25-ctx-tuned-full100",
+  "run_id": "depth40",
+  "eval_set_version": "v1.1-full100",
+  "eval_set_hash": "859b0d7a0bee4cefddea50e98bc252108c5f39a31db108a049e3eb44fe8a5761",
+  "config": {
+    "experiment_id": "base-bm25-ctx-tuned-full100",
+    "eval_set": "data/eval/eval_v1.1_full100.json",
+    "retriever": {
+      "type": "bm25",
+      "params": {
+        "chunks": "results/chunks.jsonl",
+        "context_fields": [
+          "doc_title",
+          "heading_path"
+        ],
+        "k1": 0.7,
+        "b": 0.5
+      }
+    },
+    "k_values": [
+      1,
+      3,
+      5,
+      10,
+      40
+    ],
+    "results_dir": "results/hybrid-grid"
+  },
+  "metrics": {
+    "recall@1": 0.6656666666666666,
+    "recall@3": 0.8083333333333332,
+    "recall@5": 0.8540000000000001,
+    "recall@10": 0.9046666666666667,
+    "recall@40": 0.968,
+    "hit@1": 0.75,
+    "hit@3": 0.84,
+    "hit@5": 0.88,
+    "hit@10": 0.92,
+    "hit@40": 0.98,
+    "mrr": 0.8109550907319449
+  }
+}

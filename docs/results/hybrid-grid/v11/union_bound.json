@@ -1,0 +1,26 @@
+{
+  "10": {
+    "a_recall": 0.9047,
+    "b_recall": 0.906,
+    "union_recall": 0.975,
+    "a_hit": 0.92,
+    "b_hit": 0.92,
+    "union_hit": 0.98
+  },
+  "20": {
+    "a_recall": 0.938,
+    "b_recall": 0.958,
+    "union_recall": 0.975,
+    "a_hit": 0.95,
+    "b_hit": 0.97,
+    "union_hit": 0.98
+  },
+  "40": {
+    "a_recall": 0.968,
+    "b_recall": 0.98,
+    "union_recall": 0.985,
+    "a_hit": 0.98,
+    "b_hit": 0.99,
+    "union_hit": 0.99
+  }
+}
