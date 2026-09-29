@@ -96,10 +96,10 @@
 
   <div class="btns">
     <a class="btn primary" href="https://github.com/seancpc/SelectRAG">GitHub Repo</a>
-    <a class="btn" href="https://github.com/seancpc/SelectRAG/blob/main/docs/DECISION_MEMO.md">Decision Memo</a>
+    <a class="btn" href="https://github.com/seancpc/SelectRAG/blob/main/docs/DECISION_MEMO.en.md">Decision Memo</a>
     <a class="btn" href="https://github.com/seancpc/SelectRAG/blob/main/docs/articles/01_bm25_baseline_en.md">Article #1</a>
     <a class="btn" href="https://github.com/seancpc/SelectRAG/blob/main/docs/articles/02_engine_and_format_en.md">Article #2</a>
-    <a class="btn" href="https://github.com/seancpc/SelectRAG/blob/main/docs/devlog.md">Dev Log</a>
+    <a class="btn" href="https://github.com/seancpc/SelectRAG/blob/main/docs/devlog.en.md">Dev Log</a>
   </div>
 
   <h2>Design Philosophy</h2>
@@ -153,7 +153,15 @@
     <tr><td>C Format</td><td>vLLM + GPTQ-Int4 (official pre-quantized)</td><td>throughput ×2.36 (1000 vs 424 tok/s), 5.3 GiB weights, faithfulness indistinguishable from bf16 under the judge</td><td>vLLM bf16</td></tr>
   </table>
   <p>Stacked: "hybrid + reranker retrieval, vLLM serving GPTQ-Int4" is the single-card answer. Versus the safe configuration it costs one vector index, one cross-encoder and one quantized checkpoint, and buys +0.13 top-3 recall and ×2.4 generation throughput.</p>
-  <img class="shot" src="screenshots/20260917_C軸四格式_速度KV.png" alt="Axis C: four formats, speed and KV cache">
+  <div style="overflow-x:auto">
+  <table>
+    <tr><th>Format</th><th>Source / kernel</th><th>Weights GiB</th><th>KV cache tokens</th><th>c=1 latency p50 / p95</th><th>c=8 tok/s</th><th>long output c=8 tok/s</th><th>vs bf16 (c=8)</th></tr>
+    <tr><td>bf16</td><td>official @ a09a3545</td><td>14.29</td><td>113,488</td><td>0.73 / 1.28 s</td><td>424</td><td>406</td><td>×1.00</td></tr>
+    <tr><td>FP8</td><td>ModelOpt self-calibrated, 512</td><td>8.17</td><td>223,632</td><td>0.52 / 1.00</td><td>610</td><td>614</td><td>×1.44</td></tr>
+    <tr><td>AWQ (W4A16)</td><td>official @ b250375, awq_marlin</td><td>5.29</td><td>273,808</td><td>0.32 / 0.56</td><td>1000</td><td>915</td><td><strong>×2.36</strong></td></tr>
+    <tr><td>GPTQ-Int4</td><td>official @ e9c932ac, gptq→marlin</td><td>5.27</td><td>274,224</td><td>0.34 / 0.58</td><td>1000</td><td>920</td><td><strong>×2.36</strong></td></tr>
+  </table>
+  </div>
   <p class="caption">Axis C: same 4090, same 100 prompts, four numeric formats under vLLM — throughput, latency, weights and KV-cache capacity. W4A16 (AWQ / GPTQ) is the largest single speed-up in the project.</p>
 
   <h2>Three counter-intuitive findings</h2>
@@ -162,7 +170,14 @@
     <li><strong>The engine is not the variable; the numeric format is.</strong> vLLM and TensorRT-LLM are within 10% on the same model and card; FP8 gives ×1.4–1.7, W4 gives ×2.36. TensorRT-LLM also cannot load HF-format AWQ / GPTQ — the first hard "format is bound to engine" limit met in practice.</li>
     <li><strong>The judge's κ was propped up by the calibration set.</strong> 30 random questions: κ 0.845. 42 rows re-sampled across four difficulty strata: the same judge drops to 0.488. Four explicit rules aimed at the nine errors changed zero verdicts; decomposing into three sub-questions flipped 3 of 8. The honest ending: the judge is fit for relative comparison only, and that limit is written into the memo.</li>
   </ul>
-  <img class="shot" src="screenshots/20260917_C軸四格式_品質一致率.png" alt="Axis C: quality and agreement">
+  <table>
+    <tr><th>Quality / agreement vs vLLM bf16</th><th>bf16</th><th>FP8</th><th>AWQ</th><th>GPTQ</th></tr>
+    <tr><td>faithfulness (judge v2)</td><td>0.959 (121)</td><td>0.951 (122)</td><td>0.938 (129)</td><td>0.960 (125)</td></tr>
+    <tr><td>contradicted</td><td>0.041</td><td>0.049</td><td>0.062</td><td>0.040</td></tr>
+    <tr><td>abstentions (of 100)</td><td>3</td><td>3</td><td>1</td><td>3</td></tr>
+    <tr><td>verbatim agreement with bf16</td><td>—</td><td>0.51</td><td>0.27</td><td>0.25</td></tr>
+    <tr><td>answers with Simplified chars / max share</td><td>2 / 0.032</td><td>1 / 0.167</td><td>9 / 0.227</td><td>6 / 0.133</td></tr>
+  </table>
   <p class="caption">Axis C quality table: faithfulness, abstentions, verbatim agreement with bf16, and simplified-character ratio (language drift, amplified 3–4.5× by W4).</p>
 
   <h2>Demo: one question, two configurations side by side</h2>
@@ -178,7 +193,7 @@
   <h2>Generation-quality audit: making an invisible error class visible</h2>
   <p>On top of coverage and citation checks sits a layer of <strong>deterministic audit tools</strong> (none of them feed any score — they only surface suspect rows for human review): (1) <strong>required-component hits</strong> — multi-part questions (an answer split across two codes, a point value plus a materials clause) are checked against a human-approved component list (16 questions, 36 components), with forbidden phrasings split into a <em>protective</em> kind (a wrong dosage phrasing that spuriously satisfies a component) and a <em>punitive</em> kind (the whole answer is about the wrong drug — the entire question scores zero); (2) <strong>abstention visibility</strong> — abstention sentences used to be silently skipped by sentence-level analysis, erasing 20–30 (question × retrieval) pairs per run from the sheet; adding an abstention row type plus a "best truth rank" column measured that <strong>11 of 21 abstentions were wrong</strong> — the correct passage was inside the context the model itself cited; (3) <strong>drug-name verbatim check</strong> — the quantized model occasionally rewrites a Latin drug name into a non-existent Chinese string (character-level drift), caught deterministically by flagging Latin terms present in the cited passage but absent from the sentence.</p>
   <p>The audit layer then measured the prompt itself — <strong>three revisions, two falsified</strong>: v14 added two wording rules at once; meta-preambles went to zero but citation misattribution jumped 11→29 (the citation rule got pushed off the end of the system prompt). v15 kept a single formatting constraint and put the citation rule back last; misattribution fell to 15 — adopted. v16 added a self-check rule ("never claim the passage doesn't mention it"); 44 previously well-answered questions flipped to abstention — for a 7B quantized model this kind of meta-instruction acts as <strong>string priming, not behavioural checking</strong>. The distilled conclusion: prompt rules can constrain output <em>format</em>; they cannot add <em>checking behaviour</em>.</p>
-  <img class="shot" src="prompt-iterations.svg" alt="Three prompt revisions: citation misattribution and abstentions">
+  <img class="shot" src="prompt-iterations.en.svg" alt="Three prompt revisions: citation misattribution and abstentions">
   <p class="caption">Same seed, retrieval results verified identical pair by pair — every delta is generation-side. The two panels use different denominators and must not be compared across.</p>
   <p>The judge itself was audited too. The C-axis claim that quantization does not cost quality rests on a 14B judge's faithfulness scores. Using that judge to compare formats assumes <strong>its errors are the same size for every format</strong>. That started as an assumption. We then measured it by hand-auditing both directions. The first direction is how many sentences the judge called <em>contradicted</em> were actually fine. The second is how many wrong dose and number sentences it let through as <em>supported</em>. The results were close for bf16, AWQ and GPTQ. All nine errors it let through have the same shape: every word is in the passage, but the relation is wrong. Examples are per-day swapped with per-dose, and an announcement date given as the start date. One of the nine cuts the daily dose by four. We also re-judged the Simplified-Chinese sentences after converting them to Traditional characters. Only 1 of 16 verdicts changed, and in the opposite direction. That rules out the concern that character drift makes the quantized formats look worse.</p>
   <img class="shot" src="judge-audit-symmetry.svg" alt="Judge audit in both directions: wrong contradicted calls 4/5, 5/8, 4/5; missed errors among supported dose sentences 3/39, 3/35, 3/36 for bf16, AWQ, GPTQ">

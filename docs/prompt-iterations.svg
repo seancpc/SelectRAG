@@ -1,50 +1,50 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 400" font-family="Arial, sans-serif" font-size="12">
-<rect width="760" height="400" fill="#1e1e1e"/>
-<text x="56" y="24" fill="#ffffff" font-size="15" font-weight="bold">demo prompt 三次改版:兩次證偽、一次採用</text>
-<text x="56" y="42" fill="#9aa0a6" font-size="11">Three prompt revisions: two falsified by measurement, one adopted (same seed, retrieval identical — all deltas are generation-side)</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="410" viewBox="0 0 760 410" font-family="Arial, sans-serif" font-size="12">
+<rect width="760" height="410" fill="#1e1e1e"/>
+<text x="56" y="26" fill="#ffffff" font-size="15" font-weight="bold">demo prompt 三次改版:兩次證偽、一次採用</text>
+<text x="56" y="44" fill="#9aa0a6" font-size="11">同 seed、檢索結果逐一比對相同,差異全在生成端</text>
+<text x="208" y="76" fill="#e0e0e0" text-anchor="middle" font-size="12" font-weight="bold">引用錯置</text>
 <line x1="56" x2="360" y1="300.0" y2="300.0" stroke="#333" stroke-width="1"/>
 <text x="48" y="304.0" fill="#9aa0a6" text-anchor="end" font-size="10">0</text>
-<line x1="56" x2="360" y1="223.3" y2="223.3" stroke="#333" stroke-width="1"/>
-<text x="48" y="227.3" fill="#9aa0a6" text-anchor="end" font-size="10">10</text>
-<line x1="56" x2="360" y1="146.7" y2="146.7" stroke="#333" stroke-width="1"/>
-<text x="48" y="150.7" fill="#9aa0a6" text-anchor="end" font-size="10">20</text>
-<line x1="56" x2="360" y1="70.0" y2="70.0" stroke="#333" stroke-width="1"/>
-<text x="48" y="74.0" fill="#9aa0a6" text-anchor="end" font-size="10">30</text>
+<line x1="56" x2="360" y1="245.7" y2="245.7" stroke="#333" stroke-width="1"/>
+<text x="48" y="249.7" fill="#9aa0a6" text-anchor="end" font-size="10">10</text>
+<line x1="56" x2="360" y1="191.4" y2="191.4" stroke="#333" stroke-width="1"/>
+<text x="48" y="195.4" fill="#9aa0a6" text-anchor="end" font-size="10">20</text>
+<line x1="56" x2="360" y1="137.1" y2="137.1" stroke="#333" stroke-width="1"/>
+<text x="48" y="141.1" fill="#9aa0a6" text-anchor="end" font-size="10">30</text>
+<rect x="78.7" y="240.3" width="56" height="59.7" fill="#3987e5" rx="3"><title>v13: 11</title></rect>
+<text x="106.7" y="232.3" fill="#e0e0e0" text-anchor="middle" font-size="13" font-weight="bold">11</text>
+<text x="106.7" y="216.3" fill="#3987e5" text-anchor="middle" font-size="10">基準</text>
+<text x="106.7" y="318" fill="#e0e0e0" text-anchor="middle" font-size="12">v13</text>
+<rect x="180.0" y="142.6" width="56" height="157.4" fill="#d95926" rx="3"><title>v14: 29</title></rect>
+<text x="208.0" y="134.6" fill="#e0e0e0" text-anchor="middle" font-size="13" font-weight="bold">29</text>
+<text x="208.0" y="118.6" fill="#d95926" text-anchor="middle" font-size="10">作廢</text>
+<text x="208.0" y="318" fill="#e0e0e0" text-anchor="middle" font-size="12">v14</text>
+<rect x="281.3" y="218.6" width="56" height="81.4" fill="#199e70" rx="3"><title>v15: 15</title></rect>
+<text x="309.3" y="210.6" fill="#e0e0e0" text-anchor="middle" font-size="13" font-weight="bold">15</text>
+<text x="309.3" y="194.6" fill="#199e70" text-anchor="middle" font-size="10">採用</text>
+<text x="309.3" y="318" fill="#e0e0e0" text-anchor="middle" font-size="12">v15</text>
+<text x="208" y="336" fill="#9aa0a6" text-anchor="middle" font-size="10">172 個兩輪皆有作答的組合</text>
+<text x="208" y="351" fill="#9aa0a6" text-anchor="middle" font-size="10">v14:加兩條用字規則,引用規則被推離句尾</text>
+<text x="585" y="76" fill="#e0e0e0" text-anchor="middle" font-size="12" font-weight="bold">棄答</text>
 <line x1="430" x2="740" y1="300.0" y2="300.0" stroke="#333" stroke-width="1"/>
 <text x="422" y="304.0" fill="#9aa0a6" text-anchor="end" font-size="10">0</text>
-<line x1="430" x2="740" y1="185.0" y2="185.0" stroke="#333" stroke-width="1"/>
-<text x="422" y="189.0" fill="#9aa0a6" text-anchor="end" font-size="10">35</text>
-<line x1="430" x2="740" y1="70.0" y2="70.0" stroke="#333" stroke-width="1"/>
-<text x="422" y="74.0" fill="#9aa0a6" text-anchor="end" font-size="10">70</text>
-
-<text x="208" y="62" fill="#e0e0e0" text-anchor="middle" font-size="12" font-weight="bold">引用錯置 citation misattribution</text>
-<rect x="82" y="215.7" width="56" height="84.3" fill="#3987e5" rx="3"/>
-<text x="110" y="207.7" fill="#e0e0e0" text-anchor="middle" font-size="13" font-weight="bold">11</text>
-<text x="110" y="191.7" fill="#9aa0a6" text-anchor="middle" font-size="10">基準 baseline</text>
-<rect x="180" y="77.7" width="56" height="222.3" fill="#d95926" rx="3"/>
-<text x="208" y="69.7" fill="#e0e0e0" text-anchor="middle" font-size="13" font-weight="bold">29</text>
-<text x="208" y="53.7" fill="#d95926" text-anchor="middle" font-size="10">作廢 rejected</text>
-<rect x="278" y="185.0" width="56" height="115.0" fill="#199e70" rx="3"/>
-<text x="306" y="177.0" fill="#e0e0e0" text-anchor="middle" font-size="13" font-weight="bold">15</text>
-<text x="306" y="161.0" fill="#199e70" text-anchor="middle" font-size="10">採用 adopted</text>
-
-<text x="110" y="318" fill="#e0e0e0" text-anchor="middle" font-size="12">v13</text>
-<text x="208" y="318" fill="#e0e0e0" text-anchor="middle" font-size="12">v14</text>
-<text x="306" y="318" fill="#e0e0e0" text-anchor="middle" font-size="12">v15</text>
-<text x="208" y="334" fill="#9aa0a6" text-anchor="middle" font-size="10">172 個兩輪皆有作答的組合 shared answered pairs</text>
-<text x="208" y="349" fill="#9aa0a6" text-anchor="middle" font-size="10">v14:加兩條用字規則,引用規則被推離句尾</text>
-<text x="585" y="62" fill="#e0e0e0" text-anchor="middle" font-size="12" font-weight="bold">棄答 abstentions</text>
-<rect x="482" y="227.7" width="56" height="72.3" fill="#199e70" rx="3"/>
-<text x="510" y="219.7" fill="#e0e0e0" text-anchor="middle" font-size="13" font-weight="bold">22</text>
-<text x="510" y="203.7" fill="#199e70" text-anchor="middle" font-size="10">採用 adopted</text>
-<rect x="632" y="83.1" width="56" height="216.9" fill="#d95926" rx="3"/>
-<text x="660" y="75.1" fill="#e0e0e0" text-anchor="middle" font-size="13" font-weight="bold">66</text>
-<text x="660" y="59.1" fill="#d95926" text-anchor="middle" font-size="10">作廢 rejected</text>
-
-<text x="510" y="318" fill="#e0e0e0" text-anchor="middle" font-size="12">v15</text>
-<text x="660" y="318" fill="#e0e0e0" text-anchor="middle" font-size="12">v16</text>
-<text x="585" y="334" fill="#9aa0a6" text-anchor="middle" font-size="10">200 個 (題 × 檢索配置) 組合 all pairs</text>
-<text x="585" y="349" fill="#9aa0a6" text-anchor="middle" font-size="10">v16:「禁宣稱缺席」規則使 44 題原本正常作答變拒答</text>
-<line x1="390" x2="390" y1="56" y2="355" stroke="#333" stroke-width="1"/>
-<text x="740" y="384" fill="#9aa0a6" text-anchor="end" font-size="10">左右量測口徑不同,不可跨面板比較;錯誤棄答 11/21 為已知限制,守門走確定性審計層</text>
+<line x1="430" x2="740" y1="252.5" y2="252.5" stroke="#333" stroke-width="1"/>
+<text x="422" y="256.5" fill="#9aa0a6" text-anchor="end" font-size="10">20</text>
+<line x1="430" x2="740" y1="205.0" y2="205.0" stroke="#333" stroke-width="1"/>
+<text x="422" y="209.0" fill="#9aa0a6" text-anchor="end" font-size="10">40</text>
+<line x1="430" x2="740" y1="157.5" y2="157.5" stroke="#333" stroke-width="1"/>
+<text x="422" y="161.5" fill="#9aa0a6" text-anchor="end" font-size="10">60</text>
+<line x1="430" x2="740" y1="110.0" y2="110.0" stroke="#333" stroke-width="1"/>
+<text x="422" y="114.0" fill="#9aa0a6" text-anchor="end" font-size="10">80</text>
+<rect x="479.5" y="247.8" width="56" height="52.2" fill="#199e70" rx="3"><title>v15: 22</title></rect>
+<text x="507.5" y="239.8" fill="#e0e0e0" text-anchor="middle" font-size="13" font-weight="bold">22</text>
+<text x="507.5" y="223.8" fill="#199e70" text-anchor="middle" font-size="10">採用</text>
+<text x="507.5" y="318" fill="#e0e0e0" text-anchor="middle" font-size="12">v15</text>
+<rect x="634.5" y="143.2" width="56" height="156.8" fill="#d95926" rx="3"><title>v16: 66</title></rect>
+<text x="662.5" y="135.2" fill="#e0e0e0" text-anchor="middle" font-size="13" font-weight="bold">66</text>
+<text x="662.5" y="119.2" fill="#d95926" text-anchor="middle" font-size="10">作廢</text>
+<text x="662.5" y="318" fill="#e0e0e0" text-anchor="middle" font-size="12">v16</text>
+<text x="585" y="336" fill="#9aa0a6" text-anchor="middle" font-size="10">200 個(題 × 檢索配置)組合</text>
+<text x="585" y="351" fill="#9aa0a6" text-anchor="middle" font-size="10">v16:「禁宣稱缺席」規則使 44 題原本正常作答變棄答</text>
+<text x="56" y="386" fill="#9aa0a6" font-size="10">左右量測口徑不同,不可跨面板比較;錯誤棄答 11/21 為已知限制,守門走確定性審計層</text>
 </svg>

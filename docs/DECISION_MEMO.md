@@ -1,5 +1,7 @@
 # SelectRAG 架構決策備忘錄(Architecture Decision Memo)
 
+[English](DECISION_MEMO.en.md) | **繁體中文**
+
 > **文件定位**:本專案的核心交付物——「我們該用哪種 RAG 配置?」的實證回答。
 > 格式承諾:每軸結論寫成 trade-off 而非冠軍;必含一個「最無聊但最穩」選項;
 > 誠實區必寫「預期會贏但輸了的組合」。

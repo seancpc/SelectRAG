@@ -152,7 +152,15 @@
     <tr><td>C 格式</td><td>vLLM + GPTQ-Int4(官方預量化)</td><td>吞吐 ×2.36(1000 vs 424 tok/s)、權重 5.3 GiB、faithfulness 在 judge 下與 bf16 不可分辨</td><td>vLLM bf16</td></tr>
   </table>
   <p>三軸疊起來:「hybrid + reranker 檢索、vLLM 跑 GPTQ-Int4」是單卡上的答案;比起最穩配置,多養一個向量索引、一個 cross-encoder、一份量化權重,換到頭部命中率 +0.13 與生成吞吐 ×2.4。</p>
-  <img class="shot" src="screenshots/20260917_C軸四格式_速度KV.png" alt="C 軸四格式速度與 KV cache">
+  <div style="overflow-x:auto">
+  <table>
+    <tr><th>格式</th><th>來源 / kernel</th><th>權重 GiB</th><th>KV cache tokens</th><th>c=1 延遲 p50 / p95</th><th>c=8 tok/s</th><th>長輸出 c=8 tok/s</th><th>vs bf16(c=8)</th></tr>
+    <tr><td>bf16</td><td>官方 @ a09a3545</td><td>14.29</td><td>113,488</td><td>0.73 / 1.28 s</td><td>424</td><td>406</td><td>×1.00</td></tr>
+    <tr><td>FP8</td><td>ModelOpt 自校正 512</td><td>8.17</td><td>223,632</td><td>0.52 / 1.00</td><td>610</td><td>614</td><td>×1.44</td></tr>
+    <tr><td>AWQ (W4A16)</td><td>官方 @ b250375, awq_marlin</td><td>5.29</td><td>273,808</td><td>0.32 / 0.56</td><td>1000</td><td>915</td><td><strong>×2.36</strong></td></tr>
+    <tr><td>GPTQ-Int4</td><td>官方 @ e9c932ac, gptq→marlin</td><td>5.27</td><td>274,224</td><td>0.34 / 0.58</td><td>1000</td><td>920</td><td><strong>×2.36</strong></td></tr>
+  </table>
+  </div>
   <p class="caption">C 軸:同一張 4090、同一份 100 題 prompt,vLLM 內四種數值格式的吞吐、延遲、權重與 KV cache 容量。W4A16(AWQ / GPTQ)是本專案最大的單一加速來源。</p>
 
   <h2>三個反直覺的發現</h2>
@@ -161,7 +169,14 @@
     <li><strong>引擎不是變因,數值格式才是</strong>。vLLM 與 TensorRT-LLM 同模型同卡差 ≤ 10%;FP8 給 ×1.4–1.7,W4 給 ×2.36。TensorRT-LLM 還載不了 HF 格式的 AWQ / GPTQ——「格式綁引擎」是實測到的第一個硬限制。</li>
     <li><strong>judge 的 κ 是被校準集撐起來的</strong>。隨機抽 30 題 κ 0.845;按判定難度分四層重抽 42 列,同一個 judge 只剩 0.488。針對九筆錯型加四條明文規則,42 筆判定一筆未變;拆成三個子問各自問,8 筆翻對 3。最後承認極限:judge 只能當相對比較用,寫進備忘錄的適用邊界。</li>
   </ul>
-  <img class="shot" src="screenshots/20260917_C軸四格式_品質一致率.png" alt="C 軸四格式品質與一致率">
+  <table>
+    <tr><th>品質 / 一致性(對 vLLM bf16)</th><th>bf16</th><th>FP8</th><th>AWQ</th><th>GPTQ</th></tr>
+    <tr><td>faithfulness (judge v2)</td><td>0.959 (121)</td><td>0.951 (122)</td><td>0.938 (129)</td><td>0.960 (125)</td></tr>
+    <tr><td>contradicted</td><td>0.041</td><td>0.049</td><td>0.062</td><td>0.040</td></tr>
+    <tr><td>拒答題數(100 題)</td><td>3</td><td>3</td><td>1</td><td>3</td></tr>
+    <tr><td>對 bf16 逐字一致率</td><td>—</td><td>0.51</td><td>0.27</td><td>0.25</td></tr>
+    <tr><td>含簡體題數 / 單題最大佔比</td><td>2 / 0.032</td><td>1 / 0.167</td><td>9 / 0.227</td><td>6 / 0.133</td></tr>
+  </table>
   <p class="caption">C 軸品質表:faithfulness、拒答數、對 bf16 的逐字一致率、簡體字元佔比(語言漂移,W4 放大 3–4.5 倍)。</p>
 
   <h2>Demo:同一題,兩種配置並排</h2>

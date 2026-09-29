@@ -8,7 +8,7 @@
 [![CI](https://github.com/seancpc/SelectRAG/actions/workflows/ci.yml/badge.svg)](https://github.com/seancpc/SelectRAG/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-**[Project page](https://seancpc.github.io/SelectRAG/)** · **[Decision memo](docs/DECISION_MEMO.md)** · **[Article 1: BM25 baseline](docs/articles/01_bm25_baseline_en.md)** · **[Article 2: engine & format](docs/articles/02_engine_and_format_en.md)** · **[Devlog](docs/devlog.md)**
+**[Project page](https://seancpc.github.io/SelectRAG/)** · **[Decision memo](docs/DECISION_MEMO.en.md)** · **[Article 1: BM25 baseline](docs/articles/01_bm25_baseline_en.md)** · **[Article 2: engine & format](docs/articles/02_engine_and_format_en.md)** · **[Devlog](docs/devlog.en.md)**
 
 `Python` · `BM25` · `bge-m3` · `bge-reranker` · `vLLM` · `TensorRT-LLM` · `GPTQ / AWQ / FP8` · `hypothesis` · `Gradio` · `RTX 4090`
 
@@ -25,10 +25,10 @@
 
 ### TL;DR
 
-- **The deliverable is a decision, not a leaderboard.** An [architecture decision memo](docs/DECISION_MEMO.md) gives each axis a recommended pick, the cost of that pick, and a *boring-but-safe* alternative.
+- **The deliverable is a decision, not a leaderboard.** An [architecture decision memo](docs/DECISION_MEMO.en.md) gives each axis a recommended pick, the cost of that pick, and a *boring-but-safe* alternative.
 - **Recommendation:** hybrid retrieval (BM25 + bge-m3, RRF) + bge-reranker, served by vLLM with GPTQ-Int4. Against the safe baseline this gives recall@3 0.808 → 0.941 and generation throughput ×2.36.
 - **The measuring instruments were audited too.** The faithfulness judge was hand-audited in both directions, the mutation-testing tool was checked for fake kills, and the BM25 baseline was tuned before anything was compared against it.
-- **Failures are part of the record.** Nine "expected to win, lost" entries, three prompt revisions (two falsified), and every pivot are written up in the memo and the [devlog](docs/devlog.md).
+- **Failures are part of the record.** Nine "expected to win, lost" entries, three prompt revisions (two falsified), and every pivot are written up in the memo and the [devlog](docs/devlog.en.md).
 
 ### 1. The Problem: RAG choices are made by blog post, not by measurement
 
