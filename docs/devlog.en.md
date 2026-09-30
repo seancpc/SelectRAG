@@ -494,3 +494,29 @@ In other words, the quality evidence for the recommended conclusion was half mea
 - In the three-format audit, the reviewer and I each got a denominator wrong once (bf16 dosage sentences were 39, written as 36).
   The habit of recounting row by row against the original table before recording caught it, but it's a reminder: every time a number is transcribed from conversation into a document, check it against the source file.
 
+## 2026-09-30: From private development to public release: content review, repo migration, and errors caught only after launch
+
+**Trigger**: all development happened in a private repo that also held my personal working rules, the spec and a desktop runbook. Publishing it as a portfolio needed three things: (1) no public file may reference a document that is not published; (2) numbers and claims must survive an outside review; (3) someone who reads only English must be able to follow it.
+
+**What we did**:
+1. **Reference clean-up**: about 70 sentences that cited the spec, the runbook or internal rules were rewritten one by one, and 49 files got mechanical fixes. A repo-wide search confirmed zero leftovers. Stale screenshots were removed and an MIT license was added.
+2. **Outside review of both articles and the corpus source list** (four rounds). Every point was checked against data, not just reworded. Article 1 opened with hit@10 labelled as recall@10. Article 1 said the heading path "does not help" while the source list said the gain came "precisely from the heading path", and neither had been measured. A field ablation (minutes, index fields only) measured title +0.039, heading +0.015, both +0.086, and only then did the two documents agree. The source list's legal basis did not hold for drug package inserts (written by manufacturers, not a government body), so the two document types are now described separately. The judge audit behind article 2 grew into the six-round audit of 09-29.
+3. **README rewrite**: aligned with my other portfolio projects (English first, then Chinese; problem → method → comparison → engineering trail → results → limits). It also answers up front the two questions a 2026 interviewer is most likely to ask: why RAG instead of a long context (the measured KV-cache capacity shows the corpus does not fit), and why these models (only the criteria they met, no comparisons that were never run).
+4. **Moving to the public repo**: download a ZIP → delete the five private items → first commit in the new repo under the noreply identity. Three environment traps on the way: the folder was owned by Administrators, so git refused the repo (`safe.directory`); Windows Credential Manager held the other account, so the push got a 403 (fixed by naming the account in the remote URL); a pasted command wrapped and split the branch name into its own command. The update flow is now: change the private repo → in the public repo, `fetch` and `checkout` only the listed files → commit → push. Old history and private files never travel (the push sent only the 13 objects of that commit).
+5. **CI**: GitHub Actions runs the CPU-only gauntlet layers (tests + coverage, mypy, ruff, random order). Before pushing, the workflow steps were run once in a fresh venv, so CI was green on its first run. Mutation testing and the supply-chain audit stay out of CI: the first takes 80–100 minutes, and the second turns red on a new CVE even when no code changed.
+6. **English versions**: the Decision Memo (1,168 lines) and the Devlog (494 lines) were translated in full, in 8 parallel chunks. A script compared each chunk's line count, heading count, table rows, backticked spans and every number, and each difference was reviewed before merging.
+7. **Demo video**: four classic cases (basic comparison, drug-name blindness, out-of-scope refusal) plus the conclusion table, with Chinese and English subtitle tracks on YouTube.
+
+**Result**: the public repo and bilingual Pages are live, CI is green, and the project is on my job-seeking page. Caught and fixed only after launch: two axis-C screenshots on Pages were stale (bf16 KV cache shown as 111,216 instead of 113,488, plus two "not recorded" cells), now replaced by HTML tables; overlapping text in the prompt-revision chart; charts on the English page still in Chinese.
+
+**What to do differently**:
+1. **A screenshot is not data.** Numbers get updated; screenshots do not. Where a table or a chart generated from data will do, do not publish a screenshot of numbers.
+2. **Have an outside reviewer read it before release.** Every issue found in four review rounds was one I had read past several times.
+3. **When two documents make the same claim, back it with the same measurement.** When they contradict each other, do not reword one side; go measure the number nobody had measured.
+4. **Check the state of the environment before stating it.**
+
+### ❌ Failure log
+- The source list said the whole corpus was "government documents, not protected by copyright". That does not hold for the 30 package inserts written by manufacturers, and the README's compliance section repeated the same sentence. A legal basis is a promise to the reader; getting it wrong is worse than leaving it out.
+- Article 1 said "the v1.2 re-run moved every figure by ≤ 0.003", but body-only BM25 moved by 0.012. The ≤ 0.003 held only for the four representative configurations; a local result had been stretched to cover everything.
+- The stale screenshots on Pages survived several pre-launch checks. They were only spotted while checking whether the English page's images were in English. When the checklist says "layout" instead of "content", content errors pass straight through.
+- I listed "keep, make private or delete the old repo" as an open decision when it had been private all along. A decision that did not exist was handed to the user because the state was not checked first.
