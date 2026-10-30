@@ -111,7 +111,7 @@
 
   <h2>專案簡介</h2>
   <ul>
-    <li><strong>領域</strong>:繁體中文醫療公開文件問答(健保給付規定、藥品仿單、支付標準、公告)——延續醫療護城河,全公開、無 PHI。</li>
+    <li><strong>領域</strong>:繁體中文醫療公開文件問答(健保給付規定、藥品仿單、支付標準、公告)——延續醫療領域經驗,全公開、無 PHI。</li>
     <li><strong>語料</strong>:8,029 chunks(CSV 6,350 / PDF 1,660 / HTML 19),結構優先切塊 + 長度上限。</li>
     <li><strong>評測</strong>:recall@k 與 hit@k 並列(多等價真值下 recall 被稀釋,hit 回答「答案有沒有被拿到」),以不變量 <code>hit == (recall &gt; 0)</code> 互鎖;指標模組經變異測試(45/45 killed)。</li>
   </ul>
@@ -237,7 +237,7 @@
 
   <h2>資料與合規</h2>
   <ul>
-    <li>語料全部為<strong>政府機關公文書</strong>(著作權法第 9 條不受著作權保護);非政府文件已從語料與 git 歷史徹底移除。</li>
+    <li>語料包含 12 份<strong>健保署文件</strong>(政府公文,依著作權法第 9 條不受著作權保護)與 30 份<strong>藥品仿單</strong>(由藥商撰寫,僅供研究評測使用);來源清單見 <code>data/corpus/SOURCES.md</code>。</li>
     <li><strong>無任何真實病歷 / 個資 / PHI</strong>;本專案為技術展示用途,非醫療建議工具。</li>
     <li>語料檔不隨 repo 散布(gitignore),eval set 僅含題目與 chunk id 參照。</li>
   </ul>

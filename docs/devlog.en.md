@@ -2,7 +2,7 @@
 
 **English** | [繁體中文](devlog.md) · *Translated from the Chinese original; if the two differ, the Chinese version is authoritative.*
 
-> Purpose of this material: the project narrative for a personal job-hunting website. Failures and detours are the most convincing part, so they are kept as they were.
+> This log keeps the failures and detours as they happened, without after-the-fact polishing.
 
 ## 2026-08-31 — First real eval numbers: BM25 baseline on a 25-question real eval set
 
@@ -327,7 +327,7 @@ these need the judge or better retrieval, not something a threshold can fix.
 
 ## 2026-09-19 — Trying to shore up one contested point, we dug up the demo's most valuable finding
 
-**Trigger**: Self-checking before interviews for what in the demo could still be picked apart. Listed nine points, of which "valid citation ≠ correct citation" was the one we were least confident about —
+**Trigger**: Self-checking before release for what in the demo could still be picked apart. Listed nine points, of which "valid citation ≠ correct citation" was the one we were least confident about —
 the UI showing "citation [1] (contains ground truth)" only proves the number exists, not that the sentence really comes from that paragraph. Added a deterministic check layer:
 for each sentence compute "the fraction of character 3-grams covered by the cited paragraph", zero LLM cost.
 
@@ -425,7 +425,7 @@ from receiving the data to pushing the rollback took under an hour.
    each round it automatically surfaces suspect rows, and humans only judge the one step "does the paragraph really contain the answer". Behavior we can't fix becomes a process we can guard.
 3. **Experimental discipline was the only part that didn't slip once this time; keep it**: single change, same seed, verify retrieval is identical row by row before attributing to generation,
    expectations (including failure expectations) written before starting, rollback text preloaded in config-file comments. When the backfire appeared, rollback took ten minutes.
-4. External narrative (interviews) told as it is: wrong abstention 11/21 is a known limitation, the prompt treatment was falsified experimentally,
+4. External narrative told as it is: wrong abstention 11/21 is a known limitation, the prompt treatment was falsified experimentally,
    and the system brings it into routine monitoring with deterministic tools — "I measured it, I can't fix it, but I can guard it".
 
 ### ❌ Failure log
@@ -501,13 +501,13 @@ In other words, the quality evidence for the recommended conclusion was half mea
 **What we did**:
 1. **Reference clean-up**: about 70 sentences that cited the spec, the runbook or internal rules were rewritten one by one, and 49 files got mechanical fixes. A repo-wide search confirmed zero leftovers. Stale screenshots were removed and an MIT license was added.
 2. **Outside review of both articles and the corpus source list** (four rounds). Every point was checked against data, not just reworded. Article 1 opened with hit@10 labelled as recall@10. Article 1 said the heading path "does not help" while the source list said the gain came "precisely from the heading path", and neither had been measured. A field ablation (minutes, index fields only) measured title +0.039, heading +0.015, both +0.086, and only then did the two documents agree. The source list's legal basis did not hold for drug package inserts (written by manufacturers, not a government body), so the two document types are now described separately. The judge audit behind article 2 grew into the six-round audit of 09-29.
-3. **README rewrite**: aligned with my other portfolio projects (English first, then Chinese; problem → method → comparison → engineering trail → results → limits). It also answers up front the two questions a 2026 interviewer is most likely to ask: why RAG instead of a long context (the measured KV-cache capacity shows the corpus does not fit), and why these models (only the criteria they met, no comparisons that were never run).
+3. **README rewrite**: aligned with my other portfolio projects (English first, then Chinese; problem → method → comparison → engineering trail → results → limits). It also answers up front the two questions a reader is most likely to ask first: why RAG instead of a long context (the measured KV-cache capacity shows the corpus does not fit), and why these models (only the criteria they met, no comparisons that were never run).
 4. **Moving to the public repo**: download a ZIP → delete the five private items → first commit in the new repo under the noreply identity. Three environment traps on the way: the folder was owned by Administrators, so git refused the repo (`safe.directory`); Windows Credential Manager held the other account, so the push got a 403 (fixed by naming the account in the remote URL); a pasted command wrapped and split the branch name into its own command. The update flow is now: change the private repo → in the public repo, `fetch` and `checkout` only the listed files → commit → push. Old history and private files never travel (the push sent only the 13 objects of that commit).
 5. **CI**: GitHub Actions runs the CPU-only gauntlet layers (tests + coverage, mypy, ruff, random order). Before pushing, the workflow steps were run once in a fresh venv, so CI was green on its first run. Mutation testing and the supply-chain audit stay out of CI: the first takes 80–100 minutes, and the second turns red on a new CVE even when no code changed.
 6. **English versions**: the Decision Memo (1,168 lines) and the Devlog (494 lines) were translated in full, in 8 parallel chunks. A script compared each chunk's line count, heading count, table rows, backticked spans and every number, and each difference was reviewed before merging.
 7. **Demo video**: four classic cases (basic comparison, drug-name blindness, out-of-scope refusal) plus the conclusion table, with Chinese and English subtitle tracks on YouTube.
 
-**Result**: the public repo and bilingual Pages are live, CI is green, and the project is on my job-seeking page. Caught and fixed only after launch: two axis-C screenshots on Pages were stale (bf16 KV cache shown as 111,216 instead of 113,488, plus two "not recorded" cells), now replaced by HTML tables; overlapping text in the prompt-revision chart; charts on the English page still in Chinese.
+**Result**: the public repo and bilingual Pages are live, CI is green, and the project is on my portfolio page. Caught and fixed only after launch: two axis-C screenshots on Pages were stale (bf16 KV cache shown as 111,216 instead of 113,488, plus two "not recorded" cells), now replaced by HTML tables; overlapping text in the prompt-revision chart; charts on the English page still in Chinese.
 
 **What to do differently**:
 1. **A screenshot is not data.** Numbers get updated; screenshots do not. Where a table or a chart generated from data will do, do not publish a screenshot of numbers.

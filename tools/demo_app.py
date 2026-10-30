@@ -251,7 +251,7 @@ def cite_rate(cfg: DemoConfig, pool: RetrieverPool, es: Any, limit: int, out: Pa
 def version_line(cfg: DemoConfig, es: EvalSet) -> str:
     """UI 標頭的可稽核資訊:prompt 版本、eval set 版本、模型。
 
-    展示時觀眾(或面試官)要能一眼確認「這是哪個 prompt、哪份題組、哪個模型」;
+    展示時觀眾要能一眼確認「這是哪個 prompt、哪份題組、哪個模型」;
     缺 prompt_id 時顯示占位「?」而非留白——空白會被誤讀成「沒有版本管理」。
     """
     pid = cfg.prompt.prompt_id or "?"
