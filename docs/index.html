@@ -104,7 +104,7 @@
   <h2>設計概念</h2>
   <p>這個專案<strong>不拼檢索排行榜分數</strong>,而是拼<strong>選型方法論</strong>——每個「該不該上」的問題都用對照實驗回答,結論寫成 trade-off 而非冠軍。三個核心:</p>
   <ul>
-    <li><strong>五軸對照實驗</strong>:檢索策略(A)、推論引擎(B)、量化格式(C)、RAG 範式(D)、fine-tune 對照(E)——一次只動一軸,其餘釘死。</li>
+    <li><strong>規劃五軸、完成三軸</strong>:完成檢索策略(A)、推論引擎(B)、數值格式(C)三軸,一次只動一軸、其餘釘死;RAG 範式(D)與 fine-tune(E)列為範圍外,理由見「範圍與後續」。</li>
     <li><strong>評測地基先行</strong>:100 題人工判定真值、content hash 凍結、一行指令可重跑;沒有基準,禁止宣稱「優化了」。</li>
     <li><strong>誠實揭露</strong>:預期會贏但輸了的組合、被證據推翻的假設、調參的過擬合風險——全部寫進備忘錄,不只挑好消息。</li>
   </ul>
@@ -123,20 +123,23 @@
               ▼
       8,029 chunks(JSONL)
               │
-     ┌────────┴────────┐
-     ▼                 ▼
-  BM25(控制組)   BM25 + 文件脈絡      ← A 軸:之後接 dense / hybrid / reranker
-     └────────┬────────┘
               ▼
-     實驗 runner(YAML 設定 → JSON 結果)
-              │  eval set hash 入結果檔、覆蓋保護、竄改偵測
+   A 軸 檢索:BM25 / bge-m3 / RRF hybrid / + bge-reranker-v2-m3
+              │  reranker 分數低於門檻 → 不呼叫 LLM、直接拒答
               ▼
-   100 題凍結 eval set 計分(recall@k / hit@k / MRR)</pre>
+   B/C 軸 生成:vLLM 或 TensorRT-LLM × bf16 / FP8 / AWQ / GPTQ-Int4
+              │  (Qwen2.5-7B-Instruct,單張 RTX 4090)
+              ▼
+   計分:100 題凍結評測集(recall@k / hit@k / MRR)
+        + Qwen2.5-14B faithfulness judge + 確定性審計層</pre>
 
   <h2>使用技術</h2>
   <table>
     <tr><th>類別</th><th>技術堆疊</th></tr>
-    <tr><td>檢索</td><td>BM25(純標準庫自實作,CJK bigram + ASCII 詞斷詞;context_fields 選項)→ 後續 bge-m3 / hybrid / reranker</td></tr>
+    <tr><td>檢索</td><td>BM25(純標準庫自實作,CJK bigram + ASCII 詞斷詞)、bge-m3 dense、RRF hybrid、bge-reranker-v2-m3;另評估 NVIDIA NIM reranker</td></tr>
+    <tr><td>推論</td><td>vLLM 0.22.1、TensorRT-LLM 1.2.1、Qwen2.5-7B-Instruct(bf16 / FP8 / AWQ / GPTQ-Int4)、NVIDIA ModelOpt(FP8 校正)</td></tr>
+    <tr><td>Judge</td><td>本機 Qwen2.5-14B faithfulness judge(結構化輸出),兩個方向皆經人工審計</td></tr>
+    <tr><td>Demo</td><td>Gradio 雙欄對照</td></tr>
     <tr><td>語料前處理</td><td>pypdf(釘選 6.16.2)、自寫 HTML 正文抽取、雙套中文標題體系解析、NFKC 正規化</td></tr>
     <tr><td>評測框架</td><td>凍結 eval set(content hash + 壞資料一律 raise)、recall@k / hit@k / MRR、一行指令重跑</td></tr>
     <tr><td>品質工程</td><td>pytest + hypothesis(property-based)、mypy strict、ruff、變異測試 162 錨點(含 property 子集獨立驗證)、pip-audit;單一入口 <code>tools/gauntlet.sh</code></td></tr>

@@ -65,7 +65,7 @@
 
 | | Leaderboard / blog numbers | This project |
 |---|---|---|
-| Baseline | often default-parameter BM25 | BM25 tuned first (recall@10 0.829 → 0.905 before any dense model) |
+| Baseline | often default-parameter BM25 | BM25 tuned first (recall@10 0.817 → 0.903 on eval set v1.2, before any dense model) |
 | What is reported | the winner | the winner, its cost, and a boring-but-safe option |
 | Quality claim | "quality unchanged" | what the judge sees, what it misses, and how far it is off in each direction |
 | Reproducibility | a table | one command per number, eval set frozen by hash |
@@ -203,7 +203,7 @@ python3 -m selectrag.runner configs/bm25_ctx_tuned_full100.yaml <run_id>    # re
 
 | | 排行榜 / 部落格數字 | 本專案 |
 |---|---|---|
-| baseline | 常是預設參數的 BM25 | 先調好 BM25(recall@10 0.829 → 0.905,還沒上任何 dense 模型) |
+| baseline | 常是預設參數的 BM25 | 先調好 BM25(評測集 v1.2 上 recall@10 0.817 → 0.903,還沒上任何 dense 模型) |
 | 報告什麼 | 冠軍 | 冠軍 + 代價 + 一個最無聊但最穩的選項 |
 | 品質主張 | 「品質沒變」 | judge 看得到什麼、看不到什麼、兩個方向各差多少 |
 | 可重現性 | 一張表 | 每個數字一行指令,評測集以 hash 凍結 |

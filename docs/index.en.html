@@ -105,7 +105,7 @@
   <h2>Design Philosophy</h2>
   <p>This project does <strong>not chase leaderboard scores</strong>; it builds a <strong>selection methodology</strong> — every "should we adopt X?" question gets a controlled experiment, and every conclusion is written as a trade-off, not a champion. Three pillars:</p>
   <ul>
-    <li><strong>Five experiment axes</strong>: retrieval strategy (A), inference engine (B), quantization format (C), RAG paradigm (D), fine-tuning contrast (E) — one axis at a time.</li>
+    <li><strong>Five planned axes, three completed</strong>: retrieval strategy (A), inference engine (B) and numeric format (C). RAG paradigm (D) and fine-tuning (E) are out of scope; see Scope &amp; Next.</li>
     <li><strong>Evaluation foundation first</strong>: 100 questions with human-adjudicated ground truth, content-hash frozen, one-command reruns; no baseline, no "improvement" claims.</li>
     <li><strong>Honest disclosure</strong>: combinations expected to win that lost, assumptions overturned by evidence, tuning overfitting risks — all in the memo.</li>
   </ul>
@@ -124,20 +124,23 @@
               ▼
       8,029 chunks (JSONL)
               │
-     ┌────────┴────────┐
-     ▼                 ▼
-  BM25 (control)  BM25 + doc context     ← Axis A: dense / hybrid / reranker next
-     └────────┬────────┘
               ▼
-     Experiment runner (YAML config → JSON results)
-              │  eval-set hash embedded, overwrite guard, tamper detection
+   Axis A  Retrieval: BM25 / bge-m3 / RRF hybrid / + bge-reranker-v2-m3
+              │  reranker score threshold → abstain without calling the LLM
               ▼
-   Scoring against the frozen 100-question eval set</pre>
+   Axis B/C  Generation: vLLM or TensorRT-LLM × bf16 / FP8 / AWQ / GPTQ-Int4
+              │  (Qwen2.5-7B-Instruct, single RTX 4090)
+              ▼
+   Scoring: frozen 100-question eval set (recall@k / hit@k / MRR)
+            + Qwen2.5-14B faithfulness judge + deterministic audit layer</pre>
 
   <h2>Tech Stack</h2>
   <table>
     <tr><th>Category</th><th>Stack</th></tr>
-    <tr><td>Retrieval</td><td>BM25 (stdlib-only implementation, CJK-bigram + ASCII tokenization; optional context fields) → bge-m3 / hybrid / reranker next</td></tr>
+    <tr><td>Retrieval</td><td>BM25 (stdlib-only, CJK bigram + ASCII tokenization), bge-m3 dense, RRF hybrid, bge-reranker-v2-m3; NVIDIA NIM reranker evaluated</td></tr>
+    <tr><td>Inference</td><td>vLLM 0.22.1, TensorRT-LLM 1.2.1, Qwen2.5-7B-Instruct (bf16 / FP8 / AWQ / GPTQ-Int4), NVIDIA ModelOpt (FP8 calibration)</td></tr>
+    <tr><td>Judge</td><td>Local Qwen2.5-14B faithfulness judge (structured outputs), hand-audited in both directions</td></tr>
+    <tr><td>Demo</td><td>Gradio two-column comparison</td></tr>
     <tr><td>Corpus pipeline</td><td>pypdf (pinned 6.16.2), custom HTML main-content extraction, dual Chinese heading-scheme parser, NFKC normalization</td></tr>
     <tr><td>Evaluation</td><td>Frozen eval set (content hash + fail-loud bad-data policy), recall@k / hit@k / MRR, one-command reruns</td></tr>
     <tr><td>Quality engineering</td><td>pytest + hypothesis (property-based), mypy strict, ruff, 162-anchor mutation testing (with property-only subset runs), pip-audit; single entry <code>tools/gauntlet.sh</code></td></tr>
